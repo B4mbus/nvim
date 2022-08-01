@@ -6,6 +6,8 @@ require 'config.keybinds' -- plugin unrelated keybinds
 require 'config.autocmds' -- autocommands
 require 'config.plugins' -- plugins
 
+
+-- Implement cursor going back in the terminal if cursor in normal mode is not at the end of line
 -- Comment.nvim
 -- alpha-nvim
 -- bufferline.nvim

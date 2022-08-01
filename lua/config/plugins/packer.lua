@@ -1,3 +1,4 @@
-local packer = require 'packer'
-
-
+return {
+	config = function(packer)
+	end
+}

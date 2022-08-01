@@ -13,6 +13,7 @@ utils.set_vim_options {
 	undofile = true,
 	expandtab = false,
 	clipboard = 'unnamedplus',
+	mouse = 'a',
 	inccommand = 'split',
 	lazyredraw = true,
 	relativenumber = true,
@@ -20,9 +21,7 @@ utils.set_vim_options {
 	sh = 'nu',
 	guifont = 'JetBrainsMono Nerd Font Mono',
 	list = true,
-	listchars = function(listchars)
-		listchars:append('eol:↴')
-	end,
+	listchars = 'eol:↴,nbsp:+,tab:> ,trail:-',
 	timeoutlen = 100,
 	updatetime = 200,
 	incsearch = true,
