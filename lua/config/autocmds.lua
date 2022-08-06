@@ -10,6 +10,10 @@ autocmd(
 		pattern = '*',
 		callback = function()
 			if #vim.v.argv <= 2 then
+				if not vim.fn.isdirectory(vim.g.starting_directory) then
+					vim.notify(string.format([[[ERROR] Directory "%s" doesnt exist!]], vim.g.starting_directory), vim.log.levels.ERROR)
+				end
+
 				vim.api.nvim_set_current_dir(vim.g.starting_directory)
 			end
 		end

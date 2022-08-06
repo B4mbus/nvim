@@ -1,28 +1,79 @@
-local pu = require 'config.utils.plugin'
+local notify_error = function(err)
+	vim.notify('[ERROR] Cannot find plugin\n' .. err, vim.log.levels.ERROR)
+end
 
-local use_plugins = pu.use_plugins
-local with_config = pu.with_config
-local with_plain_setup = pu.with_plain_setup
-local with_setup = pu.with_setup
+local use = function(name)
+	local plugin_path = 'config.plugins.' .. name
+	local status, mod = xpcall(require, notify_error, plugin_path)
+	if status then
+		return mod
+	end
+end
 
-use_plugins {
-	with_config('wbthomason/packer.nvim'),
-	with_plain_setup('folke/todo-comments.nvim'),
-	with_setup('lukas-reineke/indent-blankline.nvim', {
-		space_char_blankline = ' ',
-		show_current_context = true,
-		show_current_context_start = true,
-	}),
-	with_setup('ggandor/lightspeed.nvim', {
-		jump_to_unique_chars = { safety_timeout = 200 },
-	}),
-	'nvim-lua/plenary.nvim',
-	'andymass/vim-matchup',
+local plugins = {
+	use 'todo-comments',
+	use 'lightspeed',
+	use 'indent-blankline',
+	use 'nvim-tree',
+	use 'nvim-colorizer',
+	use 'fidget',
+	use 'true-zen',
+	use 'nvim-treesitter',
+	use 'lsp_lines',
+	use 'comment',
+	use 'toggleterm',
+	use 'gitsigns',
+	use 'wilder',
+	use 'autopairs',
+	use 'nvim-surround',
+	use 'bufferline',
+	use 'scope',
+	use 'telescope',
+	use 'lsp_signature',
+	use 'nvim-cmp',
+	use 'lspconfig',
+
+	-- Meta 
 	'antoinemadec/FixCursorHold.nvim',
+	'nvim-lua/plenary.nvim',
+	'nvim-lua/popup.nvim',
+	'kevinhwang91/promise-async',
 	'tpope/vim-repeat',
+	'rktjmp/lush.nvim',
+	'wbthomason/packer.nvim',
+
+	'hrsh7th/cmp-nvim-lsp-document-symbol',
+	'hrsh7th/cmp-nvim-lua',
+	'hrsh7th/cmp-buffer',
+	'hrsh7th/cmp-path',
+	'hrsh7th/cmp-nvim-lsp',
+
+	'romainl/vim-cool',
+	'onsails/lspkind.nvim',
+	'famiu/bufdelete.nvim',
+	'andymass/vim-matchup',
 	'rebelot/kanagawa.nvim',
 	'editorconfig/editorconfig-vim',
-	'MaxMEllon/vim-jsx-pretty',
+	'mcchrish/zenbones.nvim',
 	'mcauley-penney/tidy.nvim',
 	'hauleth/vim-backscratch',
+	'B4mbus/oxocarbon-lua.nvim',
+	'kyazdani42/nvim-web-devicons',
+}
+
+local packer = require 'packer'
+
+packer.startup {
+	function(use)
+		for _, plugin in ipairs(plugins) do
+			use(plugin)
+		end
+	end,
+	config = {
+		display = {
+			open_fn = function()
+				return require('packer.util').float({ border = 'single' })
+			end
+		}
+	}
 }
