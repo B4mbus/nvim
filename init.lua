@@ -1,4 +1,4 @@
-require 'config.colorscheme' -- colorscheme
+require 'config.theming' -- colorscheme, lsp signs and shit
 require 'config.statusline' -- statusline 
 require 'config.options' -- vim options
 require 'config.variables' -- global variables, may be plugin related
@@ -8,12 +8,12 @@ require 'config.plugins' -- plugins
 
 
 -- Implement cursor going back in the terminal if cursor in normal mode is not at the end of line
--- dressing.nvim
+-- dressing.nvim / cosmic-ui
 
--- vimspector / nvim-dap
+-- nvim-dap
 -- which-key.nvim
--- persisted.nvim
 -- neotest
 -- https://github.com/shaunsingh/nyoom.nvim
 -- LinArcX/telescope-command-palette.nvim
 -- Shatur/neovim-session-manager
+-- persisted.nvim

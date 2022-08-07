@@ -30,5 +30,6 @@ utils.set_vim_options {
 	termguicolors = true,
 	selection = 'old',
 	laststatus = 3,
-	completeopt = {'menu' ,'menuone' ,'noselect'}
+	completeopt = {'menu' ,'menuone' ,'noselect'},
+	autoread = true
 }

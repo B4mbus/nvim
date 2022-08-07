@@ -1,4 +1,6 @@
--- Yoinked and modified from https://github.com/shaunsingh/nyoom.nvim/blob/main/fnl/utils/statusline.fnl
+-- Yoinked from https://github.com/shaunsingh/nyoom.nvim/blob/main/fnl/utils/statusline.fnl
+-- And modified in some ways
+
 local fmt = string.format
 
 local modes = {
@@ -78,12 +80,29 @@ local get_lsp_diagnostics = function()
 		count[severity.HINT] or 0
 	)
 end
--- ;; Normally we would have an inactive and a short section as well, but since we have a global statusline now I removed them
 
 statusline_mod = {}
 
 statusline_mod.winbar = function()
-	return table.concat {'%#WinBar#', ' %f '}
+	if vim.api.nvim_buf_get_option(0, 'ft') == 'NvimTree' then
+		return '%= 📂 File explorer %='
+	else
+		local navic = require 'nvim-navic'
+
+		local loc = navic.get_location()
+
+		if loc == '' then
+			loc = '∅'
+		end
+
+		return table.concat {
+			'%#WinBar#',
+			' %f ',
+			navic.is_available()
+			and ':: ' .. loc
+			or ''
+		}
+	end
 end
 
 statusline_mod.statusline = function()
@@ -93,7 +112,7 @@ statusline_mod.statusline = function()
 		mode_color(),
 		string.upper(fmt(' %s ', modes[mode])),
 		'%#StatusLine#',
-		' %f ',
+		' %F ',
 		'%#StatusPosition#',
 		get_git_status(),
 		'%=',
@@ -104,7 +123,7 @@ statusline_mod.statusline = function()
 end
 
 if vim.api.nvim_get_all_options_info()['winbar'] then
-	vim.opt.winbar = '%!v:lua.statusline_mod.winbar()'
+	vim.opt.winbar = '%{%v:lua.statusline_mod.winbar()%}'
 end
 
-vim.opt.statusline = '%!v:lua.statusline_mod.statusline()'
+vim.opt.statusline = '%{%v:lua.statusline_mod.statusline()%}'

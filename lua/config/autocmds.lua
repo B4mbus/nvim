@@ -37,3 +37,12 @@ autocmd(
 		command = 'setlocal ft=jsx'
 	}
 )
+
+autocmd(
+	{ 'CursorHold' },
+	{
+		group = augroup('automatic_file_refreshing'),
+		pattern = '*',
+		command = 'checktime'
+	}
+)

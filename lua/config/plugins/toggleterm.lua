@@ -2,7 +2,7 @@ return {
 	'akinsho/toggleterm.nvim',
 	config = function()
 		require 'toggleterm'.setup {
-			open_mapping = '<C-t>',
+			open_mapping = '<Nop>',
 			hide_numbers = true,
 			start_in_insert = true,
 			persist_size = true,

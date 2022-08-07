@@ -13,6 +13,11 @@ return {
 					and not context.in_syntax_group("Comment")
 				end
 			end,
+			snippet = {
+				expand = function(args)
+					require 'luasnip'.lsp_expand(args.body)
+				end
+			},
 			window = {
 				completion = cmp.config.window.bordered(),
 				documentation = cmp.config.window.bordered(),
@@ -40,6 +45,7 @@ return {
 			},
 			sources = cmp.config.sources {
 				{ name = 'nvim_lsp', keyword_length = 3},
+				{ name = 'luasnip' },
 				{ name = 'path' },
 				{ name = 'buffer', keyword_length = 3}
 			},
@@ -50,13 +56,5 @@ return {
 				}
 			}
 		}
-
-		cmp.setup.cmdline('/', {
-			mapping = cmp.mapping.preset.cmdline(),
-			sources = cmp.config.sources {
-				{ name = 'nvim_lsp_document_symbol' },
-				{ name = 'buffer' }
-			}
-		})
 	end
 }

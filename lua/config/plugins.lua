@@ -32,6 +32,10 @@ local plugins = {
 	use 'lsp_signature',
 	use 'nvim-cmp',
 	use 'lspconfig',
+	use 'refactoring',
+	use 'tresitter-textobjects',
+	use 'navic',
+	use 'which-key',
 
 	-- Meta 
 	'antoinemadec/FixCursorHold.nvim',
@@ -47,7 +51,11 @@ local plugins = {
 	'hrsh7th/cmp-buffer',
 	'hrsh7th/cmp-path',
 	'hrsh7th/cmp-nvim-lsp',
+	'saadparwaiz1/cmp_luasnip',
 
+	'folke/lua-dev.nvim',
+	'kyazdani42/blue-moon',
+	'L3MON4D3/LuaSnip',
 	'romainl/vim-cool',
 	'onsails/lspkind.nvim',
 	'famiu/bufdelete.nvim',

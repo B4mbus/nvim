@@ -7,7 +7,7 @@ utils.set_vim_globals {
 
 	oxocarbon_lua_disable_italic = true,
 
-	oxocarbon_keep_terminal = true,
+	oxocarbon_lua_keep_terminal = true,
 
 	mapleader = ' '
 }
