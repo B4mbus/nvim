@@ -38,6 +38,7 @@ local plugins = {
 	use 'which-key',
 	use 'smart-splits',
 	use 'project',
+	use 'notify',
 
 	-- Meta 
 	'antoinemadec/FixCursorHold.nvim',
@@ -65,8 +66,8 @@ local plugins = {
 	'famiu/bufdelete.nvim',
 	'andymass/vim-matchup',
 	'rebelot/kanagawa.nvim',
+	'NvChad/base46',
 	'editorconfig/editorconfig-vim',
-	'mcchrish/zenbones.nvim',
 	'mcauley-penney/tidy.nvim',
 	'hauleth/vim-backscratch',
 	'B4mbus/oxocarbon-lua.nvim',

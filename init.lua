@@ -1,7 +1,7 @@
+require 'config.variables' -- global variables, may be plugin related
 require 'config.theming' -- colorscheme, lsp signs and shit
 require 'config.statusline' -- statusline 
 require 'config.options' -- vim options
-require 'config.variables' -- global variables, may be plugin related
 require 'config.keybinds' -- plugin unrelated keybinds
 require 'config.autocmds' -- autocommands
 require 'config.plugins' -- plugins
