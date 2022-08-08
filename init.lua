@@ -8,11 +8,12 @@ require 'config.plugins' -- plugins
 
 
 -- Implement cursor going back in the terminal if cursor in normal mode is not at the end of line
+--
 -- dressing.nvim / cosmic-ui
-
 -- nvim-dap
--- which-key.nvim
 -- neotest
+-- iswap
+-- stay-in-place
 -- https://github.com/shaunsingh/nyoom.nvim
 -- LinArcX/telescope-command-palette.nvim
 -- Shatur/neovim-session-manager

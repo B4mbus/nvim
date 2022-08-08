@@ -42,7 +42,6 @@ local mode_color = function()
 	elseif mode == 't' then
 		return '%#StatusTerminal#'
 	else
-		print('wtf ?????????')
 		return '%#StatusLine#'
 	end
 end

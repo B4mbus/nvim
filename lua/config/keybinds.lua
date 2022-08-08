@@ -34,8 +34,16 @@ keymap('n', '<', '<<', silent_noremap)
 keymap('v', '>', '>gv', silent_noremap)
 keymap('v', '<', '<gv', silent_noremap)
 
+-- K and J move visual selections
 keymap('x', 'K', ':move \'<-2<cr>gv-gv', silent_noremap)
 keymap('x', 'J', ':move \'>+1<cr>gv-gv', silent_noremap)
 
+-- H and L cycle buffers
 keymap('n', 'H', '<cmd>BufferLineCyclePrev<cr>', silent_noremap)
 keymap('n', 'L', '<cmd>BufferLineCycleNext<cr>', silent_noremap)
+
+-- <A-hjkl> resize buffersvim.keymap.set('n', '<A-h>', require('smart-splits').resize_left)
+keymap('n', '<A-h>', function() require('smart-splits').resize_left() end, silent_noremap)
+keymap('n', '<A-j>', function() require('smart-splits').resize_down() end, silent_noremap)
+keymap('n', '<A-k>', function() require('smart-splits').resize_up() end, silent_noremap)
+keymap('n', '<A-l>', function() require('smart-splits').resize_right() end, silent_noremap)

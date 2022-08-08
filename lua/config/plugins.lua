@@ -36,6 +36,8 @@ local plugins = {
 	use 'tresitter-textobjects',
 	use 'navic',
 	use 'which-key',
+	use 'smart-splits',
+	use 'project',
 
 	-- Meta 
 	'antoinemadec/FixCursorHold.nvim',
@@ -53,6 +55,8 @@ local plugins = {
 	'hrsh7th/cmp-nvim-lsp',
 	'saadparwaiz1/cmp_luasnip',
 
+	'mxw/vim-jsx',
+	'tiagovla/buffercd.nvim',
 	'folke/lua-dev.nvim',
 	'kyazdani42/blue-moon',
 	'L3MON4D3/LuaSnip',
