@@ -4,7 +4,7 @@
 local fmt = string.format
 local vl = vim.lsp
 local va = vim.api
-local vf = vim.fn
+local vf = vim.lsp
 
 local symbols = {
 	null = '∅',
@@ -36,7 +36,7 @@ local modes = {
 }
 
 local mode_color = function()
-	local mode = vim.api.nvim_get_mode().mode
+	local mode = va.nvim_get_mode().mode
 
 	if mode == 'n' then
 		return '%#StatusNormal#'
@@ -82,7 +82,7 @@ local valid_lsps_attached = function(clients)
 end
 
 local get_lsp_diagnostics = function()
-	local buffer_clients = vim.lsp.buf_get_clients(0)
+	local buffer_clients = vl.buf_get_clients(0)
 	if not valid_lsps_attached(buffer_clients) then
 		return ''
 	end
@@ -105,7 +105,7 @@ local get_lsp_diagnostics = function()
 end
 
 local get_nvim_tree_winbar = function(nvim_tree_window_width, minimal_nvim_tree_path_padding)
-	local v = vim.fn
+	local v = vf
 	local allowed_width = nvim_tree_window_width - (minimal_nvim_tree_path_padding * 2) - 3
 	local cwd_parts = v.split(v.getcwd(), '\\')
 
@@ -151,9 +151,9 @@ end
 statusline_mod = {}
 
 statusline_mod.winbar = function(minimal_nvim_tree_path_padding)
-	if vim.api.nvim_buf_get_option(0, 'ft') == 'NvimTree' then
+	if va.nvim_buf_get_option(0, 'ft') == 'NvimTree' then
 		return get_nvim_tree_winbar(
-			vim.api.nvim_win_get_width(0),
+			va.nvim_win_get_width(0),
 			minimal_nvim_tree_path_padding
 		)
 	else
@@ -162,7 +162,7 @@ statusline_mod.winbar = function(minimal_nvim_tree_path_padding)
 end
 
 statusline_mod.statusline = function()
-	local mode = vim.api.nvim_get_mode().mode
+	local mode = va.nvim_get_mode().mode
 
 	return table.concat {
 		mode_color(),
@@ -178,7 +178,7 @@ statusline_mod.statusline = function()
 	}
 end
 
-if vim.api.nvim_get_all_options_info()['winbar'] then
+if va.nvim_get_all_options_info()['winbar'] then
 	vim.opt.winbar = '%{%v:lua.statusline_mod.winbar(2)%}'
 end
 
