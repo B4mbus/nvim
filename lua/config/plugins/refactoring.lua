@@ -24,8 +24,8 @@ return {
 			},
 			print_var_statements = {
 				cpp = {
-					'(std::cout << "{{ [" << (%s) << "] is [" << (%s) << "] }}\n");',
-					'(fmt::print("{{ [{}] is [{}] }}\n", (%s), (%s)));'
+					'(std::cout << "{{ %s [" << (%s) << "] }}\n");',
+					'(fmt::print("{{ {} [{}] }}\n", (%s), (%s)));'
 				}
 			},
 		}

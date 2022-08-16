@@ -5,16 +5,14 @@ return {
 
 		wilder.setup {
 			modes = {':', '/', '?'},
-      next_key = '<Tab>',
-      previous_key = '<S-Tab>',
-      accept_key = '<CR>',
-      reject_key = '<Down>',
+			next_key = '<Tab>',
+			previous_key = '<S-Tab>',
 		}
 
 		wilder.set_option('pipeline', {
 			wilder.branch(
-				wilder.cmdline_pipeline(),
-				wilder.search_pipeline()
+			wilder.cmdline_pipeline(),
+			wilder.search_pipeline()
 			),
 		})
 
@@ -26,4 +24,3 @@ return {
 		}))
 	end
 }
-

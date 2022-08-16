@@ -1,20 +1,39 @@
+_G.__luacache_config = {
+  chunks = {
+    enable = true,
+    path = vim.fn.stdpath('cache')..'/luacache_chunks',
+  },
+  modpaths = {
+    enable = true,
+    path = vim.fn.stdpath('cache')..'/luacache_modpaths',
+  }
+}
+require 'impatient'.enable_profile()
+
+require 'config.autocmds' -- autocommands
 require 'config.variables' -- global variables, may be plugin related
 require 'config.theming' -- colorscheme, lsp signs and shit
 require 'config.statusline' -- statusline 
 require 'config.options' -- vim options
 require 'config.keybinds' -- plugin unrelated keybinds
-require 'config.autocmds' -- autocommands
 require 'config.plugins' -- plugins
-
 
 -- Implement cursor going back in the terminal if cursor in normal mode is not at the end of line
 --
--- dressing.nvim / cosmic-ui
--- nvim-dap
--- neotest
--- iswap
--- stay-in-place
--- https://github.com/shaunsingh/nyoom.nvim
--- LinArcX/telescope-command-palette.nvim
--- Shatur/neovim-session-manager
--- persisted.nvim
+--
+-- Interesting plugins to try out:
+-- -- neovim-session-manager / persisted.nvim / possesion.nvim
+-- -- readline.nvim
+-- -- vim-bookmarks alongline telescope-vim-bookmarks.nvim
+-- -- harpoon
+-- -- nvim-luapad, later
+-- -- nvim-dap
+-- -- neotest (need to wrtite neotest-cpp)
+-- -- nvim-FeMaco.lua
+-- -- inc-rename.nvim (support for cosmic-ui)
+-- -- dired.nvim
+-- -- neogit
+-- -- projectlaunch.nvim
+
+-- Plugins to watch:
+-- decay.nvim

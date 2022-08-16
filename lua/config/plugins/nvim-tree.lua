@@ -16,15 +16,8 @@ return {
 			},
 			
       view = {
-        adaptive_size = true,
-				mappings = {
-					list = {
-						{
-							key = 'v', action = 'vsplit',
-							key = 's', action = 'split',
-						}
-					}
-				}
+        hide_root_folder = true,
+        adaptive_size = true
 			}
 		}
 	end

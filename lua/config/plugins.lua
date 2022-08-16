@@ -1,16 +1,17 @@
-local notify_error = function(err)
-	vim.notify('[ERROR] Cannot find plugin\n' .. err, vim.log.levels.ERROR)
-end
-
 local use = function(name)
 	local plugin_path = 'config.plugins.' .. name
-	local status, mod = xpcall(require, notify_error, plugin_path)
+	local status, mod = pcall(require, plugin_path)
+
 	if status then
 		return mod
+	else
+		vim.notify(string.format('[ERROR] Cannot find plugin "%s".', name), vim.log.levels.ERROR)
+		return nil
 	end
 end
 
 local plugins = {
+	use 'notify',
 	use 'todo-comments',
 	use 'lightspeed',
 	use 'indent-blankline',
@@ -19,11 +20,12 @@ local plugins = {
 	use 'fidget',
 	use 'true-zen',
 	use 'nvim-treesitter',
+	use 'treesitter-textobjects',
+	use 'treesitter-textsubjects',
+	use 'treesitter-context',
 	use 'lsp_lines',
 	use 'comment',
-	use 'toggleterm',
 	use 'gitsigns',
-	use 'wilder',
 	use 'autopairs',
 	use 'nvim-surround',
 	use 'bufferline',
@@ -33,14 +35,21 @@ local plugins = {
 	use 'nvim-cmp',
 	use 'lspconfig',
 	use 'refactoring',
-	use 'tresitter-textobjects',
 	use 'navic',
 	use 'which-key',
 	use 'smart-splits',
 	use 'project',
-	use 'notify',
+	use 'iswap',
+	use 'cosmic-ui',
+	use 'buffercd',
+	use 'stay-in-place',
+	use 'text-case',
+	use 'wilder',
+	use 'trevJ',
+	use 'decay',
+	-- use 'nvim-ufo',
 
-	-- Meta 
+	-- Meta
 	'antoinemadec/FixCursorHold.nvim',
 	'nvim-lua/plenary.nvim',
 	'nvim-lua/popup.nvim',
@@ -48,6 +57,7 @@ local plugins = {
 	'tpope/vim-repeat',
 	'rktjmp/lush.nvim',
 	'wbthomason/packer.nvim',
+	'MunifTanjim/nui.nvim',
 
 	'hrsh7th/cmp-nvim-lsp-document-symbol',
 	'hrsh7th/cmp-nvim-lua',
@@ -56,8 +66,11 @@ local plugins = {
 	'hrsh7th/cmp-nvim-lsp',
 	'saadparwaiz1/cmp_luasnip',
 
+	'F:\\prv\\dev\\projects\\nvim-shorty',
+	'github/copilot.vim',
+	'p00f/clangd_extensions.nvim',
+	'm-demare/hlargs.nvim',
 	'mxw/vim-jsx',
-	'tiagovla/buffercd.nvim',
 	'folke/lua-dev.nvim',
 	'kyazdani42/blue-moon',
 	'L3MON4D3/LuaSnip',
@@ -72,6 +85,8 @@ local plugins = {
 	'hauleth/vim-backscratch',
 	'B4mbus/oxocarbon-lua.nvim',
 	'kyazdani42/nvim-web-devicons',
+
+	'lewis6991/impatient.nvim'
 }
 
 local packer = require 'packer'
@@ -79,7 +94,9 @@ local packer = require 'packer'
 packer.startup {
 	function(use)
 		for _, plugin in ipairs(plugins) do
-			use(plugin)
+			if plugin then
+				use(plugin)
+			end
 		end
 	end,
 	config = {
@@ -90,3 +107,5 @@ packer.startup {
 		}
 	}
 }
+
+packer.compile()

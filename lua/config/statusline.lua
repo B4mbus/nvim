@@ -1,7 +1,16 @@
--- Yoinked from https://github.com/shaunsingh/nyoom.nvim/blob/main/fnl/utils/statusline.fnl
--- And modified in some ways
+-- Originally yoinked from https://github.com/shaunsingh/nyoom.nvim/blob/main/fnl/utils/statusline.fnl
+-- But modified in a couple of ways
 
 local fmt = string.format
+local vl = vim.lsp
+local va = vim.api
+local vf = vim.fn
+
+local symbols = {
+	null = '∅',
+	lambda = 'λ',
+	small_dot = '•'
+}
 
 local modes = {
 	n = 'RW',
@@ -51,19 +60,34 @@ local get_git_status = function()
 	local head_empty = branch.head == ''
 
 	if not head_empty then
-		return fmt('(λ • #%s)', branch.head)
+		return fmt(
+			'(%s %s #%s)',
+			symbols.lambda,
+			symbols.small_dot,
+			branch.head
+		)
 	else
 		return ''
 	end
 end
 
+local valid_lsps_attached = function(clients)
+	if next(clients) == nil then
+		return false
+	elseif clients[1].name == 'copilot' then
+		return false
+	else
+		return true
+	end
+end
+
 local get_lsp_diagnostics = function()
 	local buffer_clients = vim.lsp.buf_get_clients(0)
-	if next(buffer_clients) == nil then
+	if not valid_lsps_attached(buffer_clients) then
 		return ''
 	end
 
- 	local diagnostics = vim.diagnostic.get(0)
+	local diagnostics = vim.diagnostic.get(0)
 	local count = {0, 0, 0, 0}
 
 	for _, diag in ipairs(diagnostics) do
@@ -80,27 +104,60 @@ local get_lsp_diagnostics = function()
 	)
 end
 
+local get_nvim_tree_winbar = function(nvim_tree_window_width, minimal_nvim_tree_path_padding)
+	local v = vim.fn
+	local allowed_width = nvim_tree_window_width - (minimal_nvim_tree_path_padding * 2) - 3
+	local cwd_parts = v.split(v.getcwd(), '\\')
+
+	if #cwd_parts == 0 then
+		return symbols.null
+	end
+
+	local path = ''
+
+	local i = #cwd_parts
+	while path:len() + cwd_parts[i]:len() < allowed_width do
+		if i == #cwd_parts then
+			path = cwd_parts[i] .. path
+		else
+			path = cwd_parts[i] .. '\\' .. path
+		end
+		i = i - 1
+
+		if i == 0 then break end
+	end
+
+	return '%=..\\' .. path .. '%='
+end
+
+local get_normal_winbar = function()
+	local navic = require 'nvim-navic'
+
+	local loc = navic.get_location()
+
+	if loc == '' then
+		loc = symbols.null
+	end
+
+	return table.concat {
+		'%#WinBar#',
+		' %f ',
+		navic.is_available()
+		and ':: ' .. loc
+		or ''
+	}
+end
+
 statusline_mod = {}
 
-statusline_mod.winbar = function()
+statusline_mod.winbar = function(minimal_nvim_tree_path_padding)
 	if vim.api.nvim_buf_get_option(0, 'ft') == 'NvimTree' then
-		return '%= 📂 File explorer %='
+		return get_nvim_tree_winbar(
+			vim.api.nvim_win_get_width(0),
+			minimal_nvim_tree_path_padding
+		)
 	else
-		local navic = require 'nvim-navic'
-
-		local loc = navic.get_location()
-
-		if loc == '' then
-			loc = '∅'
-		end
-
-		return table.concat {
-			'%#WinBar#',
-			' %f ',
-			navic.is_available()
-			and ':: ' .. loc
-			or ''
-		}
+		return get_normal_winbar()
 	end
 end
 
@@ -122,7 +179,7 @@ statusline_mod.statusline = function()
 end
 
 if vim.api.nvim_get_all_options_info()['winbar'] then
-	vim.opt.winbar = '%{%v:lua.statusline_mod.winbar()%}'
+	vim.opt.winbar = '%{%v:lua.statusline_mod.winbar(2)%}'
 end
 
 vim.opt.statusline = '%{%v:lua.statusline_mod.statusline()%}'
