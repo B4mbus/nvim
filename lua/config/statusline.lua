@@ -4,7 +4,7 @@
 local fmt = string.format
 local vl = vim.lsp
 local va = vim.api
-local vf = vim.lsp
+local vf = vim.fn
 
 local symbols = {
 	null = '∅',
@@ -71,10 +71,27 @@ local get_git_status = function()
 	end
 end
 
+local get_lsps_count = function(clients)
+	local lsps_count = 0
+
+	for _, client in pairs(clients) do
+		if client.name ~= 'copilot' then
+			lsps_count = lsps_count + 1
+		end
+	end
+
+  return lsps_count
+end
+
+
 local valid_lsps_attached = function(clients)
 	if next(clients) == nil then
 		return false
-	elseif clients[1].name == 'copilot' then
+	end
+
+	local lsps_count = get_lsps_count(clients)
+
+	if lsps_count == 0 then
 		return false
 	else
 		return true
@@ -105,9 +122,14 @@ local get_lsp_diagnostics = function()
 end
 
 local get_nvim_tree_winbar = function(nvim_tree_window_width, minimal_nvim_tree_path_padding)
-	local v = vf
 	local allowed_width = nvim_tree_window_width - (minimal_nvim_tree_path_padding * 2) - 3
-	local cwd_parts = v.split(v.getcwd(), '\\')
+
+	local cwd = vf.getcwd()
+	if not cwd then
+		return symbols.null
+	end
+
+	local cwd_parts = vf.split(cwd, '\\')
 
 	if #cwd_parts == 0 then
 		return symbols.null

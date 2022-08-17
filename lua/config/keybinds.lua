@@ -8,18 +8,19 @@ local silent_noremap = { silent = true, noremap = true }
 keymap('i', '<C-c>', '<Esc>', silent_noremap)
 
 -- Ctrl + S saves
-keymap({'n', 'i'}, '<C-s>', ':w<cr>', silent_noremap)
+keymap('n', '<C-s>', '<cmd>w<cr>', silent_noremap)
+keymap('i', '<C-s>', '<esc><cmd>w<cr>a', silent_noremap)
 
 -- ; Ctrl + C goes into normal mode in terminal
 keymap('t', ';<C-c>', '<C-n><C-\\>', silent_noremap)
 
 -- ;c closes a buffer
-keymap('n', ';c', ':Bdelete<cr>', silent_noremap)
+keymap('n', ';c', '<cmd>Bdelete<cr>', silent_noremap)
 
 -- Tab specific keymaps
-keymap('n', '<C-n>', ':tabnew<cr>', silent_noremap)
-keymap('n', '<C-h>', ':tabprev<cr>', silent_noremap)
-keymap('n', '<C-l>', ':tabnext<cr>', silent_noremap)
+keymap('n', '<C-n>', '<cmd>tabnew<cr>', silent_noremap)
+keymap('n', '<C-h>', '<cmd>tabprev<cr>', silent_noremap)
+keymap('n', '<C-l>', '<cmd>tabnext<cr>', silent_noremap)
 
 
 -- j and k use gj and gk
@@ -31,8 +32,8 @@ keymap({'n', 'v'}, 'j', 'gj', silent_noremap)
 -- keymap('v', '<', '<gv', silent_noremap)
 
 -- K and J move visual selections
-keymap('x', 'K', ':move \'<-2<cr>gv-gv', silent_noremap)
-keymap('x', 'J', ':move \'>+1<cr>gv-gv', silent_noremap)
+keymap('x', 'K', '<cmd>move \'<-2<cr>gv-gv', silent_noremap)
+keymap('x', 'J', '<cmd>move \'>+1<cr>gv-gv', silent_noremap)
 
 -- H and L cycle buffers
 keymap('n', 'H', '<cmd>BufferLineCyclePrev<cr>', silent_noremap)
@@ -86,20 +87,3 @@ keymap('n', 'gef', function() require 'textcase'.operator('to_path_case') end, s
 
 -- gS splits
 keymap('n', 'gS', function() require 'trevj'.format_at_cursor() end, silent_noremap)
-
---[[ -- nvim-ufo
-keymap('n', 'zR', function() require 'ufo'.openAllFolds() end, silent_noremap)
-keymap('n', 'zM', function() require 'ufo'.closeAllFolds() end, silent_noremap)
-keymap('n', 'zr', function() require('ufo').openAllFolds() end, silent_noremap)
-keymap('n', 'zm', function() require('ufo').closeFoldsWith() end, silent_noremap)
-keymap(
-  'n',
-  'K',
-  function()
-    local winid = require 'ufo'.peekFoldedLinesUnderCursor()
-    if not winid then
-      vim.lsp.buf.hover()
-    end
-  end,
-	silent_noremap
-) ]]

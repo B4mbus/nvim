@@ -101,7 +101,13 @@ return {
 			b = { '<cmd>Telescope git_branches<cr>', 'Branches' },
 			s = { '<cmd>Telescope git_status<cr>', 'Status' },
 			c = { '<cmd>Telescope git_bcommits<cr>', 'Local commits' },
-			C = { '<cmd>Telescope git_commits<cr>', 'Commits' }
+			C = { '<cmd>Telescope git_commits<cr>', 'Commits' },
+			d = { '<cmd>DiffviewOpen<cr>', 'Diffview' },
+			n = {
+				name = 'Neogit',
+				o = { '<cmd>Neogit<cr>', 'Open' },
+				l = { '<cmd>Neogit log<cr>', 'Log' },
+      }
 		}
 
 		local packer_mappings = {
@@ -151,8 +157,10 @@ return {
 			d = { '<cmd>tabclose<cr>', 'Close tab' },
 			e = { '<cmd>NvimTreeToggle<cr>', 'Open file tree' },
 			["ss"] = { '<cmd>w<cr><cmd>so %<cr>', 'Source current file' },
-			q = { '<cmd>wqa<cr>', 'Save and quit' },
-			Q = { '<cmd>wqa!<cr>', 'Force save and quit' },
+			w = { '<cmd>w<cr>', 'Save' },
+			W = { '<cmd>w<cr>', 'Force save' },
+			q = { '<cmd>wq<cr>', 'Save and quit' },
+			Q = { '<cmd>wq!<cr>', 'Force save and quit' },
 			n = neovide_mappings,
 			b = buffer_mappings,
 			l = lsp_mappings,

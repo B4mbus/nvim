@@ -28,7 +28,7 @@ return {
 			},
 
 			mapping = cmp.mapping.preset.insert{
-				['<C-j>'] = function(fallback)
+				['<C-f>'] = function(fallback)
 					local copilot_keys = vim.fn['copilot#Accept']()
 					if copilot_keys ~= '' then
 						vim.api.nvim_feedkeys(copilot_keys, 'i', true)

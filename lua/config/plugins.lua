@@ -47,6 +47,8 @@ local plugins = {
 	use 'wilder',
 	use 'trevJ',
 	use 'decay',
+	use 'neogit',
+	use 'diffview',
 	-- use 'nvim-ufo',
 
 	-- Meta

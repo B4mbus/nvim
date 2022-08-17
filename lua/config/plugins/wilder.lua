@@ -11,8 +11,8 @@ return {
 
 		wilder.set_option('pipeline', {
 			wilder.branch(
-			wilder.cmdline_pipeline(),
-			wilder.search_pipeline()
+				wilder.cmdline_pipeline(),
+				wilder.search_pipeline()
 			),
 		})
 
