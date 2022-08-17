@@ -32,7 +32,6 @@ require 'config.plugins' -- plugins
 -- -- nvim-FeMaco.lua
 -- -- inc-rename.nvim (support for cosmic-ui)
 -- -- dired.nvim
--- -- neogit
 -- -- projectlaunch.nvim
 
 -- Plugins to watch:
