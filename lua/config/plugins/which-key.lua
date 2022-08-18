@@ -149,43 +149,83 @@ return {
 			l = { '<cmd>ISwapNodeWithRight<cr>', 'With right' },
 		}
 
+		local refactoring_mappings = {
+			name = 'Refactoring',
+			e = {
+				name = 'Extract',
+				b = { [[ <cmd>lua require('refactoring').refactor('Extract Block')<cr> ]], 'Block' },
+				B = { [[ <cmd>lua require('refactoring').refactor('Extract Block To File')<cr> ]], 'Block to other file' },
+			},
+			i = { [[ <cmd>lua require('refactoring').refactor('Inline varaible')<cr> ]], 'Inline variable' },
+			d = {
+				name = 'Debug',
+				v = { [[ <cmd>lua require('refactoring').debug.print_var({ normal = true })<cr> ]], 'Variable' },
+				p = { [[ <cmd>lua require('refactoring').debug.printf({ below = true })<cr> ]], 'Printf' },
+				c = { [[ <cmd>lua require('refactoring').debug.cleanup({})<cr> ]], 'Cleanup' },
+			}
+		}
+
 		-- All the default keymapings
 		wk.register(
-		{
-			y = { '<cmd>%y<cr>', 'Yank buffer'},
-			c = { '<cmd>e $MYVIMRC<cr>', 'Open config'},
-			d = { '<cmd>tabclose<cr>', 'Close tab' },
-			e = { '<cmd>NvimTreeToggle<cr>', 'Open file tree' },
-			["ss"] = { '<cmd>w<cr><cmd>so %<cr>', 'Source current file' },
-			w = { '<cmd>w<cr>', 'Save' },
-			W = { '<cmd>w<cr>', 'Force save' },
-			q = { '<cmd>wq<cr>', 'Save and quit' },
-			Q = { '<cmd>wq!<cr>', 'Force save and quit' },
-			n = neovide_mappings,
-			b = buffer_mappings,
-			l = lsp_mappings,
-			s = telescope_mappings,
-			t = terminal_mappings,
-			g = git_mappings,
-			p = packer_mappings,
-			z = truezen_mappings,
-			i = iswap_mappings
-		},
-		{ prefix = '<leader>' }
+			{
+				y = { '<cmd>%y<cr>', 'Yank buffer'},
+				c = { '<cmd>e $MYVIMRC<cr>', 'Open config'},
+				C = { '<cmd>Bdelete<cr>', 'Close buffer'},
+				d = { '<cmd>tabclose<cr>', 'Close tab' },
+				e = { '<cmd>NvimTreeToggle<cr>', 'Open file tree' },
+				["ss"] = { '<cmd>w<cr><cmd>so %<cr>', 'Source current file' },
+				w = { '<cmd>w<cr>', 'Save' },
+				W = { '<cmd>w<cr>', 'Force save' },
+				q = { '<cmd>wq<cr>', 'Save and quit' },
+				Q = { '<cmd>wq!<cr>', 'Force save and quit' },
+				n = neovide_mappings,
+				b = buffer_mappings,
+				l = lsp_mappings,
+				r = refactoring_mappings,
+				s = telescope_mappings,
+				t = terminal_mappings,
+				g = git_mappings,
+				p = packer_mappings,
+				z = truezen_mappings,
+				i = iswap_mappings
+			},
+			{ prefix = '<leader>' }
 		)
+		
+		local visual_refactoring_mappings = {
+			name = 'Refactoring',
+			e = {
+				name = 'Extract',
+				f = { [[ <esc><cmd>lua require('refactoring').refactor('Extract Function')<cr> ]], 'Function' },
+				F = { [[ <esc><cmd>lua require('refactoring').refactor('Extract Function To File')<cr> ]], 'Function to other file' },
+				v = { [[ <esc><cmd>lua require('refactoring').refactor('Extract Variable')<cr> ]], 'Variable' },
+			},
+			i = { [[ <esc><cmd>lua require('refactoring').refactor('Inline varaible')<cr> ]], 'Inline variable' },
+			d = {
+				name = 'Debug',
+				v = { [[ <cmd>lua require('refactoring').debug.print_var({})<cr> ]], 'Variable' },
+			}
+		}
+
+		local visual_truezen_mappings = {
+			name = 'TrueZen',
+			n = {
+        function()
+          local first = vim.fn.line('v')
+          local last = vim.fn.line('.')
+
+          require 'true-zen'.narrow(first, last)
+        end,
+        'Narrow',
+      }
+		}
 
 		wk.register(
-		{
-			["zn"] = {
-				function()
-					local first = vim.fn.line('v')
-					local last = vim.fn.line('.')
-					require 'true-zen'.narrow(first, last)
-				end, 
-				'Narrow' 
+			{
+				z = visual_truezen_mappings,
+				r = visual_refactoring_mappings
 			},
-		},
-		{ prefix = '<leader>', mode = 'v' }
+			{ prefix = '<leader>', mode = 'v' }
 		)
 
 	end

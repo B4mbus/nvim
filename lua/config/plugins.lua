@@ -49,7 +49,7 @@ local plugins = {
 	use 'decay',
 	use 'neogit',
 	use 'diffview',
-	-- use 'nvim-ufo',
+	use 'inc-rename',
 
 	-- Meta
 	'antoinemadec/FixCursorHold.nvim',
@@ -68,7 +68,8 @@ local plugins = {
 	'hrsh7th/cmp-nvim-lsp',
 	'saadparwaiz1/cmp_luasnip',
 
-	'F:\\prv\\dev\\projects\\nvim-shorty',
+	'preservim/vim-markdown',
+	'AndrewRadev/switch.vim',
 	'github/copilot.vim',
 	'p00f/clangd_extensions.nvim',
 	'm-demare/hlargs.nvim',

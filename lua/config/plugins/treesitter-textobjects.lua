@@ -14,10 +14,19 @@ return {
 						ic = '@class.inner',
 
 						ab = '@block.outer',
-						ib = '@block.inner',
 
-						as = '@statement.outer', 
-						is = '@statement.inner'
+						as = '@statement.outer',
+
+						ip = '@parameter.inner',
+
+						iC = '@conditional.inner',
+						aC = '@conditional.outer',
+
+						ic = '@call.inner',
+						ac = '@call.outer',
+
+						il = '@loop.inner',
+						al = '@loop.outer'
 					},
 					selection_modes = {
 						['@parameter.outer'] = 'v', -- charwise

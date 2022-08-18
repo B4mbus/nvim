@@ -61,7 +61,8 @@ local get_git_status = function()
 
 	if not head_empty then
 		return fmt(
-			'(%s %s #%s)',
+			'%s(%s %s #%s)',
+			'%#NeogitBranch#',
 			symbols.lambda,
 			symbols.small_dot,
 			branch.head
@@ -114,12 +115,53 @@ local get_lsp_diagnostics = function()
 
 	local severity = vim.diagnostic.severity
 	return fmt(
-		' %%#StatusLineDiagnosticError#%s %%#StatusLineDiagnosticWarn#%s %%#StatusLineDiagnosticHint#%s ',
+		'%%#DiagnosticError#%s %%#DiagnosticWarn#%s %%#DiagnosticHint#%s',
 		count[severity.ERROR] or 0,
 		count[severity.WARN] or 0,
 		count[severity.HINT] or 0
 	)
 end
+
+local get_file = function()
+	return '%#StatusLine#%F'
+end
+
+local get_mode = function(mode)
+	local mode = va.nvim_get_mode().mode
+
+	return fmt(
+		'%s%s',
+		mode_color(),
+		string.upper(
+      fmt(
+        '%s',
+        modes[mode]
+      )
+    )
+	)
+end
+
+local get_statusline_table = function()
+	return {
+		'',
+		get_mode(),
+		get_file(),
+		get_git_status(),
+		'%=',
+		get_lsp_diagnostics(),
+		'%#StatusPosition#',
+		vim.fn.strftime('%I:%M %p'),
+		''
+	}
+end
+
+statusline_mod = {}
+
+statusline_mod.statusline = function()
+	return table.concat(get_statusline_table(), ' ')
+end
+
+vim.opt.statusline = '%{%v:lua.statusline_mod.statusline()%}'
 
 local get_nvim_tree_winbar = function(nvim_tree_window_width, minimal_nvim_tree_path_padding)
 	local allowed_width = nvim_tree_window_width - (minimal_nvim_tree_path_padding * 2) - 3
@@ -152,6 +194,7 @@ local get_nvim_tree_winbar = function(nvim_tree_window_width, minimal_nvim_tree_
 	return '%=..\\' .. path .. '%='
 end
 
+
 local get_normal_winbar = function()
 	local navic = require 'nvim-navic'
 
@@ -163,16 +206,16 @@ local get_normal_winbar = function()
 
 	return table.concat {
 		'%#WinBar#',
-		' %f ',
+		'%f ',
 		navic.is_available()
 		and ':: ' .. loc
 		or ''
 	}
 end
 
-statusline_mod = {}
+winbar_mod = {}
 
-statusline_mod.winbar = function(minimal_nvim_tree_path_padding)
+winbar_mod.winbar = function(minimal_nvim_tree_path_padding)
 	if va.nvim_buf_get_option(0, 'ft') == 'NvimTree' then
 		return get_nvim_tree_winbar(
 			va.nvim_win_get_width(0),
@@ -183,25 +226,6 @@ statusline_mod.winbar = function(minimal_nvim_tree_path_padding)
 	end
 end
 
-statusline_mod.statusline = function()
-	local mode = va.nvim_get_mode().mode
-
-	return table.concat {
-		mode_color(),
-		string.upper(fmt(' %s ', modes[mode])),
-		'%#StatusLine#',
-		' %F ',
-		'%#StatusPosition#',
-		get_git_status(),
-		'%=',
-		get_lsp_diagnostics(),
-		'%#StatusPosition#',
-		' %l:%c '
-	}
-end
-
 if va.nvim_get_all_options_info()['winbar'] then
-	vim.opt.winbar = '%{%v:lua.statusline_mod.winbar(2)%}'
+	vim.opt.winbar = '%{%v:lua.winbar_mod.winbar(2)%}'
 end
-
-vim.opt.statusline = '%{%v:lua.statusline_mod.statusline()%}'

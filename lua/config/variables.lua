@@ -7,5 +7,7 @@ utils.set_vim_globals {
 	copilot_no_tab_map = true,
 	copilot_assume_mapped = true,
 
+	switch_mapping = '',
+
 	mapleader = ' '
 }

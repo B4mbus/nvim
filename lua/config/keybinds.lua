@@ -14,9 +14,6 @@ keymap('i', '<C-s>', '<esc><cmd>w<cr>a', silent_noremap)
 -- ; Ctrl + C goes into normal mode in terminal
 keymap('t', ';<C-c>', '<C-n><C-\\>', silent_noremap)
 
--- ;c closes a buffer
-keymap('n', ';c', '<cmd>Bdelete<cr>', silent_noremap)
-
 -- Tab specific keymaps
 keymap('n', '<C-n>', '<cmd>tabnew<cr>', silent_noremap)
 keymap('n', '<C-h>', '<cmd>tabprev<cr>', silent_noremap)
@@ -39,7 +36,7 @@ keymap('x', 'J', '<cmd>move \'>+1<cr>gv-gv', silent_noremap)
 keymap('n', 'H', '<cmd>BufferLineCyclePrev<cr>', silent_noremap)
 keymap('n', 'L', '<cmd>BufferLineCycleNext<cr>', silent_noremap)
 
--- <A-hjkl> resize buffersvim.keymap.set('n', '<A-h>', require('smart-splits').resize_left)
+-- <A-hjkl> resize buffers
 keymap('n', '<A-h>', function() require 'smart-splits'.resize_left() end, silent_noremap)
 keymap('n', '<A-j>', function() require 'smart-splits'.resize_down() end, silent_noremap)
 keymap('n', '<A-k>', function() require 'smart-splits'.resize_up() end, silent_noremap)
@@ -87,3 +84,6 @@ keymap('n', 'gef', function() require 'textcase'.operator('to_path_case') end, s
 
 -- gS splits
 keymap('n', 'gS', function() require 'trevj'.format_at_cursor() end, silent_noremap)
+
+-- ; switches
+keymap('n', ';', '<cmd>Switch<cr>', silent_noremap)
