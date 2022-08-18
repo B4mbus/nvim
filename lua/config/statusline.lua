@@ -126,7 +126,7 @@ local get_file = function()
 	return '%#StatusLine#%F'
 end
 
-local get_mode = function(mode)
+local get_mode = function()
 	local mode = va.nvim_get_mode().mode
 
 	return fmt(
@@ -191,7 +191,11 @@ local get_nvim_tree_winbar = function(nvim_tree_window_width, minimal_nvim_tree_
 		if i == 0 then break end
 	end
 
-	return '%=..\\' .. path .. '%='
+	if cwd:len() > path:len() then
+		path =  '..\\' .. path
+	end
+
+	return '%=' .. path .. '%='
 end
 
 
