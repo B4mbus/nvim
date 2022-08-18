@@ -50,6 +50,7 @@ local plugins = {
 	use 'neogit',
 	use 'diffview',
 	use 'inc-rename',
+	use 'git-conflict',
 
 	-- Meta
 	'antoinemadec/FixCursorHold.nvim',
@@ -74,7 +75,6 @@ local plugins = {
 	'p00f/clangd_extensions.nvim',
 	'm-demare/hlargs.nvim',
 	'mxw/vim-jsx',
-	'folke/lua-dev.nvim',
 	'kyazdani42/blue-moon',
 	'L3MON4D3/LuaSnip',
 	'romainl/vim-cool',

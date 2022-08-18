@@ -30,9 +30,12 @@ return {
 			keymap('n', 'gd', vim.lsp.buf.definition, common)
 			keymap('n', 'gi', vim.lsp.buf.implementation, common)
 			keymap('n', 'K', vim.lsp.buf.hover, common)
+
 			require 'which-key'.register(
 				{
-					['lr'] = { '<cmd>lua require("cosmic-ui").rename()<cr>', 'LSP Rename' }
+					l = {
+						r = { [[ <cmd>lua require('cosmic-ui').rename()<cr> ]], 'LSP Rename' }
+					}
 				},
 				{ prefix = '<leader>' }
 			)
@@ -72,21 +75,37 @@ return {
 			}
 		}
 
-		local lua_dev = require 'lua-dev'.setup {
-			runtime_path = true,
-			lspconfig = {
-				cmd = 'lua-language-server'
+		local sumneko_lua_settings = {
+			settings = {
+				Lua = {
+					runtime = {
+						version = "LuaJIT",
+					},
+					diagnostics = {
+						globals = { "vim" },
+					},
+					workspace = {
+						library = {
+							vim.fn.stdpath('data') .. "/site/pack/packer/opt/emmylua-nvim",
+							vim.fn.stdpath('config'),
+						},
+						maxPreload = 2000,
+						preloadFileSize = 50000,
+					},
+				},
 			}
 		}
 
-		-- lsp.sumneko_lua.setup(vim.tbl_extend('force', lua_dev, default_config))
+		lsp.sumneko_lua.setup(
+			vim.tbl_extend('force', sumneko_lua_settings, default_config)
+		)
 
 		lsp.hls.setup(default_config)
 
 		-- Disable virtual text so that it doesn't collide with lsp_lines
-		vim.diagnostic.config { 
+		vim.diagnostic.config {
 			update_in_insert = false,
-			virtual_text = false 
+			virtual_text = false
 		}
 	end
 }

@@ -171,7 +171,7 @@ return {
 				y = { '<cmd>%y<cr>', 'Yank buffer'},
 				c = { '<cmd>e $MYVIMRC<cr>', 'Open config'},
 				C = { '<cmd>Bdelete<cr>', 'Close buffer'},
-				d = { '<cmd>tabclose<cr>', 'Close tab' },
+				D = { '<cmd>tabclose<cr>', 'Close tab' },
 				e = { '<cmd>NvimTreeToggle<cr>', 'Open file tree' },
 				["ss"] = { '<cmd>w<cr><cmd>so %<cr>', 'Source current file' },
 				w = { '<cmd>w<cr>', 'Save' },
