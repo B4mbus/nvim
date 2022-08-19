@@ -128,7 +128,7 @@ local get_file = function()
 	elseif vim.fn.getbufinfo('%')[1].changed == 1 then
 		return fmt(format, '%#DevIconCsv#')
 	else
-		return fmt(format, '%#DevIconCss#')
+		return fmt(format, '%#DevIconNix#')
 	end
 end
 
