@@ -29,4 +29,5 @@ utils.set_vim_options {
 	selection = 'old',
 	completeopt = {'menu' ,'menuone' ,'noselect'},
 	shell = 'cmd',
+	foldenable = false
 }

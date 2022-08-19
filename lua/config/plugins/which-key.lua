@@ -2,9 +2,14 @@ return {
 	'folke/which-key.nvim',
 	config = function()
 		local wk = require 'which-key'
+		local symbols = require 'config.symbols'
 		wk.setup {
 			window = {
 				border = 'single'
+			},
+			icons = {
+				separator = '⸬',
+				group = symbols.horizontal_ellipsis .. ' '
 			}
 		}
 

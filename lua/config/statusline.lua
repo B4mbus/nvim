@@ -6,11 +6,7 @@ local vl = vim.lsp
 local va = vim.api
 local vf = vim.fn
 
-local symbols = {
-	null = '∅',
-	lambda = 'λ',
-	small_dot = '•'
-}
+local symbols = require 'config.symbols'
 
 local modes = {
 	n = 'RW',
@@ -62,7 +58,7 @@ local get_git_status = function()
 	if not head_empty then
 		return fmt(
 			'%s(%s %s #%s)',
-			'%#NeogitBranch#',
+			'%#DevIconCMake#',
 			symbols.lambda,
 			symbols.small_dot,
 			branch.head
@@ -123,7 +119,17 @@ local get_lsp_diagnostics = function()
 end
 
 local get_file = function()
-	return '%#StatusLine#%F'
+	local big_dot = require 'config.symbols'.big_dot
+	local file_readable = vim.fn.filereadable(vim.fn.expand('%:p'))
+
+	local format = '%%#StatusLine#%s' ..'%%F'
+	if file_readable == 0 then
+		return fmt(format, '%#Error#')
+	elseif vim.fn.getbufinfo('%')[1].changed == 1 then
+		return fmt(format, '%#DevIconCsv#')
+	else
+		return fmt(format, '%#DevIconCss#')
+	end
 end
 
 local get_mode = function()
