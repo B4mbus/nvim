@@ -50,7 +50,6 @@ local plugins = {
 	use 'neogit',
 	use 'diffview',
 	use 'inc-rename',
-	use 'git-conflict',
 
 	-- Meta
 	'antoinemadec/FixCursorHold.nvim',
