@@ -50,6 +50,7 @@ local plugins = {
 	use 'neogit',
 	use 'diffview',
 	use 'inc-rename',
+	use 'luasnip',
 
 	-- Meta
 	'antoinemadec/FixCursorHold.nvim',
@@ -66,16 +67,14 @@ local plugins = {
 	'hrsh7th/cmp-buffer',
 	'hrsh7th/cmp-path',
 	'hrsh7th/cmp-nvim-lsp',
-	'saadparwaiz1/cmp_luasnip',
 
-	'preservim/vim-markdown',
+	'F:/prv/dev/projects/neosymbols',
 	'AndrewRadev/switch.vim',
 	'github/copilot.vim',
 	'p00f/clangd_extensions.nvim',
 	'm-demare/hlargs.nvim',
 	'mxw/vim-jsx',
 	'kyazdani42/blue-moon',
-	'L3MON4D3/LuaSnip',
 	'romainl/vim-cool',
 	'onsails/lspkind.nvim',
 	'famiu/bufdelete.nvim',

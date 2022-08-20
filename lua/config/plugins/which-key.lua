@@ -161,7 +161,7 @@ return {
 				b = { [[ <cmd>lua require('refactoring').refactor('Extract Block')<cr> ]], 'Block' },
 				B = { [[ <cmd>lua require('refactoring').refactor('Extract Block To File')<cr> ]], 'Block to other file' },
 			},
-			i = { [[ <cmd>lua require('refactoring').refactor('Inline varaible')<cr> ]], 'Inline variable' },
+			i = { [[ <cmd>lua require('refactoring').refactor('Inline variable')<cr> ]], 'Inline variable' },
 			d = {
 				name = 'Debug',
 				v = { [[ <cmd>lua require('refactoring').debug.print_var({ normal = true })<cr> ]], 'Variable' },
@@ -179,6 +179,7 @@ return {
 				D = { '<cmd>tabclose<cr>', 'Close tab' },
 				e = { '<cmd>NvimTreeToggle<cr>', 'Open file tree' },
 				["ss"] = { '<cmd>w<cr><cmd>so %<cr>', 'Source current file' },
+				S = { '<cmd>so ~/AppData/Local/nvim/after/ftplugin/cpp.lua<cr>', 'Source snippets' },
 				w = { '<cmd>w<cr>', 'Save' },
 				W = { '<cmd>w<cr>', 'Force save' },
 				q = { '<cmd>wq<cr>', 'Save and quit' },

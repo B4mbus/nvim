@@ -126,7 +126,7 @@ local get_file = function()
 	if file_readable == 0 then
 		return fmt(format, '%#Error#')
 	elseif vim.fn.getbufinfo('%')[1].changed == 1 then
-		return fmt(format, '%#DevIconCsv#')
+		return fmt(format, '%#Error#' .. symbols.big_dot .. ' %#DevIconHs#')
 	else
 		return fmt(format, '%#DevIconNix#')
 	end
