@@ -22,6 +22,7 @@ utils.set_vim_options {
 	tabstop = 2,
 	timeoutlen = 350,
 	laststatus = 3,
+	history = 10000,
 	clipboard = 'unnamedplus',
 	mouse = 'a',
 	inccommand = 'split',
@@ -29,5 +30,5 @@ utils.set_vim_options {
 	selection = 'old',
 	completeopt = {'menu' ,'menuone' ,'noselect'},
 	shell = 'cmd',
-	foldenable = false
+	foldenable = false,
 }

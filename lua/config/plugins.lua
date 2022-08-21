@@ -44,7 +44,7 @@ local plugins = {
 	use 'buffercd',
 	use 'stay-in-place',
 	use 'text-case',
-	use 'wilder',
+	-- use 'wilder',
 	use 'trevJ',
 	use 'decay',
 	use 'neogit',
@@ -84,7 +84,7 @@ local plugins = {
 	'editorconfig/editorconfig-vim',
 	'mcauley-penney/tidy.nvim',
 	'hauleth/vim-backscratch',
-	'B4mbus/oxocarbon-lua.nvim',
+	'F:/prv/dev/projects/oxocarbon-lua.nvim',
 	'kyazdani42/nvim-web-devicons',
 
 	'lewis6991/impatient.nvim'

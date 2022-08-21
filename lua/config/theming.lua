@@ -9,7 +9,7 @@ require 'decay'.setup {
 	}
 }
 
-vim.api.nvim_set_hl(0, 'StatusLineNC', {})
+vim.api.nvim_set_hl(0, 'StatusLineNc', {})
 
 vim.cmd 'sign define DiagnosticSignError text=  linehl= texthl=DiagnosticSignError numhl='
 vim.cmd 'sign define DiagnosticSignHint text=  linehl= texthl=DiagnosticSignHint numhl='
