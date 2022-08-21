@@ -1,5 +1,6 @@
 return {
 	'RRethy/nvim-treesitter-textsubjects',
+	event = { "BufRead", "BufNewFile" },
 	config = function()
 		require 'nvim-treesitter.configs'.setup {
 			textsubjects = {

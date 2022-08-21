@@ -1,5 +1,6 @@
 return {
-	'lukas-reineke/indent-blankline.nvim', 
+	'lukas-reineke/indent-blankline.nvim',
+	event = { 'BufEnter', 'BufNewFile' },
 	config = function()
 		require 'indent_blankline'.setup {
 			space_char_blankline = ' ',

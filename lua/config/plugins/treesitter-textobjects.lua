@@ -1,5 +1,6 @@
 return {
 	'nvim-treesitter/nvim-treesitter-textobjects',
+	event = { "BufRead", "BufNewFile" },
 	config = function()
 		require'nvim-treesitter.configs'.setup {
 			textobjects = {

@@ -1,6 +1,7 @@
 return {
 	'akinsho/bufferline.nvim',
 	tag = '2.*',
+	event = 'BufEnter',
 	config = function() 
 		require 'bufferline'.setup {
 			options = {

@@ -11,7 +11,7 @@ return {
 				elseif vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt' then
 					return false
 				else
-					return not context.in_treesitter_capture("comment") 
+					return not context.in_treesitter_capture("comment")
 					and not context.in_syntax_group("Comment")
 				end
 			end,
