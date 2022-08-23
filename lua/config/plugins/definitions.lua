@@ -54,6 +54,7 @@ local plugins = {
 	use 'inc-rename',
 	use 'luasnip',
 	use 'neogen',
+  use 'vim-startify',
 
 	-- Meta
 	'antoinemadec/FixCursorHold.nvim',
@@ -70,7 +71,9 @@ local plugins = {
 	'hrsh7th/cmp-path',
 	'hrsh7th/cmp-nvim-lsp',
 
-	'F:/prv/dev/projects/neosymbols',
+  'tpope/vim-fugitive',
+	'antoyo/vim-licenses',
+	'F:/prv/dev/projects/nvim-headline',
 	'AndrewRadev/switch.vim',
 	'p00f/clangd_extensions.nvim',
 	'm-demare/hlargs.nvim',

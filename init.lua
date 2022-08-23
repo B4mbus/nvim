@@ -32,4 +32,5 @@ require 'config.plugins' -- plugins
 
 -- Plugins to watch:
 -- decay.nvim
+--
 

@@ -5,4 +5,4 @@ require 'config.theming.signs'
 require 'config.theming.highlights'
 
 require 'config.theming.statusline'
-require 'config.theming.winbar'
+-- require 'config.theming.winbar'
