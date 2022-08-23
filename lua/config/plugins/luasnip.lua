@@ -8,6 +8,8 @@ return {
 		ls.config.set_config {
 			history = true,
 
+			store_selection_keys = '<c-s>',
+
 			updateevents = 'TextChanged,TextChangedI',
 			region_check_events = 'CursorMoved,CursorHold,InsertEnter',
 			delete_check_events = 'InsertLeave',
@@ -54,7 +56,7 @@ return {
 
 		vim.keymap.set(
 			{ 'i', 's' },
-			'<c-space>',
+			'<c-l>',
 			make_ls_executor(function(ls)
 				if ls.choice_active() then
 					ls.change_choice(1)

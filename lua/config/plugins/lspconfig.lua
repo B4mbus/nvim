@@ -48,9 +48,9 @@ return {
 			on_attach = custom_on_attach
 		}
 
-		local clangd_extensions = require 'clangd_extensions'.setup {
+		require 'clangd_extensions'.setup {
 			server = vim.tbl_extend('keep', default_config, {
-				cmd = { 
+				cmd = {
 					'clangd',
 					'--background-index',
 					'--clang-tidy',
@@ -58,16 +58,18 @@ return {
 					'--header-insertion=never',
 					'--header-insertion-decorators',
 
+					'--compile-commands-dir=F:\\prv\\dev\\forks\\rigc-lang',
+
 					'--enable-config',
 					'--pch-storage=disk',
 
 					'--log=info',
-
-					'--offset-encoding=utf-16'
 				}
 			}) ,
+			inlay_hints = {
+				show_parameter_hints = false
+			},
 			extensions = {
-				parameter_hints_prefix = '⫷',
 				other_hints_prefix = '⫸',
 				memory_usage = {
 					border = 'rounded'

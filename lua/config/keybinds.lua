@@ -7,10 +7,6 @@ local silent_noremap = { silent = true, noremap = true }
 -- Ctrl + C as Esc
 keymap('i', '<C-c>', '<Esc>', silent_noremap)
 
--- Ctrl + S saves
-keymap('n', '<C-s>', '<cmd>w<cr>', silent_noremap)
-keymap('i', '<C-s>', '<esc><cmd>w<cr>a', silent_noremap)
-
 -- ; Ctrl + C goes into normal mode in terminal
 keymap('t', ';<C-c>', '<C-n><C-\\>', silent_noremap)
 

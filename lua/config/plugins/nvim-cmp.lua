@@ -5,21 +5,34 @@ return {
 
 		cmp.setup {
 			enabled = function()
-				local context = require 'cmp.config.context'
 				if vim.api.nvim_get_mode().mode == 'c' then
 					return true
 				elseif vim.api.nvim_buf_get_option(0, 'buftype') == 'prompt' then
 					return false
 				else
+					local context = require 'cmp.config.context'
+
 					return not context.in_treesitter_capture("comment")
 					and not context.in_syntax_group("Comment")
 				end
 			end,
 
-			window = {
-				completion = cmp.config.window.bordered(),
-				documentation = cmp.config.window.bordered(),
+			snippet = {
+				expand = function(args)
+					require 'luasnip'.lsp_expand(args.body)
+				end,
 			},
+
+			window = {
+				documentation = {
+					border = 'single'
+				}
+			},
+
+			view = {
+				entries = { name = 'custom', selection_order = 'near_cursor' }
+			},
+
 			mapping = cmp.mapping.preset.insert{
 				['<C-q>'] = cmp.mapping {
 					i = cmp.mapping.abort(),
@@ -45,12 +58,13 @@ return {
 			sources = cmp.config.sources {
 				{ name = 'nvim_lsp', keyword_length = 3},
 				{ name = 'path' },
+      	{ name = 'luasnip' },
 				{ name = 'buffer', keyword_length = 3}
 			},
 
 			formatting = {
 				format = require 'lspkind'.cmp_format {
-					mode = 'symbol',
+					mode = 'symbol_text',
 					maxwidth = 40,
 				}
 			},
@@ -66,6 +80,10 @@ return {
 					cmp.config.compare.length,
 					cmp.config.compare.order,
 				},
+			},
+
+			experimental = {
+				ghost_text = true
 			}
 		}
 	end

@@ -11,6 +11,8 @@ local use = function(name)
 end
 
 local plugins = {
+	'wbthomason/packer.nvim',
+
 	use 'notify',
 	use 'todo-comments',
 	use 'lightspeed',
@@ -51,6 +53,7 @@ local plugins = {
 	use 'diffview',
 	use 'inc-rename',
 	use 'luasnip',
+	use 'neogen',
 
 	-- Meta
 	'antoinemadec/FixCursorHold.nvim',
@@ -59,7 +62,6 @@ local plugins = {
 	'kevinhwang91/promise-async',
 	'tpope/vim-repeat',
 	'rktjmp/lush.nvim',
-	'wbthomason/packer.nvim',
 	'MunifTanjim/nui.nvim',
 
 	'hrsh7th/cmp-nvim-lsp-document-symbol',
@@ -70,7 +72,6 @@ local plugins = {
 
 	'F:/prv/dev/projects/neosymbols',
 	'AndrewRadev/switch.vim',
-	'github/copilot.vim',
 	'p00f/clangd_extensions.nvim',
 	'm-demare/hlargs.nvim',
 	'mxw/vim-jsx',

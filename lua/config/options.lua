@@ -16,6 +16,8 @@ utils.set_vim_options {
 	incsearch = true,
 	termguicolors = true,
 	autoread = true,
+	pumheight = 10,
+	cmdheight = 0,
 	shiftwidth = 2,
 	scrolloff = 5,
 	sidescrolloff = 5,
@@ -31,4 +33,8 @@ utils.set_vim_options {
 	completeopt = {'menu' ,'menuone' ,'noselect'},
 	shell = 'cmd',
 	foldenable = false,
+	wildmenu = true,
+	wildoptions = function(wo)
+		return wo:remove('pum')
+	end
 }

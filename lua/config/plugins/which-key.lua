@@ -101,6 +101,15 @@ return {
 			l = { '<cmd>lua require "lsp_lines".toggle()<cr>', 'Symbols' }
 		}
 
+		local neogen_mappings = {
+			name = 'Neogen',
+			a = { function() require 'neogen'.generate() end, 'Generate' },
+			f = { function() require 'neogen'.generate { type = 'func' } end, 'Generate for function' },
+			t = { function() require 'neogen'.generate { type = 'type' } end, 'Generate for type' },
+			c = { function() require 'neogen'.generate { type = 'class' } end, 'Generate for class' },
+			F = { function() require 'neogen'.generate { type = 'file' } end, 'Generate for file' },
+		}
+
 		local git_mappings = {
 			name = 'Git',
 			b = { '<cmd>Telescope git_branches<cr>', 'Branches' },
@@ -181,11 +190,12 @@ return {
 				["ss"] = { '<cmd>w<cr><cmd>so %<cr>', 'Source current file' },
 				S = { '<cmd>so ~/AppData/Local/nvim/after/ftplugin/cpp.lua<cr>', 'Source snippets' },
 				w = { '<cmd>w<cr>', 'Save' },
-				W = { '<cmd>w<cr>', 'Force save' },
+				W = { '<cmd>w!<cr>', 'Force save' },
 				q = { '<cmd>wq<cr>', 'Save and quit' },
 				Q = { '<cmd>wq!<cr>', 'Force save and quit' },
 				n = neovide_mappings,
 				b = buffer_mappings,
+				a = neogen_mappings,
 				l = lsp_mappings,
 				r = refactoring_mappings,
 				s = telescope_mappings,
@@ -197,7 +207,7 @@ return {
 			},
 			{ prefix = '<leader>' }
 		)
-		
+
 		local visual_refactoring_mappings = {
 			name = 'Refactoring',
 			e = {
