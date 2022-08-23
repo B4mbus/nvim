@@ -1,5 +1,5 @@
 local use = function(name)
-	local plugin_path = 'config.plugins.' .. name
+	local plugin_path = 'config.plugins.configs.' .. name
 	local status, mod = pcall(require, plugin_path)
 
 	if status then
@@ -104,10 +104,8 @@ packer.startup {
 	config = {
 		display = {
 			open_fn = function()
-				return require('packer.util').float({ border = 'single' })
+				return require 'packer.util'.float({ border = 'single' })
 			end
 		}
 	}
 }
-
-packer.compile()

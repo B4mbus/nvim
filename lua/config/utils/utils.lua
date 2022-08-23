@@ -8,14 +8,14 @@ local booga = function(table, values)
 	end
 end
 
-local M = {}
+local Utils = {}
 
-M.set_vim_options = function(options)
+Utils.set_vim_options = function(options)
 	booga(vim.opt, options)
 end
 
-M.set_vim_globals = function(globals)
+Utils.set_vim_globals = function(globals)
 	booga(vim.g, globals)
 end
-	
-return M
+
+return Utils

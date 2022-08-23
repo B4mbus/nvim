@@ -10,11 +10,8 @@ _G.__luacache_config = {
 }
 require 'impatient'.enable_profile()
 
-require 'config.autocmds' -- autocommands
-require 'config.variables' -- global variables, may be plugin related
+require 'config.core' -- core editor configuration (autocommands, keybindings, etc.)
 require 'config.theming' -- colorscheme, lsp signs and shit
-require 'config.options' -- vim options
-require 'config.keybinds' -- plugin unrelated keybinds
 require 'config.plugins' -- plugins
 
 -- Implement cursor going back in the terminal if cursor in normal mode is not at the end of line
@@ -35,3 +32,4 @@ require 'config.plugins' -- plugins
 
 -- Plugins to watch:
 -- decay.nvim
+
