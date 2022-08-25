@@ -54,7 +54,7 @@ local plugins = {
 	use 'inc-rename',
 	use 'luasnip',
 	use 'neogen',
-  use 'vim-startify',
+  use 'nvim-ts-autotag',
 
 	-- Meta
 	'antoinemadec/FixCursorHold.nvim',
@@ -71,13 +71,20 @@ local plugins = {
 	'hrsh7th/cmp-path',
 	'hrsh7th/cmp-nvim-lsp',
 
+  'rafamadriz/friendly-snippets',
+  'jose-elias-alvarez/typescript.nvim',
+  'mattn/emmet-vim',
   'tpope/vim-fugitive',
 	'antoyo/vim-licenses',
-	'F:/prv/dev/projects/nvim-headline',
+	{
+    'F:/prv/dev/projects/nvim-headband',
+    config = function ()
+      require 'nvim-headband'.setup()
+    end
+  },
 	'AndrewRadev/switch.vim',
 	'p00f/clangd_extensions.nvim',
 	'm-demare/hlargs.nvim',
-	'mxw/vim-jsx',
 	'kyazdani42/blue-moon',
 	'romainl/vim-cool',
 	'onsails/lspkind.nvim',

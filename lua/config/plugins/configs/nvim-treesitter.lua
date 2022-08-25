@@ -6,6 +6,7 @@ return {
 				'norg',
 				'cpp',
 				'json',
+				'javascript',
 				'lua',
 				'fennel',
 				'query',

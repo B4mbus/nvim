@@ -8,6 +8,6 @@ autocmd(
 	{
 		group = augroup('neogit_automatic_refreshing'),
 		pattern = '*',
-		command = [[ call neogit#refresh_manually(expand('<afile>')) ]]
-	}
+    command = [[ call neogit#refresh_manually(expand('<afile>')) ]]
+  }
 )

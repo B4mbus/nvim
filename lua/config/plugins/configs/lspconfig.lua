@@ -22,7 +22,7 @@ return {
 					border = 'rounded'
 				}
 			}, bufnr)
-		
+
 			local keymap = vim.keymap.set
 			local common = { buffer = bufnr, noremap = true, silent = true }
 
@@ -103,6 +103,11 @@ return {
 		)
 
 		lsp.hls.setup(default_config)
+
+    require 'typescript'.setup {
+      disble_commands = false,
+      server = default_config
+    }
 
 		-- Disable virtual text so that it doesn't collide with lsp_lines
 		vim.diagnostic.config {

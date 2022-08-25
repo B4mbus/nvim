@@ -17,11 +17,7 @@ return {
 			f = {
 				function()
 					vim.cmd [[
-						if g:neovide_fullscreen == v:true
-							let g:neovide_fullscreen = v:false
-						else
-							let g:neovide_fullscreen = v:true
-						endif
+            let g:neovide_fullscreen = !g:neovide_fullscreen
 					]]
 				end,
 				'Toggle fullscreen'
