@@ -17,7 +17,10 @@ utils.set_vim_options {
 	termguicolors = true,
 	autoread = true,
 	pumheight = 10,
-	cmdheight = 1,
+	cmdheight = function(cmdheight)
+    local has_8 = vim.fn.has('nvim-0.8.0')
+    return cmdheight:append( has_8 and 0 or 1 )
+  end,
 	shiftwidth = 2,
 	scrolloff = 5,
 	sidescrolloff = 5,

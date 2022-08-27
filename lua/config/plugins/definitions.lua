@@ -55,6 +55,7 @@ local plugins = {
 	use 'luasnip',
 	use 'neogen',
   use 'nvim-ts-autotag',
+  use 'autolist',
 
 	-- Meta
 	'antoinemadec/FixCursorHold.nvim',
@@ -76,12 +77,6 @@ local plugins = {
   'mattn/emmet-vim',
   'tpope/vim-fugitive',
 	'antoyo/vim-licenses',
-	{
-    'F:/prv/dev/projects/nvim-headband',
-    config = function ()
-      require 'nvim-headband'.setup()
-    end
-  },
 	'AndrewRadev/switch.vim',
 	'p00f/clangd_extensions.nvim',
 	'm-demare/hlargs.nvim',
@@ -98,7 +93,10 @@ local plugins = {
 	'F:/prv/dev/projects/oxocarbon-lua.nvim',
 	'kyazdani42/nvim-web-devicons',
 
-	'lewis6991/impatient.nvim'
+	'lewis6991/impatient.nvim',
+
+
+  'F:\\prv\\dev\\projects\\nvim-headband'
 }
 
 local packer = require 'packer'
