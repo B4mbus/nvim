@@ -1,10 +1,4 @@
-require 'decay'.setup {
-	style = 'dark',
-	italics = {
-		code = false,
-		comment = false
-	},
-	nvim_tree = {
-		contrast = true
-	}
+require 'github-theme'.setup {
+  theme_style = 'dark_default',
+  colors = {}
 }

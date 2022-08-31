@@ -1,4 +1,12 @@
-vim.api.nvim_set_hl(0, 'StatusLineNc', {})
+-- Custom highlights for statusline and wildmenu
+vim.api.nvim_set_hl(0, 'StatusLineClock', { fg = '#ffffff', bold = true })
+vim.api.nvim_set_hl(0, 'StatusLineMode', { fg = '#ffffff', bold = true })
+
+vim.api.nvim_set_hl(0, 'Conceal', {})
+
+vim.api.nvim_set_hl(0, 'WildMenu', { fg = '#00bbff' })
+vim.api.nvim_set_hl(0, 'StatusLine', {})
+
 -- Clear them nasty ass neogit highlights
 vim.api.nvim_set_hl(0, 'NeogitDiffAddHighlight', {})
 vim.api.nvim_set_hl(0, 'NeogitDiffDeleteHighlight', {})
@@ -12,9 +20,6 @@ vim.api.nvim_set_hl(0, 'CmpItemAbbrMatch', { fg = '#569CD6', bg = 'NONE', bold =
 vim.api.nvim_set_hl(0, 'CmpItemAbbrMatchFuzzy', { fg = '#569CD6', bg = 'NONE', bold = true })
 
 vim.api.nvim_set_hl(0, 'CmpItemMenu', { fg = '#C792EA', bg = 'NONE', italic =  true })
-
--- Special navic highlights
-vim.api.nvim_set_hl(0, 'NavicSeparator',{ link = 'DevIconCMake' })
 
 -- Generic navic and cmp highlights
 local lsp_types = {

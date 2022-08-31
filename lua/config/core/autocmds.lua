@@ -46,3 +46,26 @@ autocmd(
 		command = 'checktime'
 	}
 )
+
+autocmd(
+  { 'BufEnter' },
+  {
+    group = augroup('maaaaaaaaaaaaaaaaaaan'),
+    pattern = '*',
+    callback = function ()
+      vim.defer_fn(
+        function()
+          local bt = vim.api.nvim_buf_get_option(0, 'bt') == 'nofile'
+          local ft = vim.api.nvim_buf_get_option(0, 'ft') == 'vim'
+          local cmdwintype = vim.fn.getcmdwintype() == ':'
+
+          if bt and ft and cmdwintype then
+
+            vim.api.nvim_buf_set_keymap(0, 'n', 'q', ':q', { silent = true })
+          end
+        end,
+        500
+      )
+    end
+  }
+)

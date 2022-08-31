@@ -16,7 +16,7 @@ local modes = {
 	s = 'S',
 	S = 'SL',
 	["\019"] = 'SB',
-	i = 'I',
+	i = 'IN',
 	ic = 'IC',
 	R = 'RA',
 	Rv = 'RV',
@@ -30,37 +30,18 @@ local modes = {
 	t = 'TERM',
 }
 
-local mode_color = function()
-	local mode = va.nvim_get_mode().mode
-
-	if mode == 'n' then
-		return '%#StatusNormal#'
-	elseif mode == 'i' or mode == 'ic' then
-		return '%#StatusInsert#'
-	elseif mode == 'v' or mode == 'V' or mode == '\022' then
-		return '%#StatusVisual#'
-	elseif mode == 'R' then
-		return '%#StatusReplace#'
-	elseif mode == 'c' then
-		return '%#StatusCommand#'
-	elseif mode == 't' then
-		return '%#StatusTerminal#'
-	else
-		return '%#StatusLine#'
-	end
-end
-
 local get_git_status = function()
 	local branch = vim.b.gitsigns_status_dict or { head = '' }
 	local head_empty = branch.head == ''
 
 	if not head_empty then
 		return fmt(
-			'%s(%s %s #%s)',
+			'%s(%s %s #%s)%s',
 			'%#DevIconCMake#',
 			symbols.lambda,
 			symbols.small_dot,
-			branch.head
+			branch.head,
+      '%#NONE#'
 		)
 	else
 		return ''
@@ -121,7 +102,7 @@ local get_file = function()
 	local big_dot = require 'config.symbols'.big_dot
 	local file_readable = vim.fn.filereadable(vim.fn.expand('%:p'))
 
-	local format = '%%#StatusLine#%s' ..'%%F'
+	local format = '%%#StatusLine#%s' ..'%%F%%#NONE#'
 	if file_readable == 0 then
 		return fmt(format, '%#Error#')
 	elseif vim.fn.getbufinfo('%')[1].changed == 1 then
@@ -135,35 +116,37 @@ local get_mode = function()
 	local mode = va.nvim_get_mode().mode
 
 	return fmt(
-		'%s%s',
-		mode_color(),
+		'%s%s%s',
+    '%#StatusLineMode#',
 		string.upper(
       fmt(
         '%s',
         modes[mode]
       )
-    )
+    ),
+    '%#NONE#'
 	)
 end
 
 local get_statusline_table = function()
 	return {
-		'',
+		'%#NONE#',
 		get_mode(),
 		get_file(),
 		get_git_status(),
+    '%#NONE#',
 		'%=',
 		get_lsp_diagnostics(),
-		'%#StatusPosition#',
+		'%#StatusLineClock#',
 		vim.fn.strftime('%I:%M %p'),
 		''
 	}
 end
 
-statusline_mod = {}
+StatuslineMod = {}
 
-statusline_mod.statusline = function()
+StatuslineMod.statusline = function()
 	return table.concat(get_statusline_table(), ' ')
 end
 
-vim.opt.statusline = '%{%v:lua.statusline_mod.statusline()%}'
+vim.opt.statusline = '%{%v:lua.StatuslineMod.statusline()%}'

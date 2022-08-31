@@ -33,7 +33,8 @@ return {
 			c = { '<cmd>Telescope commands<cr>', 'Commands' },
 			H = { '<cmd>Telescope highlights<cr>', 'Highlights' },
 			p = { '<cmd>Telescope projects<cr>', 'Projects' },
-			b = { '<cmd>Telescope buffers<cr>', 'Buffers' }
+			b = { '<cmd>Telescope buffers<cr>', 'Buffers' },
+			r = { '<cmd>Telescope resume<cr>', 'Resume' }
 		}
 
 		local open_terminal = function(command, split)
@@ -63,7 +64,7 @@ return {
 				x = { open_nu('new'), 'Open nu in split' },
 				c = { open_nu(), 'Open nu in current buffer' }
 			},
-			w = { 
+			w = {
 				name = 'WSL',
 				n = { open_wsl('tabnew'), 'Open wsl in new tab' },
 				v = { open_wsl('vnew'), 'Open wsl in vsplit' },
@@ -83,10 +84,9 @@ return {
 				S = { '<cmd>LspStop<cr>', 'Stop' }
 			},
 			c = {
-				name = 'Copilot',
-				e = { '<cmd>Copilot enable<cr>', 'Enable'},
-				d = { '<cmd>Copilot disable<cr>', 'Disable'},
-				s = { '<cmd>Copilot status<cr>', 'Status'}
+				name = 'Calls',
+				i = { '<cmd>Telescope lsp_incoming_calls<cr>', 'Incoming'},
+				o = { '<cmd>Telescope lsp_outgoing_calls<cr>', 'Outgoing'},
 			},
 			R = { '<cmd>Telescope lsp_references<cr>', 'References' },
 			a = { '<cmd>lua require "cosmic-ui".code_actions()<cr>', 'Code actions' },
@@ -94,7 +94,17 @@ return {
 			i = { '<cmd>Telescope lsp_implementations<cr>', 'Implementations' },
 			s = { '<cmd>Telescope lsp_document_symbols<cr>', 'Local symbols' },
 			S = { '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', 'Symbols' },
-			l = { '<cmd>lua require "lsp_lines".toggle()<cr>', 'Symbols' }
+			l = { '<cmd>lua require "lsp_lines".toggle()<cr>', 'Toggle lsp_lines' },
+			v = {
+        function()
+          vim.diagnostic.config(
+            {
+              virtual_text = not vim.diagnostic.config().virtual_text,
+            }
+          )
+        end,
+        'Toggle virtual_text',
+      }
 		}
 
 		local neogen_mappings = {
@@ -133,9 +143,9 @@ return {
 			name = 'Buffers',
 			l = { '<cmd>BufferLineCloseRight<cr>', 'Close to the right' },
 			h = { '<cmd>BufferLineCloseLeft<cr>', 'Close to the left' },
-			H = { '<cmd>h<cr>', 'Close to the left' },
+			H = { '<cmd>hde<cr>', 'Hide' },
 			p = { '<cmd>BufferLineTogglePin<cr>', 'Toggle pin' },
-			P = { 
+			P = {
 				name = 'Pick',
 				p = { '<cmd>BufferLinePick<cr>', 'Open' },
 				c = { '<cmd>BufferLinePickClose<cr>', 'Close' }
@@ -187,8 +197,8 @@ return {
 				S = { '<cmd>so ~/AppData/Local/nvim/after/ftplugin/cpp.lua<cr>', 'Source snippets' },
 				w = { '<cmd>w<cr>', 'Save' },
 				W = { '<cmd>w!<cr>', 'Force save' },
-				q = { '<cmd>wq<cr>', 'Save and quit' },
-				Q = { '<cmd>wq!<cr>', 'Force save and quit' },
+				q = { '<cmd>q<cr>', 'Save and quit' },
+				Q = { '<cmd>q!<cr>', 'Force save and quit' },
 				n = neovide_mappings,
 				b = buffer_mappings,
 				a = neogen_mappings,

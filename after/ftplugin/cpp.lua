@@ -1,8 +1,7 @@
 -- Switch switches
 
 vim.b.switch_custom_definitions = {
-	{ ' const&', '&'  }
-}
+	{ ' const&', '&'  } }
 
 local ls = require("luasnip")
 local snippet = ls.snippet

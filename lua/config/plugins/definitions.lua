@@ -25,6 +25,7 @@ local plugins = {
 	use 'treesitter-textobjects',
 	use 'treesitter-textsubjects',
 	use 'treesitter-context',
+  use 'treesitter-commentstring',
 	use 'lsp_lines',
 	use 'comment',
 	use 'gitsigns',
@@ -56,6 +57,9 @@ local plugins = {
 	use 'neogen',
   use 'nvim-ts-autotag',
   use 'autolist',
+  use 'headband',
+  -- use 'notifier',
+  use 'dirbuf',
 
 	-- Meta
 	'antoinemadec/FixCursorHold.nvim',
@@ -72,6 +76,7 @@ local plugins = {
 	'hrsh7th/cmp-path',
 	'hrsh7th/cmp-nvim-lsp',
 
+  'projekt0n/github-nvim-theme' ,
   'rafamadriz/friendly-snippets',
   'jose-elias-alvarez/typescript.nvim',
   'mattn/emmet-vim',
@@ -94,9 +99,6 @@ local plugins = {
 	'kyazdani42/nvim-web-devicons',
 
 	'lewis6991/impatient.nvim',
-
-
-  'F:\\prv\\dev\\projects\\nvim-headband'
 }
 
 local packer = require 'packer'

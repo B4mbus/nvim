@@ -16,9 +16,8 @@ require 'config.plugins' -- plugins
 
 -- Implement cursor going back in the terminal if cursor in normal mode is not at the end of line
 --
---
 -- Interesting plugins to try out:
--- -- neovim-session-manager / persisted.nvim / possesion.nvim
+-- -- auto-session
 -- -- readline.nvim
 -- -- vim-bookmarks alongline telescope-vim-bookmarks.nvim
 -- -- harpoon
@@ -26,7 +25,6 @@ require 'config.plugins' -- plugins
 -- -- nvim-dap
 -- -- neotest (need to wrtite neotest-cpp)
 -- -- nvim-FeMaco.lua
--- -- inc-rename.nvim (support for cosmic-ui)
 -- -- dired.nvim
 -- -- projectlaunch.nvim
 

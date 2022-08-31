@@ -30,3 +30,6 @@ keymap('x', 'J', '<cmd>move \'>+1<cr>gv-gv', silent_noremap)
 
 -- <C-w>n opens a new split, let <C-w>N open a new vsplit
 keymap('n', '<C-w>N', '<cmd>vnew<cr>', silent_noremap)
+
+-- <C-+> and <C--> change font size
+-- TODO: lmao
