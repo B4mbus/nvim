@@ -27,6 +27,7 @@ return {
 		local telescope_mappings = {
 			name = 'Telescope',
 			f = { '<cmd>Telescope find_files<cr>', 'Find files' },
+			F = { '<cmd>Telescope file_browser<cr>', 'File browser' },
 			g = { '<cmd>Telescope live_grep<cr>', 'Live grep' },
 			h = { '<cmd>Telescope help_tags<cr>', 'Help' },
 			k = { '<cmd>Telescope keymaps<cr>', 'Mappings' },
@@ -34,7 +35,8 @@ return {
 			H = { '<cmd>Telescope highlights<cr>', 'Highlights' },
 			p = { '<cmd>Telescope projects<cr>', 'Projects' },
 			b = { '<cmd>Telescope buffers<cr>', 'Buffers' },
-			r = { '<cmd>Telescope resume<cr>', 'Resume' }
+			r = { '<cmd>Telescope resume<cr>', 'Resume' },
+      o = { '<cmd>Telescope oldfiles<cr>', 'Oldfiles' }
 		}
 
 		local open_terminal = function(command, split)
@@ -57,7 +59,7 @@ return {
 			v = { open_shell('vnew'), 'Open terminal in vsplit' },
 			x = { open_shell('new'), 'Open terminal in split' },
 			c = { open_shell(), 'Open terminal in current buffer' },
-			n = { 
+			n = {
 				name = 'NUShell',
 				n = { open_nu('tabnew'), 'Open nu in new tab' },
 				v = { open_nu('vnew'), 'Open nu in vsplit' },
@@ -91,17 +93,22 @@ return {
 			R = { '<cmd>Telescope lsp_references<cr>', 'References' },
 			a = { '<cmd>lua require "cosmic-ui".code_actions()<cr>', 'Code actions' },
 			d = { '<cmd>Telescope lsp_definitions<cr>', 'Definitions' },
+			D = { '<cmd>lua vim.diagnostic.open_float()<cr>', 'Diagnostics float' },
 			i = { '<cmd>Telescope lsp_implementations<cr>', 'Implementations' },
 			s = { '<cmd>Telescope lsp_document_symbols<cr>', 'Local symbols' },
 			S = { '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', 'Symbols' },
 			l = { '<cmd>lua require "lsp_lines".toggle()<cr>', 'Toggle lsp_lines' },
 			v = {
         function()
-          vim.diagnostic.config(
-            {
-              virtual_text = not vim.diagnostic.config().virtual_text,
-            }
-          )
+          local opts = {
+            prefix = '◉ '
+          }
+
+          local virtual_text_enabled = vim.diagnostic.config().virtual_text
+
+          vim.diagnostic.config({
+            virtual_text = (not virtual_text_enabled) and opts or false
+          })
         end,
         'Toggle virtual_text',
       }
@@ -127,7 +134,52 @@ return {
 				name = 'Neogit',
 				o = { '<cmd>Neogit<cr>', 'Open' },
 				l = { '<cmd>Neogit log<cr>', 'Log' },
-      }
+      },
+      h = {
+        name = "Github",
+        c = {
+          name = "Commits",
+          c = { "<cmd>GHCloseCommit<cr>", "Close" },
+          e = { "<cmd>GHExpandCommit<cr>", "Expand" },
+          o = { "<cmd>GHOpenToCommit<cr>", "Open To" },
+          p = { "<cmd>GHPopOutCommit<cr>", "Pop Out" },
+          z = { "<cmd>GHCollapseCommit<cr>", "Collapse" },
+        },
+        i = {
+          name = "Issues",
+          p = { "<cmd>GHOpenIssue<cr>", "Preview" },
+        },
+        l = {
+          name = "Litee",
+          t = { "<cmd>LTPanel<cr>", "Toggle Panel" },
+        },
+        r = {
+          name = "Review",
+          b = { "<cmd>GHStartReview<cr>", "Begin" },
+          c = { "<cmd>GHCloseReview<cr>", "Close" },
+          d = { "<cmd>GHDeleteReview<cr>", "Delete" },
+          e = { "<cmd>GHExpandReview<cr>", "Expand" },
+          s = { "<cmd>GHSubmitReview<cr>", "Submit" },
+          z = { "<cmd>GHCollapseReview<cr>", "Collapse" },
+        },
+        p = {
+          name = "Pull Request",
+          c = { "<cmd>GHClosePR<cr>", "Close" },
+          d = { "<cmd>GHPRDetails<cr>", "Details" },
+          e = { "<cmd>GHExpandPR<cr>", "Expand" },
+          o = { "<cmd>GHOpenPR<cr>", "Open" },
+          p = { "<cmd>GHPopOutPR<cr>", "PopOut" },
+          r = { "<cmd>GHRefreshPR<cr>", "Refresh" },
+          t = { "<cmd>GHOpenToPR<cr>", "Open To" },
+          z = { "<cmd>GHCollapsePR<cr>", "Collapse" },
+        },
+        t = {
+          name = "Threads",
+          c = { "<cmd>GHCreateThread<cr>", "Create" },
+          n = { "<cmd>GHNextThread<cr>", "Next" },
+          t = { "<cmd>GHToggleThread<cr>", "Toggle" },
+        },
+      },
 		}
 
 		local packer_mappings = {
@@ -143,7 +195,7 @@ return {
 			name = 'Buffers',
 			l = { '<cmd>BufferLineCloseRight<cr>', 'Close to the right' },
 			h = { '<cmd>BufferLineCloseLeft<cr>', 'Close to the left' },
-			H = { '<cmd>hde<cr>', 'Hide' },
+			H = { '<cmd>hide<cr>', 'Hide' },
 			p = { '<cmd>BufferLineTogglePin<cr>', 'Toggle pin' },
 			P = {
 				name = 'Pick',
@@ -169,29 +221,16 @@ return {
 			l = { '<cmd>ISwapNodeWithRight<cr>', 'With right' },
 		}
 
-		local refactoring_mappings = {
-			name = 'Refactoring',
-			e = {
-				name = 'Extract',
-				b = { [[ <cmd>lua require('refactoring').refactor('Extract Block')<cr> ]], 'Block' },
-				B = { [[ <cmd>lua require('refactoring').refactor('Extract Block To File')<cr> ]], 'Block to other file' },
-			},
-			i = { [[ <cmd>lua require('refactoring').refactor('Inline variable')<cr> ]], 'Inline variable' },
-			d = {
-				name = 'Debug',
-				v = { [[ <cmd>lua require('refactoring').debug.print_var({ normal = true })<cr> ]], 'Variable' },
-				p = { [[ <cmd>lua require('refactoring').debug.printf({ below = true })<cr> ]], 'Printf' },
-				c = { [[ <cmd>lua require('refactoring').debug.cleanup({})<cr> ]], 'Cleanup' },
-			}
-		}
+    local close_mappings = {
+      name = 'Close',
+      b = { '<cmd>Bdelete<cr>', 'Close buffer'},
+      t = { '<cmd>tabclose<cr>', 'Close tab'},
+    }
 
 		-- All the default keymapings
 		wk.register(
 			{
 				y = { '<cmd>%y<cr>', 'Yank buffer'},
-				c = { '<cmd>e $MYVIMRC<cr>', 'Open config'},
-				C = { '<cmd>Bdelete<cr>', 'Close buffer'},
-				D = { '<cmd>tabclose<cr>', 'Close tab' },
 				e = { '<cmd>NvimTreeToggle<cr>', 'Open file tree' },
 				["ss"] = { '<cmd>w<cr><cmd>so %<cr>', 'Source current file' },
 				S = { '<cmd>so ~/AppData/Local/nvim/after/ftplugin/cpp.lua<cr>', 'Source snippets' },
@@ -199,11 +238,12 @@ return {
 				W = { '<cmd>w!<cr>', 'Force save' },
 				q = { '<cmd>q<cr>', 'Save and quit' },
 				Q = { '<cmd>q!<cr>', 'Force save and quit' },
+        [' '] = { '<cmd>e $MYVIMRC<cr>', 'Open config'},
+        c = close_mappings,
 				n = neovide_mappings,
 				b = buffer_mappings,
 				a = neogen_mappings,
 				l = lsp_mappings,
-				r = refactoring_mappings,
 				s = telescope_mappings,
 				t = terminal_mappings,
 				g = git_mappings,
@@ -245,7 +285,8 @@ return {
 		wk.register(
 			{
 				z = visual_truezen_mappings,
-				r = visual_refactoring_mappings
+				r = visual_refactoring_mappings,
+        n = '<cmd>norm! @a<cr>'
 			},
 			{ prefix = '<leader>', mode = 'v' }
 		)

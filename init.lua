@@ -23,10 +23,8 @@ require 'config.plugins' -- plugins
 -- -- harpoon
 -- -- nvim-luapad, later
 -- -- nvim-dap
--- -- neotest (need to wrtite neotest-cpp)
+-- -- neotest (need to write neotest-cpp)
 -- -- nvim-FeMaco.lua
--- -- dired.nvim
--- -- projectlaunch.nvim
 
 -- Plugins to watch:
 -- decay.nvim

@@ -23,10 +23,14 @@ return {
 
 			matchparen = {
 				enable = true
-			}
+			},
+
+      indent = {
+        enable = true
+      }
 		}
 	end,
-	run = function() 
-		require('nvim-treesitter.install').update({ with_sync = true }) 
+	run = function()
+		require('nvim-treesitter.install').update({ with_sync = true })
 	end,
 }

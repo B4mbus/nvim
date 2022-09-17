@@ -2,6 +2,10 @@
 vim.api.nvim_set_hl(0, 'StatusLineClock', { fg = '#ffffff', bold = true })
 vim.api.nvim_set_hl(0, 'StatusLineMode', { fg = '#ffffff', bold = true })
 
+local szary_xd = '#6d8086'
+vim.api.nvim_set_hl(0, 'StatusLineBranchColor', { fg = szary_xd, bg = 'NONE' })
+vim.api.nvim_set_hl(0, 'StatusLineBold', { fg = szary_xd, bg = 'NONE', bold = true })
+
 vim.api.nvim_set_hl(0, 'Conceal', {})
 
 vim.api.nvim_set_hl(0, 'WildMenu', { fg = '#00bbff' })

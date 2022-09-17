@@ -1,9 +1,9 @@
 local use = function(name)
 	local plugin_path = 'config.plugins.configs.' .. name
-	local status, mod = pcall(require, plugin_path)
+	local status, data = pcall(require, plugin_path)
 
 	if status then
-		return mod
+		return data
 	else
 		vim.notify(string.format('[ERROR] Cannot find plugin "%s".', name), vim.log.levels.ERROR)
 		return nil
@@ -15,7 +15,7 @@ local plugins = {
 
 	use 'notify',
 	use 'todo-comments',
-	use 'lightspeed',
+  use 'leap',
 	use 'indent-blankline',
 	use 'nvim-tree',
 	use 'nvim-colorizer',
@@ -34,6 +34,7 @@ local plugins = {
 	use 'bufferline',
 	use 'scope',
 	use 'telescope',
+  use 'telescope-file-browser',
 	use 'lsp_signature',
 	use 'nvim-cmp',
 	use 'lspconfig',
@@ -47,8 +48,6 @@ local plugins = {
 	use 'buffercd',
 	use 'stay-in-place',
 	use 'text-case',
-	-- use 'wilder',
-	use 'trevJ',
 	use 'decay',
 	use 'neogit',
 	use 'diffview',
@@ -57,11 +56,13 @@ local plugins = {
 	use 'neogen',
   use 'nvim-ts-autotag',
   use 'autolist',
-  use 'headband',
-  -- use 'notifier',
   use 'dirbuf',
+  use 'pantran',
+  use 'gh',
+  use 'spread',
 
 	-- Meta
+  'ldelossa/litee.nvim',
 	'antoinemadec/FixCursorHold.nvim',
 	'nvim-lua/plenary.nvim',
 	'nvim-lua/popup.nvim',
@@ -76,6 +77,10 @@ local plugins = {
 	'hrsh7th/cmp-path',
 	'hrsh7th/cmp-nvim-lsp',
 
+  'tommcdo/vim-exchange',
+  'gabrielpoca/replacer.nvim',
+  'nocksock/bloop.nvim',
+  'zah/nim.vim',
   'projekt0n/github-nvim-theme' ,
   'rafamadriz/friendly-snippets',
   'jose-elias-alvarez/typescript.nvim',
@@ -94,7 +99,6 @@ local plugins = {
 	'NvChad/base46',
 	'editorconfig/editorconfig-vim',
 	'mcauley-penney/tidy.nvim',
-	'hauleth/vim-backscratch',
 	'F:/prv/dev/projects/oxocarbon-lua.nvim',
 	'kyazdani42/nvim-web-devicons',
 
@@ -105,6 +109,10 @@ local packer = require 'packer'
 
 packer.startup {
 	function(use)
+    use {
+      'F:\\prv\\dev\\projects\\nvim-headband',
+      after = 'nvim-web-devicons'
+    }
 		for _, plugin in ipairs(plugins) do
 			if plugin then
 				use(plugin)
@@ -118,4 +126,54 @@ packer.startup {
 			end
 		}
 	}
+}
+
+vim.cmd.packadd 'nvim-web-devicons'
+vim.cmd.packadd 'nvim-headband'
+
+-- local color = '#ffaaee'
+-- vim.api.nvim_set_hl(0, 'BubblesFront', { fg = color })
+-- vim.api.nvim_set_hl(0, 'BubblesBack', { bg = color })
+-- vim.api.nvim_set_hl(0, 'NvimHeadbandPath', { bg = color })
+-- vim.api.nvim_set_hl(0, 'NvimHeadbandFilename', { fg = '#000000', bg = color })
+--
+-- local opts = {
+--   bg = color,
+--   background = color
+-- }
+--
+-- local file_icons_hls = vim.fn.getcompletion('NvimHeadbandFileIcon', 'highlight')
+-- for _, hl in ipairs(file_icons_hls) do
+--   local format_hl = function(hl_dec)
+--     return vim.fn.printf('#%x', hl_dec)
+--   end
+--
+--   local original_hl_opts = vim.api.nvim_get_hl_by_name(hl, true)
+--   for name, val in pairs(original_hl_opts) do
+--     original_hl_opts[name] = format_hl(val)
+--   end
+--
+--   local extended_hl = vim.tbl_extend('force', original_hl_opts, opts)
+--   vim.api.nvim_set_hl(0, hl, extended_hl)
+-- end
+--
+-- vim.api.nvim_set_hl(0, 'NvimHeadbandFilename', { fg = '#000000', bg = color })
+--
+-- local reverse_arrow = require 'nvim-headband.symbols'.reverse_nice_arrow
+-- local bubbles_wrap = { '%#BubblesFront#%##%#BubblesBack#', '%#BubblesFront#%##' }
+
+require 'nvim-headband'.setup {
+  file_section = {
+    -- wrap = bubbles_wrap
+  },
+
+  location_section = {
+    -- wrap = bubbles_wrap,
+    --
+    -- separator = reverse_arrow,
+    --
+    -- empty_symbol = '',
+    --
+    -- position = 'right',
+  }
 }

@@ -26,6 +26,25 @@ return {
 			local keymap = vim.keymap.set
 			local common = { buffer = bufnr, noremap = true, silent = true }
 
+      local preview_location_callback = function(_, result, method, _)
+        if result == nil or vim.tbl_isempty(result) then
+          vim.lsp.log.info(method, 'No location found')
+          return nil
+        end
+
+        if vim.tbl_islist(result) then
+          vim.lsp.util.preview_location(result[1])
+        else
+          vim.lsp.util.preview_location(result)
+        end
+      end
+
+      local peek_definition = function()
+        local params = vim.lsp.util.make_position_params()
+        return vim.lsp.buf_request(0, 'textDocument/definition', params, preview_location_callback)
+      end
+
+      keymap('n', 'gp', peek_definition)
 			keymap('n', 'gD', vim.lsp.buf.declaration, common)
 			keymap('n', 'gd', vim.lsp.buf.definition, common)
 			keymap('n', 'gi', vim.lsp.buf.implementation, common)
@@ -99,7 +118,7 @@ return {
 		}
 
 		lsp.sumneko_lua.setup(
-			vim.tbl_extend('force', sumneko_lua_settings, default_config)
+			vim.tbl_deep_extend('keep', sumneko_lua_settings, default_config)
 		)
 
 		lsp.hls.setup(default_config)

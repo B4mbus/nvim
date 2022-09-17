@@ -7,40 +7,19 @@ local va = vim.api
 
 local symbols = require 'config.symbols'
 
-local modes = {
-	n = 'RW',
-	no = 'RO',
-	v = 'V',
-	V = 'VB',
-	['\022'] = '**',
-	s = 'S',
-	S = 'SL',
-	["\019"] = 'SB',
-	i = 'IN',
-	ic = 'IC',
-	R = 'RA',
-	Rv = 'RV',
-	c = 'VIEX',
-	cv = 'VIEX',
-	ce = 'EX',
-	r = 'R',
-	rm = 'r',
-	['r?'] = 'r',
-	['!'] = '!',
-	t = 'TERM',
-}
-
 local get_git_status = function()
 	local branch = vim.b.gitsigns_status_dict or { head = '' }
 	local head_empty = branch.head == ''
 
 	if not head_empty then
 		return fmt(
-			'%s(%s %s #%s)%s',
-			'%#DevIconCMake#',
+			'%s(%s %s #%s%s%s)%s',
+			'%#StatusLineBranchColor#',
 			symbols.lambda,
 			symbols.small_dot,
+      '%#StatusLineBold#',
 			branch.head,
+      '%#StatusLineBranchColor#',
       '%#NONE#'
 		)
 	else
@@ -91,7 +70,7 @@ local get_lsp_diagnostics = function()
 
 	local severity = vim.diagnostic.severity
 	return fmt(
-		'%%#DiagnosticError#%s %%#DiagnosticWarn#%s %%#DiagnosticHint#%s',
+		'%%#DiagnosticError#%s%%#NONE# %%#DiagnosticWarn#%s%%#NONE# %%#DiagnosticHint#%s%%#NONE#',
 		count[severity.ERROR] or 0,
 		count[severity.WARN] or 0,
 		count[severity.HINT] or 0
@@ -113,19 +92,43 @@ local get_file = function()
 end
 
 local get_mode = function()
-	local mode = va.nvim_get_mode().mode
+  local mode = va.nvim_get_mode().mode
 
-	return fmt(
-		'%s%s%s',
+  local modes = {
+    n = 'RW',
+    no = 'RO',
+    v = 'V',
+    V = 'VB',
+    ['\022'] = '**',
+    s = 'S',
+    S = 'SL',
+    ["\019"] = 'SB',
+    i = 'IN',
+    ic = 'IC',
+    R = 'RA',
+    Rv = 'RV',
+    c = 'VIEX',
+    cv = 'VIEX',
+    ce = 'EX',
+    r = 'R',
+    rm = 'r',
+    ['r?'] = 'r',
+    ['!'] = '!',
+    t = 'TERM',
+  }
+
+
+  return fmt(
+    '%s%s%s',
     '%#StatusLineMode#',
-		string.upper(
+    string.upper(
       fmt(
         '%s',
         modes[mode]
       )
     ),
     '%#NONE#'
-	)
+  )
 end
 
 local get_statusline_table = function()

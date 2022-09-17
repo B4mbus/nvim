@@ -10,8 +10,8 @@ utils.set_vim_options {
   undofile = true,
   expandtab = false,
   lazyredraw = true,
-  relativenumber = true,
-  number = true,
+  relativenumber = false,
+  number = false,
   list = true,
   incsearch = true,
   termguicolors = true,
@@ -20,6 +20,8 @@ utils.set_vim_options {
   ignorecase = true,
   smartcase = true,
   showmode = false,
+  foldenable = false,
+  wildmenu = true,
 	cole = 2,
 	updatetime = 300,
   shiftwidth = 2,
@@ -37,10 +39,14 @@ utils.set_vim_options {
   selection = 'old',
   completeopt = {'menu' ,'menuone' ,'noselect'},
   shell = 'cmd',
-  foldenable = false,
-  wildmenu = true,
   keywordprg = ':help',
   wildoptions = function(wo)
     return wo:remove('pum')
+  end,
+  formatoptions = function(fo)
+    return
+			fo:remove('c')
+				:remove('r')
+				:remove('o')
   end
 }
