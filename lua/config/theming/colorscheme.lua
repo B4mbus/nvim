@@ -4,3 +4,4 @@ require 'github-theme'.setup {
 }
 
 -- vim.cmd.colorscheme('bloop_nvim')
+-- vim.cmd.colorscheme('oxocarbon-lua')

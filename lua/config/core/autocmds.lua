@@ -39,15 +39,6 @@ autocmd(
 )
 
 autocmd(
-	{ 'CursorHold' },
-	{
-		group = augroup('automatic_file_refreshing'),
-		pattern = '*',
-		command = 'checktime'
-	}
-)
-
-autocmd(
   { 'BufEnter' },
   {
     group = augroup('maaaaaaaaaaaaaaaaaaan'),

@@ -130,6 +130,8 @@ return {
 			c = { '<cmd>Telescope git_bcommits<cr>', 'Local commits' },
 			C = { '<cmd>Telescope git_commits<cr>', 'Commits' },
 			d = { '<cmd>DiffviewOpen<cr>', 'Diffview' },
+      l = { '<cmd>G log --oneline --decorate --graph -50', 'Small log (50)' },
+      L = { '<cmd>G log --oneline --decorate --graph', 'Log' },
 			n = {
 				name = 'Neogit',
 				o = { '<cmd>Neogit<cr>', 'Open' },
@@ -204,14 +206,6 @@ return {
 			}
 		}
 
-		local truezen_mappings = {
-			name = 'TrueZen',
-			a = { '<cmd>TZAtaraxis<cr>', 'Ataraxis' },
-			m = { '<cmd>TZMinimalist<cr>', 'Minimalist' },
-			f = { '<cmd>TZFocus<cr>', 'Focus' },
-			n = { '<cmd>TZNarrow<cr>', 'Narrow' }
-		}
-
 		local iswap_mappings = {
 			name = 'ISwap',
 			i = { '<cmd>ISwap<cr>', 'General' },
@@ -221,15 +215,10 @@ return {
 			l = { '<cmd>ISwapNodeWithRight<cr>', 'With right' },
 		}
 
-    local close_mappings = {
-      name = 'Close',
-      b = { '<cmd>Bdelete<cr>', 'Close buffer'},
-      t = { '<cmd>tabclose<cr>', 'Close tab'},
-    }
-
 		-- All the default keymapings
 		wk.register(
 			{
+        [' '] = { '<cmd>e $MYVIMRC<cr>', 'Open config'},
 				y = { '<cmd>%y<cr>', 'Yank buffer'},
 				e = { '<cmd>NvimTreeToggle<cr>', 'Open file tree' },
 				["ss"] = { '<cmd>w<cr><cmd>so %<cr>', 'Source current file' },
@@ -238,8 +227,6 @@ return {
 				W = { '<cmd>w!<cr>', 'Force save' },
 				q = { '<cmd>q<cr>', 'Save and quit' },
 				Q = { '<cmd>q!<cr>', 'Force save and quit' },
-        [' '] = { '<cmd>e $MYVIMRC<cr>', 'Open config'},
-        c = close_mappings,
 				n = neovide_mappings,
 				b = buffer_mappings,
 				a = neogen_mappings,
@@ -248,7 +235,6 @@ return {
 				t = terminal_mappings,
 				g = git_mappings,
 				p = packer_mappings,
-				z = truezen_mappings,
 				i = iswap_mappings
 			},
 			{ prefix = '<leader>' }
@@ -269,22 +255,8 @@ return {
 			}
 		}
 
-		local visual_truezen_mappings = {
-			name = 'TrueZen',
-			n = {
-        function()
-          local first = vim.fn.line('v')
-          local last = vim.fn.line('.')
-
-          require 'true-zen'.narrow(first, last)
-        end,
-        'Narrow',
-      }
-		}
-
 		wk.register(
 			{
-				z = visual_truezen_mappings,
 				r = visual_refactoring_mappings,
         n = '<cmd>norm! @a<cr>'
 			},

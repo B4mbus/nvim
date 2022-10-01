@@ -8,6 +8,7 @@ _G.__luacache_config = {
     path = vim.fn.stdpath('cache')..'/luacache_modpaths',
   }
 }
+
 require 'impatient'.enable_profile()
 
 require 'config.core' -- core editor configuration (autocommands, keybindings, etc.)
@@ -28,3 +29,7 @@ require 'config.plugins' -- plugins
 
 -- Plugins to watch:
 -- decay.nvim
+
+--------------------------------------------------------------------------------------------------------
+-- Dont use bufferline or cybu for buffers, instead use telescope with that bitch ass goofy ahh theme --
+--------------------------------------------------------------------------------------------------------

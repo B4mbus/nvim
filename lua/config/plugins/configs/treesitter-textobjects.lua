@@ -5,11 +5,11 @@ return {
 		require'nvim-treesitter.configs'.setup {
 			textobjects = {
 				select = {
-					enable = true,
+					enable = false,
 					lookahead = true,
 					keymaps = {
-						af = '@function.outer',
-						['if'] = '@function.inner',
+						aF = '@function.outer',
+						['iF'] = '@function.inner',
 
 						ac = '@class.outer',
 						ic = '@class.inner',
@@ -22,9 +22,6 @@ return {
 
 						iC = '@conditional.inner',
 						aC = '@conditional.outer',
-
-						ic = '@call.inner',
-						ac = '@call.outer',
 
 						il = '@loop.inner',
 						al = '@loop.outer'

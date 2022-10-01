@@ -1,16 +1,23 @@
 local keymap = vim.keymap.set
 local silent = { silent = true }
 local silent_noremap = { silent = true, noremap = true }
+local silent_remap = { silent = true, remap = true }
+
+-- Ctrl + Return closes a buffer
+keymap("n", "<c-cr>", "<cmd>lua MiniBufremove.delete()<cr>", silent_noremap)
+
+-- Crtl + t trims spaces
+keymap("n", "<c-t>", "<cmd>lua MiniTrailspace.trim()<cr>", silent_noremap)
 
 -- H and L cycle buffers
-keymap('n', 'H', '<cmd>BufferLineCyclePrev<cr>', silent_noremap)
-keymap('n', 'L', '<cmd>BufferLineCycleNext<cr>', silent_noremap)
+keymap("n", "H", "<cmd>BufferLineCyclePrev<cr>", silent_noremap)
+keymap("n", "L", "<cmd>BufferLineCycleNext<cr>", silent_noremap)
 
 -- <A-hjkl> resize buffers
-keymap('n', '<A-h>', function() require 'smart-splits'.resize_left() end, silent_noremap)
-keymap('n', '<A-j>', function() require 'smart-splits'.resize_down() end, silent_noremap)
-keymap('n', '<A-k>', function() require 'smart-splits'.resize_up() end, silent_noremap)
-keymap('n', '<A-l>', function() require 'smart-splits'.resize_right() end, silent_noremap)
+keymap('n', '<A-h>', function() require('smart-splits').resize_left() end, silent_noremap)
+keymap('n', '<A-j>', function() require('smart-splits').resize_down() end, silent_noremap)
+keymap('n', '<A-k>', function() require('smart-splits').resize_up() end, silent_noremap)
+keymap('n', '<A-l>', function() require('smart-splits').resize_right() end, silent_noremap)
 
 -- Text case keymappings
 keymap('n', 'gau', function() require('textcase').current_word('to_upper_case') end, silent_noremap)
@@ -50,7 +57,6 @@ keymap('n', 'get', function() require('textcase').operator('to_title_case') end,
 keymap('n', 'gef', function() require('textcase').operator('to_path_case') end, silent_noremap)
 
 -- gS splits
-
 keymap("n", "gS", function() require('spread').out() end, silent_noremap)
 keymap("n", "gJ", function() require('spread').combine() end, silent_noremap)
 

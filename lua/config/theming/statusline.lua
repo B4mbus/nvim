@@ -7,18 +7,53 @@ local va = vim.api
 
 local symbols = require 'config.symbols'
 
+local get_git_changed = function()
+  return fmt(
+    '%s%s%s%s %s%s%s%s %s%s%s%s',
+    '%#GitAddedSign#', '+',
+    '%#GitAdded#', vim.b.gitsigns_status_dict.added,
+    '%#GitChangedSign#', '~',
+    '%#GitChanged#', vim.b.gitsigns_status_dict.changed,
+    '%#GitRemovedSign#', '-',
+    '%#GitRemoved#', vim.b.gitsigns_status_dict.removed
+  )
+end
+
+local get_git_dot = function()
+  return fmt(
+    '%s%s%s',
+    '%#BoldWhite#',
+    symbols.small_dot,
+    '%#NONE#'
+  )
+end
+
+local get_git_branch = function(head)
+  return fmt(
+    '%s#%s%s',
+    '%#GitBranchSign#',
+    '%#GitBranch#',
+    head
+  )
+end
+
+local get_git_status_sections = function(head)
+  return get_git_changed(), get_git_dot(), get_git_branch(head)
+end
+
 local get_git_status = function()
 	local branch = vim.b.gitsigns_status_dict or { head = '' }
 	local head_empty = branch.head == ''
 
 	if not head_empty then
+    local changed, dot, branch = get_git_status_sections(branch.head)
+
 		return fmt(
-			'%s(%s %s #%s%s%s)%s',
+			'%s(%s %s %s%s)%s',
 			'%#StatusLineBranchColor#',
-			symbols.lambda,
-			symbols.small_dot,
-      '%#StatusLineBold#',
-			branch.head,
+      changed,
+      dot,
+			branch,
       '%#StatusLineBranchColor#',
       '%#NONE#'
 		)
@@ -78,7 +113,6 @@ local get_lsp_diagnostics = function()
 end
 
 local get_file = function()
-	local big_dot = require 'config.symbols'.big_dot
 	local file_readable = vim.fn.filereadable(vim.fn.expand('%:p'))
 
 	local format = '%%#StatusLine#%s' ..'%%F%%#NONE#'
@@ -91,50 +125,9 @@ local get_file = function()
 	end
 end
 
-local get_mode = function()
-  local mode = va.nvim_get_mode().mode
-
-  local modes = {
-    n = 'RW',
-    no = 'RO',
-    v = 'V',
-    V = 'VB',
-    ['\022'] = '**',
-    s = 'S',
-    S = 'SL',
-    ["\019"] = 'SB',
-    i = 'IN',
-    ic = 'IC',
-    R = 'RA',
-    Rv = 'RV',
-    c = 'VIEX',
-    cv = 'VIEX',
-    ce = 'EX',
-    r = 'R',
-    rm = 'r',
-    ['r?'] = 'r',
-    ['!'] = '!',
-    t = 'TERM',
-  }
-
-
-  return fmt(
-    '%s%s%s',
-    '%#StatusLineMode#',
-    string.upper(
-      fmt(
-        '%s',
-        modes[mode]
-      )
-    ),
-    '%#NONE#'
-  )
-end
-
 local get_statusline_table = function()
 	return {
 		'%#NONE#',
-		get_mode(),
 		get_file(),
 		get_git_status(),
     '%#NONE#',

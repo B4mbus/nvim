@@ -6,11 +6,11 @@ return {
       extensions = {
         file_browser = {
           theme = "ivy",
-          hijack_netrw = true,
+          hijack_netrw = false,
         },
       },
     }
 
-    telescope.load_extension 'file_browser'
+    telescope.load_extension('file_browser')
   end
 }

@@ -1,6 +1,6 @@
 return {
 	'kyazdani42/nvim-tree.lua',
-	config = function() 
+	config = function()
 		require 'nvim-tree'.setup {
 			sync_root_with_cwd = true,
 			respect_buf_cwd = true,
@@ -14,7 +14,7 @@ return {
 				enable = true,
 				update_root = true
 			},
-			
+
       view = {
         hide_root_folder = true,
         adaptive_size = true

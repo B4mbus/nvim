@@ -24,8 +24,8 @@ keymap({'n', 'v'}, 'j', 'gj', silent_noremap)
 -- keymap('v', '<', '<gv', silent_noremap)
 
 -- K and J move visual selections
-keymap('x', 'K', '<cmd>move \'<-2<cr>gv-gv', silent_noremap)
-keymap('x', 'J', '<cmd>move \'>+1<cr>gv-gv', silent_noremap)
+keymap('x', 'J', '<cmd>move \'>+1<cr>gv=gv', silent_noremap)
+keymap('x', 'K', '<cmd>move \'<-2<cr>gv=gv', silent_noremap)
 
 -- <C-w>n opens a new split, let <C-w>N open a new vsplit
 keymap('n', '<C-w>N', '<cmd>vnew<cr>', silent_noremap)

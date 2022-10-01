@@ -31,6 +31,7 @@ utils.set_vim_options {
   timeoutlen = 350,
   laststatus = 3,
   history = 10000,
+  signcolumn = 'auto:1-4',
   clipboard = 'unnamedplus',
   mouse = 'a',
   inccommand = 'nosplit',

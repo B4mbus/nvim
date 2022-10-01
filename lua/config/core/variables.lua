@@ -10,3 +10,7 @@ utils.set_vim_globals {
 
 	mapleader = ' '
 }
+
+_G.b4_fork = function(name)
+  return 'F:\\prv\\dev\\forks\\' .. name
+end
