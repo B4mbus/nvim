@@ -1,6 +1,13 @@
 -- Custom highlights for statusline and wildmenu
 vim.api.nvim_set_hl(0, 'NONE', {})
+
+-- STATUSLINE
+
+vim.api.nvim_set_hl(0, 'NiceGrey', { fg = '#667789' })
+
 vim.api.nvim_set_hl(0, 'BoldWhite', { fg = '#ffffff', bold = true })
+vim.api.nvim_set_hl(0, 'BoldRed', { fg = '#ff0000', bold = true })
+
 vim.api.nvim_set_hl(0, 'GitAddedSign', { fg = '#006B3D', bold = true })
 vim.api.nvim_set_hl(0, 'GitChangedSign', { fg = '#FF681E', bold = true })
 vim.api.nvim_set_hl(0, 'GitRemovedSign', { fg = '#94171F', bold = true })
@@ -14,8 +21,6 @@ vim.api.nvim_set_hl(0, 'GitBranch', { fg = '#A2A9B0', bold = true })
 
 vim.api.nvim_set_hl(0, 'StatusLineClock', { fg = '#ffffff', bold = true })
 vim.api.nvim_set_hl(0, 'StatusLineMode', { fg = '#ffffff', bold = true })
-
-vim.api.nvim_set_hl(0, 'MiniJump', { bg = '#88CDF6', fg = '#000000'} )
 
 local szary_xd = '#6d8086'
 vim.api.nvim_set_hl(0, 'StatusLineBranchColor', { fg = szary_xd, bg = 'NONE' })

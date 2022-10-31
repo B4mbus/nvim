@@ -220,7 +220,7 @@ return {
 			{
         [' '] = { '<cmd>e $MYVIMRC<cr>', 'Open config'},
 				y = { '<cmd>%y<cr>', 'Yank buffer'},
-				e = { '<cmd>NvimTreeToggle<cr>', 'Open file tree' },
+				e = { '<c-w>v<cmd>Dirbuf<cr>', 'Open dirbuf' },
 				["ss"] = { '<cmd>w<cr><cmd>so %<cr>', 'Source current file' },
 				S = { '<cmd>so ~/AppData/Local/nvim/after/ftplugin/cpp.lua<cr>', 'Source snippets' },
 				w = { '<cmd>w<cr>', 'Save' },

@@ -113,36 +113,44 @@ local get_lsp_diagnostics = function()
 end
 
 local get_file = function()
-	local file_readable = vim.fn.filereadable(vim.fn.expand('%:p'))
+  local path = vim.fn.expand('%:p')
+	local file_readable = vim.fn.filereadable(path)
+	local file_name = vim.fn.fnamemodify(path, ':t')
+	local file_tail = require('plenary.path'):new(vim.fn.fnamemodify(path, ':h')):make_relative()
 
-	local format = '%%#StatusLine#%s' ..'%%F%%#NONE#'
+	local format = '%%#NiceGrey#' .. file_tail .. '\\' .. '%s' .. file_name .. '%%#NONE#'
 	if file_readable == 0 then
-		return fmt(format, '%#Error#')
-	elseif vim.fn.getbufinfo('%')[1].changed == 1 then
-		return fmt(format, '%#Error#' .. symbols.big_dot .. ' %#DevIconHs# ')
-	else
-		return fmt(format, '%#DevIconNix#')
+		return fmt(format, '%#BoldRed#')
+  else
+		return fmt(format, '%#BoldWhite#')
 	end
 end
 
 local get_statusline_table = function()
 	return {
-		'%#NONE#',
+		'%#StatusLine#',
 		get_file(),
+    require('macro-status').get_register_formatted(),
 		get_git_status(),
     '%#NONE#',
 		'%=',
 		get_lsp_diagnostics(),
 		'%#StatusLineClock#',
 		vim.fn.strftime('%I:%M %p'),
-		''
 	}
 end
 
 StatuslineMod = {}
 
 StatuslineMod.statusline = function()
-	return table.concat(get_statusline_table(), ' ')
+  local s = ''
+
+  for _, v in ipairs(get_statusline_table()) do
+    local sep = (not v or v == '') and '' or ' '
+    s = s .. v .. sep
+  end
+
+  return s
 end
 
 vim.opt.statusline = '%{%v:lua.StatuslineMod.statusline()%}'

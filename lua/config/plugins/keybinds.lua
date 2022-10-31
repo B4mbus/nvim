@@ -4,7 +4,7 @@ local silent_noremap = { silent = true, noremap = true }
 local silent_remap = { silent = true, remap = true }
 
 -- Ctrl + Return closes a buffer
-keymap("n", "<c-cr>", "<cmd>lua MiniBufremove.delete()<cr>", silent_noremap)
+keymap("n", "<c-cr>", "<cmd>lua MiniBufremove.delete(0, true)<cr>", silent_noremap)
 
 -- Crtl + t trims spaces
 keymap("n", "<c-t>", "<cmd>lua MiniTrailspace.trim()<cr>", silent_noremap)

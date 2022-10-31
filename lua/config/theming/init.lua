@@ -1,4 +1,4 @@
-vim.opt.guifont = 'TerminessTTF Nerd Font:h16'
+vim.opt.guifont = 'TerminesTTF Nerd Font:h18'
 
 require 'config.theming.colorscheme'
 require 'config.theming.signs'

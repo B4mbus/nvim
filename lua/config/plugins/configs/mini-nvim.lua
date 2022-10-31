@@ -8,7 +8,12 @@ return {
     require('mini.pairs').setup({})
 
     require('mini.starter').setup({})
-    require('mini.surround').setup({})
+    require('mini.surround').setup({
+      mappings = {
+        highlight = nil,
+      },
+    })
+
     require('mini.trailspace').setup({})
 
     require('mini.align').setup({

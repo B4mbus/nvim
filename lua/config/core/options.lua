@@ -31,6 +31,8 @@ utils.set_vim_options {
   timeoutlen = 350,
   laststatus = 3,
   history = 10000,
+  cmdheight = 0,
+  -- splitkeep = 'screep',
   signcolumn = 'auto:1-4',
   clipboard = 'unnamedplus',
   mouse = 'a',
@@ -44,10 +46,6 @@ utils.set_vim_options {
   wildoptions = function(wo)
     return wo:remove('pum')
   end,
-  formatoptions = function(fo)
-    return
-			fo:remove('c')
-				:remove('r')
-				:remove('o')
-  end
 }
+
+vim.cmd[[set formatoptions-=cro]]

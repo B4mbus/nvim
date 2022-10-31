@@ -1,22 +1,11 @@
 return {
 	'neovim/nvim-lspconfig',
 	config = function()
-		local lsp = require 'lspconfig'
-
-		local tweak_capabilities = function(original_caps)
-			local tweaked_capabilities = require 'cmp_nvim_lsp'.update_capabilities(original_caps)
-
-			tweaked_capabilities.textDocument.foldingRange = { -- nvim ufo requires this
-				dynamicRegistration = false,
-				lineFoldingOnly = true
-			}
-
-			return tweaked_capabilities
-		end
+		local lsp = require('lspconfig')
 
 		local custom_on_attach =  function(client, bufnr)
-			require 'nvim-navic'.attach(client, bufnr)
-			require 'lsp_signature'.on_attach({
+			require('nvim-navic').attach(client, bufnr)
+			require('lsp_signature').on_attach({
 				bind = true,
 				handler_opts = {
 					border = 'rounded'
@@ -60,7 +49,7 @@ return {
 			)
 		end
 
-		local capabilities = tweak_capabilities(vim.lsp.protocol.make_client_capabilities())
+		local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 		local default_config = {
 			capabilities = capabilities,
@@ -122,11 +111,6 @@ return {
 		)
 
 		lsp.hls.setup(default_config)
-
-    require 'typescript'.setup {
-      disble_commands = false,
-      server = default_config
-    }
 
 		-- Disable virtual text so that it doesn't collide with lsp_lines
 		vim.diagnostic.config {

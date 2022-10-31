@@ -33,5 +33,9 @@ keymap('n', '<C-w>N', '<cmd>vnew<cr>', silent_noremap)
 -- <C-e> invokes emmet
 keymap('i', '<C-s>', '<C-y>,', silent_remap)
 
+-- Tab instantly shifts
+keymap('n', '<Tab>', '>>', silent_remap)
+keymap('n', '<S-Tab>', '<<', silent_remap)
+
 -- <C-+> and <C--> change font size
 -- TODO: lmao
