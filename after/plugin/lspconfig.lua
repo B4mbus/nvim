@@ -1,4 +1,4 @@
-local ok, lsp = pequire('lsp')
+local ok, lsp = pequire('lspconfig')
 
 if not ok then
   vim.notify('Could not load the "lsp" plugin')

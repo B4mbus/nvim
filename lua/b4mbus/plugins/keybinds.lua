@@ -67,10 +67,14 @@ keymap('n', 'cq', function() require('replacer').run() end, silent_noremap)
 
 keymap('n', '<M-r>', '<Plug>RestNvim', silent_noremap)
 
-keymap('n', 'zR', require('ufo').openAllFolds, silent_remap)
-keymap('n', 'zM', require('ufo').closeAllFolds, silent_remap)
-keymap('n', 'zr', require('ufo').openFoldsExceptKinds, silent_remap)
-keymap('n', 'zm', require('ufo').closeFoldsWith, silent_remap)
+local ok, ufo = pequire('ufo')
+
+if ok then
+  keymap('n', 'zR', require('ufo').openAllFolds, silent_remap)
+  keymap('n', 'zM', require('ufo').closeAllFolds, silent_remap)
+  keymap('n', 'zr', require('ufo').openFoldsExceptKinds, silent_remap)
+  keymap('n', 'zm', require('ufo').closeFoldsWith, silent_remap)
+end
 
 keymap('n', 'K', function()
     local winid = require('ufo').peekFoldedLinesUnderCursor()

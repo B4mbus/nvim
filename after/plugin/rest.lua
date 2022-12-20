@@ -1,4 +1,11 @@
-require('rest-nvim').setup({
+local ok, rest = pequire('rest-nvim')
+
+if not ok then
+  vim.notify('Could not load the "rest.nvim" plugin')
+  return
+end
+
+rest.setup({
   result_split_horizontal = false,
   -- Keep the http file buffer above|left when split horizontal|vertical
   result_split_in_place = false,

@@ -1,7 +1,7 @@
 local ok, cmp = pequire('cmp')
 
 if not ok then
-  vim.notify('Could not load the "cmp" plugin')
+  vim.notify('Could not load the "nvim-cmp" plugin')
   return
 end
 

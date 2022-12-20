@@ -1,4 +1,10 @@
-local telescope = require('telescope')
+local ok, telescope = pequire('telescope')
+
+if not ok then
+  vim.notify('Could not load the "telescope" plugin')
+  return
+end
+
 local actions = require('telescope.actions')
 local layout = require('telescope.actions.layout')
 

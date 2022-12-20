@@ -4,7 +4,10 @@ require('lazy').setup(
   {
     {
       'folke/tokyonight.nvim',
-      lazy = false
+      lazy = false,
+      config = function()
+        vim.cmd.colorscheme('tokyonight-night')
+      end
     },
 
     'ggandor/leap.nvim',
@@ -17,8 +20,14 @@ require('lazy').setup(
     'nvim-treesitter/playground',
     'JoosepAlviste/nvim-ts-context-commentstring',
     'windwp/nvim-ts-autotag',
-    'tiagovla/scope.nvim',
-    'tiagovla/buffercd.nvim',
+    {
+      'tiagovla/scope.nvim',
+      lazy = false,
+    },
+    {
+      'tiagovla/buffercd.nvim',
+      lazy = false,
+    },
     {
       'lukas-reineke/indent-blankline.nvim',
       event = { 'BufEnter', 'BufNewFile' }
@@ -38,7 +47,7 @@ require('lazy').setup(
     'ray-x/lsp_signature.nvim',
     {
       'hrsh7th/nvim-cmp',
-      event = 'BufRead',
+      lazy = false,
       dependencies = {
         'onsails/lspkind.nvim',
         'p00f/clangd_extensions.nvim',
@@ -78,11 +87,11 @@ require('lazy').setup(
     },
     {
       'rest-nvim/rest.nvim',
-      requires = { 'nvim-lua/plenary.nvim' },
+      dependencies = { 'nvim-lua/plenary.nvim' },
     },
     {
       'Wansmer/treesj',
-      requires = { 'nvim-treesitter' }
+      dependencies = { 'nvim-treesitter' }
     },
     {
       'ahmedkhalf/project.nvim',
@@ -101,7 +110,7 @@ require('lazy').setup(
     { 'potamides/pantran.nvim' },
     {
       'kevinhwang91/nvim-ufo',
-      requires = 'kevinhwang91/promise-async',
+      dependencies = 'kevinhwang91/promise-async',
     },
     -- {
     --   'akinsho/bufferline.nvim',
@@ -120,11 +129,22 @@ require('lazy').setup(
     'rktjmp/lush.nvim',
     'MunifTanjim/nui.nvim',
 
-    'hrsh7th/cmp-nvim-lsp-document-symbol',
-    'hrsh7th/cmp-nvim-lua',
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-path',
-    'hrsh7th/cmp-nvim-lsp',
+    {
+      'hrsh7th/cmp-nvim-lua',
+      event = 'BufRead'
+    },
+    {
+      'hrsh7th/cmp-buffer',
+      event = 'BufRead'
+    },
+    {
+      'hrsh7th/cmp-path',
+      event = 'BufRead'
+    },
+    {
+      'hrsh7th/cmp-nvim-lsp',
+      event = 'BufRead'
+    },
 
     'bhurlow/vim-parinfer',
     'vim-utils/vim-man',
@@ -148,8 +168,6 @@ require('lazy').setup(
     'mattn/emmet-vim',
     'kyazdani42/nvim-web-devicons',
     { 'b4mbus/macro-status.nvim', dev = true }
-
-    -- Themes
   },
   {
     defaults = {

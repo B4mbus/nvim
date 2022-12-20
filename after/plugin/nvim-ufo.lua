@@ -1,3 +1,10 @@
+local ok, ufo = pequire('ufo')
+
+if not ok then
+  vim.notify('Could not load the "ufo" plugin')
+  return
+end
+
 local handler = function(virtText, lnum, endLnum, width, truncate)
   local newVirtText = {}
   local suffix = ('  %d '):format(endLnum - lnum)
@@ -25,8 +32,6 @@ local handler = function(virtText, lnum, endLnum, width, truncate)
   table.insert(newVirtText, {suffix, 'MoreMsg'})
   return newVirtText
 end
-
-local ufo = require('ufo')
 
 ufo.setup({
   fold_virt_text_handler = handler
