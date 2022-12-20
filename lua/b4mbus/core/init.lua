@@ -1,0 +1,5 @@
+require 'b4mbus.core.variables'
+require 'b4mbus.core.options'
+require 'b4mbus.core.keybinds'
+require 'b4mbus.core.autocmds'
+require 'b4mbus.core.commands'

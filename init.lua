@@ -1,19 +1,11 @@
-_G.__luacache_config = {
-  chunks = {
-    enable = true,
-    path = vim.fn.stdpath('cache')..'/luacache_chunks',
-  },
-  modpaths = {
-    enable = true,
-    path = vim.fn.stdpath('cache')..'/luacache_modpaths',
-  }
-}
+require('b4mbus.plugins.lazy_bootstrap')
 
-require 'impatient'.enable_profile()
+_G.pequire = function(name) return pcall(require, name) end
+_G.P = function(...) return vim.pretty_print(...) end
 
-require 'config.core' -- core editor configuration (autocommands, keybindings, etc.)
-require 'config.theming' -- colorscheme, lsp signs and shit
-require 'config.plugins' -- plugins
+require('b4mbus.core') -- core editor configuration (autocommands, keybindings, etc.)
+require('b4mbus.plugins') -- plugins
+require('b4mbus.theming') -- colorscheme, lsp signs and shit
 
 -- Implement cursor going back in the terminal if cursor in normal mode is not at the end of line
 --
@@ -31,5 +23,5 @@ require 'config.plugins' -- plugins
 -- decay.nvim
 
 --------------------------------------------------------------------------------------------------------
--- Dont use bufferline or cybu for buffers, instead use telescope with that bitch ass goofy ahh theme --
---------------------------------------------------------------------------------------------------------
+-- Dont use bufferline or cybu for buffers, instead use telescope with that bitch ass goofy ahh theme -h- ------------------------------------------------------------------------------------------------------
+--

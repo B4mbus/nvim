@@ -1,0 +1,5 @@
+require('b4mbus.plugins.variables')
+require('b4mbus.plugins.definitions')
+require('b4mbus.plugins.keybinds')
+require('b4mbus.plugins.autocmds')
+require('b4mbus.plugins.commands')
