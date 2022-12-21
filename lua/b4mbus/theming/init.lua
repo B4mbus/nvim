@@ -1,4 +1,5 @@
-require 'b4mbus.theming.colorscheme'
+xpnequire('b4mbus.theming.colorscheme')
+-- require 'b4mbus.theming.colorscheme'
 require 'b4mbus.theming.signs'
 require 'b4mbus.theming.highlights'
 

@@ -13,7 +13,9 @@ wk.setup({
   icons = {
     separator = '⸬',
     group = symbols.horizontal_ellipsis .. ' '
-  }
+  },
+  show_help = false,
+  show_keys = false
 })
 
 local telescope_mappings = {
@@ -36,7 +38,7 @@ local terminal_mappings = {
   name = 'Terminal',
   t = { '<cmd>tabnew +term<cr>', 'Open terminal in new tab' },
   v = { '<cmd>vnew +term<cr>', 'Open terminal in vsplit' },
-  x = { '<cmd>new +term<cr>', 'Open terminal in split' },
+  n = { '<cmd>new +term<cr>', 'Open terminal in split' },
   c = { '<cmd>term<cr>', 'Open terminal in current buffer' },
 }
 
@@ -136,11 +138,11 @@ wk.register(
     [' '] = { '<cmd>e $MYVIMRC<cr>', 'Open config'},
     y = { '<cmd>silent :%y<cr>', 'Yank buffer'},
     e = { '<c-w>v<cmd>Dirbuf<cr>', 'Open dirbuf' },
-    ["ss"] = { 
-      function() 
-        if vim.bo.ft == 'vim' or vim.bo.ft == 'lua' then vim.cmd.so('%') end 
+    ["ss"] = {
+      function()
+        if vim.bo.ft == 'vim' or vim.bo.ft == 'lua' then vim.cmd.so('%') end
       end,
-      'Source current file' 
+      'Source current file'
     },
     w = { '<cmd>silent :w<cr>', 'Save' },
     W = { '<cmd>silent :w!<cr>', 'Force save' },

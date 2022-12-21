@@ -1,3 +1,4 @@
+-- The colorscheme is set in nvim/lua/b4mbus/plugins/definitions.lua
 -- if package.loaded['tokyonight'] then
 --   vim.cmd.colorscheme('tokyonight-night')
 -- end

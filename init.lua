@@ -1,14 +1,31 @@
 require('b4mbus.plugins.lazy_bootstrap')
 
 _G.pequire = function(name) return pcall(require, name) end
-_G.P = function(...) return vim.pretty_print(...) end
+_G.xpnequire = function(name)
+  return xpcall(
+    function() return require(name) end,
+    function(_err)
+      local debuginfo = debug.getinfo(1,'S')
+      local filename = vim.fn.fnamemodify(debuginfo.source:sub(2, -1), ':.')
+      vim.notify(
+        ('Internal module "%s" could not be loaded.\nCalled from %s'):format(name, filename),
+        vim.log.levels.ERROR
+      )
+    end
+  )
+end
+_G.P = function(...) vim.pretty_print(...) end
 
-require('b4mbus.core') -- core editor configuration (autocommands, keybindings, etc.)
-require('b4mbus.plugins') -- plugins
-require('b4mbus.theming') -- colorscheme, lsp signs and shit
+
+P()
+
+xpnequire('b4mbus.asdascore')
+require('b4mbus.core')
+require('b4mbus.plugins')
+require('b4mbus.theming')
 
 -- Implement cursor going back in the terminal if cursor in normal mode is not at the end of line
---
+
 -- Interesting plugins to try out:
 -- -- auto-session
 -- -- readline.nvim
@@ -17,11 +34,3 @@ require('b4mbus.theming') -- colorscheme, lsp signs and shit
 -- -- nvim-luapad, later
 -- -- nvim-dap
 -- -- neotest (need to write neotest-cpp)
--- -- nvim-FeMaco.lua
-
--- Plugins to watch:
--- decay.nvim
-
---------------------------------------------------------------------------------------------------------
--- Dont use bufferline or cybu for buffers, instead use telescope with that bitch ass goofy ahh theme -h- ------------------------------------------------------------------------------------------------------
---

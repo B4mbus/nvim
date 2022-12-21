@@ -204,6 +204,26 @@ local get_noice_message = function(cap)
   end
 end
 
+local get_tabs = function()
+  local tabpage = vim.fn.tabpagenr()
+  local tabs = vim.tbl_map(
+    function(tab)
+      return '%#InactiveTab#' .. tab.tabnr
+    end,
+    vim.fn.gettabinfo()
+  )
+  local tabstring = table.concat(tabs, '%#TabSeparator# ' .. symbols.small_dot .. ' ');
+
+  return
+    '%#Tabs# '
+    .. tabstring:gsub(
+      tostring(tabpage),
+      '%%#ActiveTab#' .. tabpage
+    )
+    .. ' %#none#'
+end
+
+
 -- DeeplStatus = ''
 -- local function get_deepl_status()
 --   LastTotal = 0
@@ -239,11 +259,6 @@ end
 --   end
 -- end
 
-
-local sinn = function(ting)
-  return ting .. ((not ting or ting == '') and '' or ' ')
-end
-
 StatuslineMod = {}
 
 StatuslineMod.statusline = function()
@@ -256,6 +271,7 @@ StatuslineMod.statusline = function()
       '%#none#',
       '%=',
       get_lsp_diagnostics(),
+      get_tabs(),
       ''
     },
     ' '

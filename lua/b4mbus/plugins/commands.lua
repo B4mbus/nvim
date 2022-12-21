@@ -1,4 +1,6 @@
-vim.api.nvim_create_user_command(
+local command = vim.api.nvim_create_user_command
+
+command(
   'Hologram',
   function()
     local ok, image = pequire('hologram.image')
@@ -13,6 +15,16 @@ vim.api.nvim_create_user_command(
       vim.bo.modified = false
       vim.bo.modifiable = false
     end
+  end,
+  {}
+)
+
+-- :Trim trims spaces
+
+command(
+  'Trim',
+  function()
+    MiniTrailspace.trim()
   end,
   {}
 )

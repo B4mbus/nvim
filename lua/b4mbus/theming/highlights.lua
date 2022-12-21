@@ -20,6 +20,11 @@ vim.api.nvim_set_hl(0, '@decorator', { fg = '#0f0f01' })
 vim.api.nvim_set_hl(0, 'GitCommitStatusline', { fg = '#06cc71' })
 vim.api.nvim_set_hl(0, 'GitCommitStatuslineShort', { fg = '#005335', bold = true })
 
+vim.api.nvim_set_hl(0, 'Tabs', { bg = '#333333' })
+vim.api.nvim_set_hl(0, 'ActiveTab', { fg = '#3388ff', bg = '#333333', bold = true })
+vim.api.nvim_set_hl(0, 'InactiveTab', { fg = '#ffffff', bg = '#333333' })
+vim.api.nvim_set_hl(0, 'TabSeparator', { fg = '#666666', bg = '#333333' })
+
 vim.api.nvim_set_hl(0, 'NiceGrey', { fg = '#667789' })
 
 vim.api.nvim_set_hl(0, 'White', { fg = '#ffffff' })

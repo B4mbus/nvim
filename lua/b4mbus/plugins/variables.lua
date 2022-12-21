@@ -1,8 +1,4 @@
-local utils = require 'b4mbus.utils.utils'
+vim.g.switch_mapping = ''
 
-utils.set_vim_globals {
-	switch_mapping = '',
-
-	licenses_authors_name = 'Daniel Zaradny <danielzaradny@gmail.com>',
-	licenses_copyright_holders_name  = 'Daniel Zaradny <danielzaradny@gmail.com>'
-}
+vim.g.licenses_authors_name = 'Daniel Zaradny <danielzaradny@gmail.com>'
+vim.g.licenses_copyright_holders_name  = 'Daniel Zaradny <danielzaradny@gmail.com>'

@@ -7,7 +7,7 @@ local with_desc = function(opts, description)
   return vim.tbl_extend('force', opts, { desc = description })
 end
 
--- LEADER IS SET TO SPACE
+-- NOTE: LEADER IS SET TO SPACE
 
 -- Ctrl + C as Esc
 keymap('i', '<C-c>', '<Esc>', silent_noremap)

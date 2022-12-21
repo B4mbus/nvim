@@ -148,16 +148,28 @@ require('lazy').setup(
 
     'bhurlow/vim-parinfer',
     'vim-utils/vim-man',
-    'AndrewRadev/switch.vim',
+    {
+      'AndrewRadev/switch.vim',
+      cmd = 'Switch'
+    },
     'wakatime/vim-wakatime',
     'mzlogin/vim-markdown-toc',
-    'airblade/vim-rooter',
-    'tommcdo/vim-exchange',
+    {
+      'airblade/vim-rooter',
+      lazy = false
+    },
+    {
+      'tommcdo/vim-exchange',
+      keys = 'cx'
+    },
     'gabrielpoca/replacer.nvim',
     'rafamadriz/friendly-snippets',
     'samjwill/nvim-unception',
     'tpope/vim-eunuch',
-    'tpope/vim-fugitive',
+    {
+      'tpope/vim-fugitive',
+      cmd = { 'G', 'Git' }
+    },
     'tpope/vim-rhubarb',
     'tpope/vim-dispatch',
     'p00f/clangd_extensions.nvim',
