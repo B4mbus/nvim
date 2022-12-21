@@ -1,10 +1,11 @@
 local ok, bufferline = pequire('bufferline')
+
 if not ok then
   vim.notify('Could not load the "bufferline" plugin')
   return
 end
 
-bufferline.setup {
+bufferline.setup({
   highlights = {
     buffer_selected = {
       italic = false
@@ -21,4 +22,4 @@ bufferline.setup {
       }
     }
   }
-}
+})

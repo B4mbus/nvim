@@ -1,5 +1,5 @@
-require 'b4mbus.core.variables'
-require 'b4mbus.core.options'
-require 'b4mbus.core.keybinds'
-require 'b4mbus.core.autocmds'
-require 'b4mbus.core.commands'
+xpnequire('b4mbus.core.variables')
+xpnequire('b4mbus.core.options')
+xpnequire('b4mbus.core.keybinds')
+xpnequire('b4mbus.core.autocmds')
+xpnequire('b4mbus.core.commands')

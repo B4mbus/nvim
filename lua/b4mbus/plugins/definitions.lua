@@ -1,4 +1,9 @@
-require('b4mbus.plugins.lazy_bootstrap')
+local ok, _ = pequire('b4mbus.plugins.lazy_bootstrap')
+
+if not ok then
+  vim.notify([[Could not find and bootstrap lazy. Plugins can't be loaded]])
+  return
+end
 
 require('lazy').setup(
   {

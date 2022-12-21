@@ -38,3 +38,21 @@ autocmd(
 		command = 'setlocal ft=jsx'
 	}
 )
+
+-- autocmd(
+--   { 'BufWinLeave' },
+--   {
+--     group = augroup('save_folds'),
+--     pattern = '*',
+--     command = 'mkview'
+--   }
+-- )
+-- 
+-- autocmd(
+--   { 'BufWinEnter' },
+--   {
+--     group = augroup('save_folds'),
+--     pattern = '*',
+--     command = 'silent loadview'
+--   }
+-- )

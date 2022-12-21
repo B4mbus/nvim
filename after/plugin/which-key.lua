@@ -4,7 +4,12 @@ if not ok then
   vim.notify('Could not load the "which-key" plugin')
 end
 
-local symbols = require('b4mbus.symbols')
+local ok_symbols, symbols = pequire('b4mbus.symbols')
+
+if not ok then
+  vim.notify('Could not load symbols for which key')
+  return
+end
 
 wk.setup({
   window = {

@@ -1,5 +1,3 @@
-require('b4mbus.plugins.lazy_bootstrap')
-
 _G.pequire = function(name) return pcall(require, name) end
 _G.xpnequire = function(name)
   return xpcall(
@@ -17,12 +15,9 @@ end
 _G.P = function(...) vim.pretty_print(...) end
 
 
-P()
-
-xpnequire('b4mbus.asdascore')
-require('b4mbus.core')
-require('b4mbus.plugins')
-require('b4mbus.theming')
+xpnequire('b4mbus.core')
+xpnequire('b4mbus.plugins')
+xpnequire('b4mbus.theming')
 
 -- Implement cursor going back in the terminal if cursor in normal mode is not at the end of line
 
