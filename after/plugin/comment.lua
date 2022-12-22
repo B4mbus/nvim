@@ -1,4 +1,4 @@
-local ok, comment = pequire('comment')
+local ok, comment = pequire('Comment')
 
 if not ok then
   vim.notify('Could not load the "ccomment" plugin')
@@ -11,8 +11,6 @@ if not ok_ts_c_c then
   comment.setup()
 else
   comment.setup({
-    pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook()
+    pre_hook = ts_context_commenstring.create_pre_hook()
   })
 end
-
-

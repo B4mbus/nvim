@@ -5,7 +5,7 @@ if not ok then
   return
 end
 
-require('lspconfig.configs').fennel_language_server =({
+require('lspconfig.configs').fennel_language_server = ({
   default_config = {
     -- replace it with true path
     cmd = { '/home/b4mbus/.cargo/bin/fennel-language-server' },
@@ -30,19 +30,20 @@ require('lspconfig.configs').fennel_language_server =({
 
 local custom_on_attach =  function(client, bufnr)
   require('nvim-navic').attach(client, bufnr)
-  require('lsp_signature').on_attach({
-    bind = true,
-    handler_opts = {
-      border = 'rounded'
-    }
-  }, bufnr)
+  require('lsp_signature').on_attach(
+    {
+      bind = true,
+      handler_opts = { border = 'rounded' },
+    },
+    bufnr
+  )
 
   local keymap = vim.keymap.set
   local common = { buffer = bufnr, noremap = true, silent = true }
 
-  local preview_location_callback = function(_, result, method, _)
+  local preview_location_callback = function(_, result, _method, _)
     if result == nil or vim.tbl_isempty(result) then
-      vim.lsp.log.info(method, 'No location found')
+      vim.notify('No location found')
       return nil
     end
 
@@ -73,7 +74,7 @@ local custom_on_attach =  function(client, bufnr)
   )
 end
 
-local caps = require('cmp_nvim_lsp').default_capabilities()
+local caps = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 caps.textDocument.foldingRange = {
   dynamicRegistration = false,
   lineFoldingOnly = true
@@ -142,7 +143,7 @@ lsp.hls.setup(default_config)
 lsp.tsserver.setup(default_config)
 lsp.fennel_language_server.setup(default_config)
 
--- Disable virtual text so that it doesn't collide with lsp_lines
+
 vim.diagnostic.config {
   update_in_insert = false,
   virtual_text = false

@@ -57,7 +57,6 @@ keymap('i', '<C-j>', replication_fun('down'), silent_noremap)
 keymap('n', '<C-k>', replication_fun('up'), silent_noremap)
 keymap('n', '<C-j>', replication_fun('down'), silent_noremap)
 
-
 -- <CR> in normal mode adds spaces around a line
 keymap(
   'n',
@@ -140,16 +139,7 @@ keymap(
   { remap = true, silent = true, expr = true }
 )
 
-keymap(
-  { 'n', 'x' },
-  'p',
-  'p=`]',
-  silent_remap
-)
+keymap({ 'n' }, 'J', 'mzJ`z', silent_noremap)
 
-keymap(
-  { 'n', 'x' },
-  'P',
-  'P=`]',
-  silent_remap
-)
+keymap({ 'n', 'x' }, 'p', 'p=`]', silent_noremap)
+keymap({ 'n', 'x' }, 'P', 'P=`]', silent_noremap)

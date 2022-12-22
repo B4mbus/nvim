@@ -1,8 +1,6 @@
 local fmt = string.format
-local vl = vim.lsp
-local va = vim.api
 
-local symbols = require 'b4mbus.symbols'
+local symbols = require('b4mbus.symbols')
 
 local get_git_changed = function()
   -- return fmt(
@@ -92,6 +90,7 @@ local valid_lsps_attached = function(clients)
 end
 
 local get_lsp_diagnostics = function()
+  local vl = vim.lsp
 	local buffer_clients = vl.buf_get_clients(0)
 	if not valid_lsps_attached(buffer_clients) then
 		return ''
@@ -204,26 +203,6 @@ local get_noice_message = function(cap)
   end
 end
 
-local get_tabs = function()
-  local tabpage = vim.fn.tabpagenr()
-  local tabs = vim.tbl_map(
-    function(tab)
-      return '%#InactiveTab#' .. tab.tabnr
-    end,
-    vim.fn.gettabinfo()
-  )
-  local tabstring = table.concat(tabs, '%#TabSeparator# ' .. symbols.small_dot .. ' ');
-
-  return
-    '%#Tabs# '
-    .. tabstring:gsub(
-      tostring(tabpage),
-      '%%#ActiveTab#' .. tabpage
-    )
-    .. ' %#none#'
-end
-
-
 -- DeeplStatus = ''
 -- local function get_deepl_status()
 --   LastTotal = 0
@@ -271,7 +250,6 @@ StatuslineMod.statusline = function()
       '%#none#',
       '%=',
       get_lsp_diagnostics(),
-      get_tabs(),
       ''
     },
     ' '

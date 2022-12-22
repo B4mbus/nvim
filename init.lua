@@ -2,11 +2,11 @@ _G.pequire = function(name) return pcall(require, name) end
 _G.xpnequire = function(name)
   return xpcall(
     function() return require(name) end,
-    function(_err)
+    function(err)
       local debuginfo = debug.getinfo(1,'S')
       local filename = vim.fn.fnamemodify(debuginfo.source:sub(2, -1), ':.')
       vim.notify(
-        ('Internal module "%s" could not be loaded.\nCalled from %s'):format(name, filename),
+        ('Internal module "%s" could not be loaded.\nCalled from %s\n\n%s'):format(name, filename, err),
         vim.log.levels.ERROR
       )
     end

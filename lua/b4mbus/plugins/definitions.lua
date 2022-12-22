@@ -84,6 +84,7 @@ require('lazy').setup(
     },
     {
       'elihunter173/dirbuf.nvim',
+      event = 'BufEnter',
       cmd = 'Dirbuf',
       keys = '-'
     },
@@ -96,7 +97,7 @@ require('lazy').setup(
     },
     {
       'Wansmer/treesj',
-      dependencies = { 'nvim-treesitter' }
+      dependencies = { 'nvim-treesitter/nvim-treesitter' }
     },
     {
       'ahmedkhalf/project.nvim',
@@ -150,39 +151,67 @@ require('lazy').setup(
       'hrsh7th/cmp-nvim-lsp',
       event = 'BufRead'
     },
-
     'bhurlow/vim-parinfer',
-    'vim-utils/vim-man',
+    {
+      'vim-utils/vim-man',
+      cmd = 'Man'
+    },
     {
       'AndrewRadev/switch.vim',
       cmd = 'Switch'
     },
-    'wakatime/vim-wakatime',
-    'mzlogin/vim-markdown-toc',
     {
-      'airblade/vim-rooter',
-      lazy = false
+      'wakatime/vim-wakatime',
+      event = 'BufRead'
     },
+    'mzlogin/vim-markdown-toc',
     {
       'tommcdo/vim-exchange',
       keys = 'cx'
     },
     'gabrielpoca/replacer.nvim',
     'rafamadriz/friendly-snippets',
-    'samjwill/nvim-unception',
-    'tpope/vim-eunuch',
+    {
+      'samjwill/nvim-unception',
+      event = 'TermOpen'
+    },
+    {
+      'tpope/vim-eunuch',
+      cmd = {
+        'Remove', 'Delete',
+        'Move', 'Rename',
+        'Copy', 'Duplicate',
+        'Chmod', 'Mkdir',
+        'Cfind', 'Wall',
+        'SudoWrite', 'SudoEdit'
+      }
+    },
     {
       'tpope/vim-fugitive',
       cmd = { 'G', 'Git' }
     },
-    'tpope/vim-rhubarb',
-    'tpope/vim-dispatch',
+    {
+      'tpope/vim-rhubarb',
+      cmd = 'GBrowse'
+    },
     'p00f/clangd_extensions.nvim',
     'onsails/lspkind.nvim',
-    'matze/vim-move',
-    'andymass/vim-matchup',
-    'editorconfig/editorconfig-vim',
-    'mattn/emmet-vim',
+    {
+      'matze/vim-move',
+      event = 'BufRead'
+    },
+    {
+      'andymass/vim-matchup',
+      event = 'BufRead'
+    },
+    {
+      'editorconfig/editorconfig-vim',
+      lazy = false
+    },
+    {
+      'mattn/emmet-vim',
+      event = 'BufRead'
+    },
     'kyazdani42/nvim-web-devicons',
     { 'b4mbus/macro-status.nvim', dev = true }
   },
@@ -219,7 +248,7 @@ require('lazy').setup(
           'rrhelper', 'spellfile_plugin',
           'tar', 'tarPlugin', 'vimball',
           'vimballPlugin', 'zip', 'zipPlugin',
-          'matchparen'
+          'matchparen', 'netrw', 'man'
         },
       },
     },

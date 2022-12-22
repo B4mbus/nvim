@@ -106,15 +106,6 @@ local git_mappings = {
   L = { '<cmd>G log --oneline --decorate --graph', 'Log' },
 }
 
-local packer_mappings = {
-  name = 'Packer',
-  s = { '<cmd>PackerSync<cr>', 'Sync' },
-  c = { '<cmd>PackerCompile<cr>', 'Compile' },
-  C = { '<cmd>PackerClean<cr>', 'Clean' },
-  u = { '<cmd>PackerUpdate<cr>', 'Update' },
-  S = { '<cmd>PackerStatus<cr>', 'Status' },
-}
-
 local buffer_mappings = {
   name = 'Buffers',
   l = { '<cmd>BufferLineCloseRight<cr>', 'Close to the right' },
@@ -158,7 +149,6 @@ wk.register(
     s = telescope_mappings,
     t = terminal_mappings,
     g = git_mappings,
-    p = packer_mappings,
     i = iswap_mappings
   },
   { prefix = '<leader>' }

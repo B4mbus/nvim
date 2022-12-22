@@ -1,3 +1,6 @@
+vim.opt.listchars:remove({'lead'})
+vim.g.indent_blankline_enabled = false
+
 -- local ls = require 'luasnip'
 -- local snippet = ls.snippet
 -- local text = ls.text_node
@@ -35,5 +38,5 @@
 -- 		fn_snippet,
 -- 		macro_snippet
 -- 	}
--- )
+-- ){}
 
