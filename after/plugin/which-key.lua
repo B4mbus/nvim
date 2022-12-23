@@ -102,8 +102,8 @@ local git_mappings = {
   c = { '<cmd>Telescope git_bcommits<cr>', 'Local commits' },
   C = { '<cmd>Telescope git_commits<cr>', 'Commits' },
   d = { '<cmd>DiffviewOpen<cr>', 'Diffview' },
-  l = { '<cmd>G log --oneline --decorate --graph -50', 'Small log (50)' },
-  L = { '<cmd>G log --oneline --decorate --graph', 'Log' },
+  l = { '<cmd>G log --oneline --decorate --graph -50<cr>', 'Small log (50)' },
+  L = { '<cmd>G log --oneline --decorate --graph<cr>', 'Log' },
 }
 
 local buffer_mappings = {

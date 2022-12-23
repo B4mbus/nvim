@@ -28,6 +28,7 @@ treesitter.setup({
 
   highlight = {
     enable = true,
+    disable = { 'comment' },
     additional_vim_regex_highlighting = false,
   },
 
