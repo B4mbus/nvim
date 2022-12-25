@@ -26,5 +26,19 @@ telescope.setup({
         ['<C-p>'] = { 'i<C-r>+', type = 'command' },
       }
     }
+  },
+  extensions = {
+    lazy = {
+      theme = "ivy",
+      show_icon = true,
+      mappings = {
+        open_in_browser = "<C-o>",
+        open_in_find_files = "<C-f>",
+        open_in_live_grep = "<C-g>",
+        open_plugins_picker = "<C-b>",
+      },
+    },
   }
 })
+
+telescope.load_extension('lazy')

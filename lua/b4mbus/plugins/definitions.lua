@@ -11,6 +11,15 @@ require('lazy').setup(
       'folke/tokyonight.nvim',
       lazy = false,
       config = function()
+        require('tokyonight').setup({
+          on_highlights = function(hls)
+            hls.CursorLineNr = {
+              fg = '#ffffff',
+              bold = true
+            }
+          end
+        })
+
         vim.cmd.colorscheme('tokyonight-night')
       end
     },
@@ -19,12 +28,16 @@ require('lazy').setup(
     'ggandor/flit.nvim',
     'rcarriga/nvim-notify',
     'folke/todo-comments.nvim',
-    'norcalli/nvim-colorizer.lua',
+    'NvChad/nvim-colorizer.lua',
     'j-hui/fidget.nvim',
     'nvim-treesitter/nvim-treesitter',
     'nvim-treesitter/playground',
     'JoosepAlviste/nvim-ts-context-commentstring',
     'windwp/nvim-ts-autotag',
+    {
+      'nvim-neorg/neorg',
+      dependencies = { 'nvim-lua/plenary.nvim' },
+    },
     {
       'tiagovla/scope.nvim',
       lazy = false,
@@ -42,12 +55,17 @@ require('lazy').setup(
       event = 'BufRead'
     },
     {
+      'b4mbus/telescope-lazy.nvim',
+      dependencies = { 'nvim-telescope/telescope.nvim' }
+    },
+    {
       'nvim-telescope/telescope.nvim',
       tag = '0.1.0',
     },
     {
       'numToStr/Comment.nvim',
-      event = 'BufRead',
+      keys = { 'gc', 'gcc', 'gbc' },
+      dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
     },
     'ray-x/lsp_signature.nvim',
     {
@@ -59,6 +77,7 @@ require('lazy').setup(
         'L3MON4D3/luasnip'
       },
     },
+    'rareitems/printer.nvim',
     'neovim/nvim-lspconfig',
     {
       'SmiteshP/nvim-navic',
@@ -107,7 +126,7 @@ require('lazy').setup(
       'echasnovski/mini.nvim',
       event = 'BufRead'
     },
-    'B4mbus/nvim-headband',
+    -- 'B4mbus/nvim-headband',
     {
       'michaelb/sniprun',
       build = 'bash ./install.sh'
@@ -154,7 +173,8 @@ require('lazy').setup(
     'bhurlow/vim-parinfer',
     {
       'vim-utils/vim-man',
-      cmd = 'Man'
+      cmd = 'Man',
+      keys = 'g/'
     },
     {
       'AndrewRadev/switch.vim',
@@ -173,7 +193,7 @@ require('lazy').setup(
     'rafamadriz/friendly-snippets',
     {
       'samjwill/nvim-unception',
-      event = 'TermOpen'
+      lazy = false
     },
     {
       'tpope/vim-eunuch',
@@ -220,13 +240,6 @@ require('lazy').setup(
       lazy = true,
       version = nil,
     },
-    dev = {
-      path = "~/dev/projects",
-      patterns = {
-        'b4mbus',
-        'B4mbus'
-      },
-    },
     install = {
       missing = true
     },
@@ -248,7 +261,7 @@ require('lazy').setup(
           'rrhelper', 'spellfile_plugin',
           'tar', 'tarPlugin', 'vimball',
           'vimballPlugin', 'zip', 'zipPlugin',
-          'matchparen', 'netrw', 'man'
+          'matchparen', 'netrw'
         },
       },
     },

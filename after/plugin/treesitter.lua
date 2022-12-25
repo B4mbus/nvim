@@ -8,6 +8,7 @@ end
 treesitter.setup({
   ensure_installed = {
     'norg',
+    'norg_meta',
     'cpp',
     'json',
     'html',

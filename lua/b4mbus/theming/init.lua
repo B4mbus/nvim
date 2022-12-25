@@ -1,5 +1,3 @@
-xpnequire('b4mbus.theming.colorscheme')
-
 xpnequire('b4mbus.theming.signs')
 xpnequire('b4mbus.theming.highlights')
 

@@ -1,7 +1,5 @@
 vim.api.nvim_set_hl(0, 'IdkForFucksSake', { bg = '#111111'})
 
-vim.api.nvim_set_hl(0, 'CursorLineNr', { bold = true, fg = '#ffffff' })
-
 vim.api.nvim_set_hl(0, 'WinSeparator', { fg = '#333333' })
 
 -- LSP Semantic Tokens
@@ -59,14 +57,6 @@ vim.api.nvim_set_hl(0, 'Conceal', {})
 vim.api.nvim_set_hl(0, 'WildMenu', { fg = '#00bbff' })
 vim.api.nvim_set_hl(0, 'StatusLine', {})
 
--- Clear them nasty ass neogit highlights
-vim.api.nvim_set_hl(0, 'NeogitDiffAddHighlight', {})
-vim.api.nvim_set_hl(0, 'NeogitDiffDeleteHighlight', {})
-vim.api.nvim_set_hl(0, 'NeogitDiffContextHighlight', {})
-vim.api.nvim_set_hl(0, 'NeogitHunkHeader', {})
-vim.api.nvim_set_hl(0, 'NeogitHunkHeaderHighlight', {})
-
--- Special cmp highlights
 vim.api.nvim_set_hl(0, 'CmpItemAbbrDeprecated', { strikethrough = true, fg = '#808080', bg = 'NONE' })
 vim.api.nvim_set_hl(0, 'CmpItemAbbrMatch', { fg = '#569CD6', bg = 'NONE', bold = true })
 vim.api.nvim_set_hl(0, 'CmpItemAbbrMatchFuzzy', { fg = '#569CD6', bg = 'NONE', bold = true })

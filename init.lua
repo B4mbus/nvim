@@ -3,10 +3,10 @@ _G.xpnequire = function(name)
   return xpcall(
     function() return require(name) end,
     function(err)
-      local debuginfo = debug.getinfo(1,'S')
-      local filename = vim.fn.fnamemodify(debuginfo.source:sub(2, -1), ':.')
+      local debuginfo = debug.getinfo(6, 'Sl')
+      local error_location = ('%s:%s'):format(debuginfo.short_src, debuginfo.currentline)
       vim.notify(
-        ('Internal module "%s" could not be loaded.\nCalled from %s\n\n%s'):format(name, filename, err),
+        ('Internal module "%s" could not be loaded.\nCalled from %%s\n\n%s'):format(name, error_location, err),
         vim.log.levels.ERROR
       )
     end
