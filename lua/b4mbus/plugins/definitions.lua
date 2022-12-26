@@ -35,6 +35,7 @@ require('lazy').setup(
     'j-hui/fidget.nvim',
     'nvim-treesitter/nvim-treesitter',
     'nvim-treesitter/playground',
+    -- 'NoahTheDuke/vim-just',
     'JoosepAlviste/nvim-ts-context-commentstring',
     {
       'nvim-treesitter/nvim-treesitter-textobjects',

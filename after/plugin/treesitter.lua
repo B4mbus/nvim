@@ -5,6 +5,15 @@ if not ok then
   return
 end
 
+require('nvim-treesitter.parsers').get_parser_configs().just = ({
+  install_info = {
+    url = 'https://github.com/IndianBoy42/tree-sitter-just', -- local path or git repo
+    files = { 'src/parser.c', 'src/scanner.cc' },
+    branch = 'main',
+  },
+  maintainers = { '@IndianBoy42' },
+})
+
 treesitter.setup({
   ensure_installed = {
     'norg',
@@ -23,6 +32,7 @@ treesitter.setup({
     'regex',
     'bash',
     'fish',
+    'just',
     'teal'
   },
 
@@ -90,6 +100,14 @@ treesitter.setup({
         ['@function.outer'] = 'V', -- linewise
         ['@class.outer'] = '<c-v>', -- blockwise
       }
-    }
+    },
+    lsp_interop = {
+      enable = true,
+      border = 'rounded',
+      peek_definition_code = {
+        ["<leader>gp"] = "@function.outer",
+        ["<leader>gP"] = "@class.outer",
+      },
+    },
   }
 })

@@ -58,6 +58,8 @@ local neogen_mappings = {
   F = { function() require 'neogen'.generate { type = 'file' } end, 'Generate for file' },
 }
 
+local git_log_cmd = [[Git log --abbrev-commit --decorate --date=short --pretty='%C(yellow)%h%C(auto)%d %s (%C(bold blue)%an%Creset, %C(blue)%ar%C(reset))']]
+
 local git_mappings = {
   name = 'Git',
   b = { '<cmd>G branch<cr>', 'Branches' },
@@ -65,8 +67,8 @@ local git_mappings = {
   c = { '<cmd>Telescope git_bcommits<cr>', 'Local commits' },
   C = { '<cmd>Telescope git_commits<cr>', 'Commits' },
   d = { '<cmd>DiffviewOpen<cr>', 'Diffview' },
-  l = { '<cmd>G log --oneline --decorate --graph -50<cr>', 'Small log (50)' },
-  L = { '<cmd>G log --oneline --decorate --graph<cr>', 'Log' },
+  l = { ('<cmd>%s -50<cr>'):format(git_log_cmd), 'Small log (50)' },
+  L = { ('<cmd>%s<cr>'):format(git_log_cmd), 'Log' },
 }
 
 local buffer_mappings = {
