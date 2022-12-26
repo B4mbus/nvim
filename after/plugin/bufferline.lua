@@ -1,4 +1,4 @@
-local ok, bufferline = pequire('bufferline')
+local ok, bufferline = b4.pequire('bufferline')
 
 if not ok then
   vim.notify('Could not load the "bufferline" plugin')

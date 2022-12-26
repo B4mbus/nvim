@@ -1,4 +1,4 @@
-local ok, lsp_signature = pequire('lsp_signature')
+local ok, lsp_signature = b4.pequire('lsp_signature')
 
 if not ok then
   vim.notify('Could not load the "lsp_signature" plugin')

@@ -1,4 +1,4 @@
-local ok, lsp_lines = pequire('lsp_lines')
+local ok, lsp_lines = b4.pequire('lsp_lines')
 if not ok then
   vim.notify('Could not load the "lsp-lines" plugin')
   return

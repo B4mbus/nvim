@@ -1,4 +1,4 @@
-local ok, gitsigns = pequire('gitsigns')
+local ok, gitsigns = b4.pequire('gitsigns')
 if not ok then
   vim.notify('Could not load the "gitsigns" plugin')
   return

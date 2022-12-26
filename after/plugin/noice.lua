@@ -1,4 +1,4 @@
-local ok, noice = pequire('noice')
+local ok, noice = b4.pequire('noice')
 
 if not ok then
   vim.notify('Could not load the "noice" plugin')

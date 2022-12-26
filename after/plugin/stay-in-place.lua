@@ -1,4 +1,4 @@
-local ok, stay_in_place = pequire('stay-in-place')
+local ok, stay_in_place = b4.pequire('stay-in-place')
 
 if not ok then
   vim.notify('Could not load the "stay-in-place" plugin')

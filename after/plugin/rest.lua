@@ -1,4 +1,4 @@
-local ok, rest = pequire('rest-nvim')
+local ok, rest = b4.pequire('rest-nvim')
 
 if not ok then
   vim.notify('Could not load the "rest.nvim" plugin')

@@ -1,4 +1,4 @@
-local ok, _ = pequire('b4mbus.plugins.lazy_bootstrap')
+local ok, _ = b4.pequire('b4mbus.plugins.lazy_bootstrap')
 
 if not ok then
   vim.notify([[Could not find and bootstrap lazy. Plugins can't be loaded]])
@@ -36,7 +36,15 @@ require('lazy').setup(
     'nvim-treesitter/nvim-treesitter',
     'nvim-treesitter/playground',
     'JoosepAlviste/nvim-ts-context-commentstring',
+    {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+      lazy = false
+    },
     'windwp/nvim-ts-autotag',
+    {
+      'danymat/neogen',
+      dependencies = 'nvim-treesitter/nvim-treesitter',
+    },
     {
       'nvim-neorg/neorg',
       dependencies = { 'nvim-lua/plenary.nvim' },

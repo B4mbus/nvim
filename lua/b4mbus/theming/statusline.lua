@@ -216,7 +216,7 @@ end
 --
 --   LastTotal = total
 --
---   local o, Job = pequire('plenary.job')
+--   local o, Job = b4.pequire('plenary.job')
 --   if o then
 --     Job:new({
 --       command = 'curl',

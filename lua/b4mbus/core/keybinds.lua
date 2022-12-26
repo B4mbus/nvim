@@ -167,7 +167,7 @@ keymap(
   "x",
   "g?",
   function()
-    local ok, pantran = pequire('pantran')
+    local ok, pantran = b4.pequire('pantran')
     if ok then
       return pantran.motion_translate()
     end

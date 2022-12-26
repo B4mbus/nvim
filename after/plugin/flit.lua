@@ -1,4 +1,4 @@
-local ok, flit = pequire('flit')
+local ok, flit = b4.pequire('flit')
 if not ok then
   vim.notify('Could not load the "flit" plugin')
   return

@@ -1,4 +1,4 @@
-local ok, indent_blankline = pequire('indent_blankline')
+local ok, indent_blankline = b4.pequire('indent_blankline')
 
 if not ok then
   vim.notify('Could not load the "indent_blankline" plugin')

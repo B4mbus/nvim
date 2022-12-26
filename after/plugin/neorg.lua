@@ -1,4 +1,4 @@
-local ok, neorg = pequire('neorg')
+local ok, neorg = b4.pequire('neorg')
 
 if not ok then
   vim.notify('Could not load the "neorg" plugin')

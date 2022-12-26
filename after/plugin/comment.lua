@@ -1,4 +1,4 @@
-local ok, comment = pequire('Comment')
+local ok, comment = b4.pequire('Comment')
 
 if not ok then
   vim.notify('Could not load the "ccomment" plugin')

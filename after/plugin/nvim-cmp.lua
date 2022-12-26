@@ -1,4 +1,4 @@
-local ok, cmp = pequire('cmp')
+local ok, cmp = b4.pequire('cmp')
 
 if not ok then
   vim.notify('Could not load the "nvim-cmp" plugin')

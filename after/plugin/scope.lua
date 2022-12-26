@@ -1,4 +1,4 @@
-local ok, scope = pequire('colorizer')
+local ok, scope = b4.pequire('colorizer')
 
 if not ok then
   vim.notify('Could not load the "scope" plugin')

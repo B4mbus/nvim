@@ -1,4 +1,6 @@
-local ok, diffview = pequire('diffview')
+
+local ok, diffview = b4.pequire('diffview')
+
 
 if not ok then
   vim.notify('Could not load the "diffview" plugin')

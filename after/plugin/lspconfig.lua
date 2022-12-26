@@ -1,4 +1,4 @@
-local neodev_ok, neodev = pequire("neodev")
+local neodev_ok, neodev = b4.pequire("neodev")
 neodev.setup({
   experimental = {
     pathStrict = true,
@@ -13,7 +13,7 @@ if not neodev_ok then
   return
 end
 
-local lsp_ok, lsp = pequire('lspconfig')
+local lsp_ok, lsp = b4.pequire('lspconfig')
 
 if not lsp_ok then
   vim.notify('Could not load the "lsp" plugin')
@@ -53,7 +53,7 @@ local custom_on_attach =  function(client, bufnr)
     bufnr
   )
 
-  local wk_ok, wk = pequire('which-key')
+  local wk_ok, wk = b4.pequire('which-key')
   if wk_ok then
     local lsp_mappings = {
       name = 'LSP',
@@ -119,6 +119,7 @@ caps.textDocument.foldingRange = {
 }
 
 local default_config = {
+  single_file_support = true,
   capabilities = caps,
   on_attach = custom_on_attach
 }

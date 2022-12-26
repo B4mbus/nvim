@@ -3,7 +3,7 @@ vim.api.nvim_create_autocmd(
   {
     pattern = '*',
     callback = function()
-      local ok, colorizer = pequire('colorizer')
+      local ok, colorizer = b4.pequire('colorizer')
 
       if not ok then
         vim.notify('Could not load the "colorizer" plugin')

@@ -1,4 +1,4 @@
-local ok, ls = pequire('luasnip')
+local ok, ls = b4.pequire('luasnip')
 
 if not ok then
   vim.notify('Could not load the "luasnip" plugin')

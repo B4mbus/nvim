@@ -1,10 +1,10 @@
-local ok, wk = pequire('which-key')
+local ok, wk = b4.pequire('which-key')
 
 if not ok then
   vim.notify('Could not load the "which-key" plugin')
 end
 
-local ok_symbols, symbols = pequire('b4mbus.symbols')
+local ok_symbols, symbols = b4.pequire('b4mbus.symbols')
 
 if not ok then
   vim.notify('Could not load symbols for which key')
@@ -107,6 +107,7 @@ wk.register(
     W = { '<cmd>silent :w!<cr>', 'Force save' },
     q = { '<cmd>silent :q<cr>', 'Save and quit' },
     Q = { '<cmd>silent :q!<cr>', 'Force save and quit' },
+    n = neogen_mappings,
     b = buffer_mappings,
     s = telescope_mappings,
     t = terminal_mappings,

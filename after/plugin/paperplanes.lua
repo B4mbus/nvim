@@ -1,4 +1,4 @@
-local ok, paperplanes = pequire('paperplanes')
+local ok, paperplanes = b4.pequire('paperplanes')
 
 if ok then
   paperplanes.setup({

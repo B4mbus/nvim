@@ -1,4 +1,4 @@
-local ok, printer = pequire('printer')
+local ok, printer = b4.pequire('printer')
 
 if not ok then
   vim.notify('Could not load the "printer" plugin')

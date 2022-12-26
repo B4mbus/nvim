@@ -1,4 +1,4 @@
-local ok, treesitter = pequire('nvim-treesitter.configs')
+local ok, treesitter = b4.pequire('nvim-treesitter.configs')
 
 if not ok then
   vim.notify('Could not load the "treesitter" plugin')
@@ -23,6 +23,7 @@ treesitter.setup({
     'regex',
     'bash',
     'fish',
+    'teal'
   },
 
   sync_install = false,
@@ -56,5 +57,39 @@ treesitter.setup({
   context_commentstring = {
     enable = true,
     enable_autocmd = false
+  },
+
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true,
+      keymaps = {
+        aF = '@function.outer',
+        ['iF'] = '@function.inner',
+
+        ac = '@class.outer',
+        ic = '@class.inner',
+
+        ab = '@block.outer',
+
+        as = '@statement.outer',
+
+        ip = '@parameter.inner',
+
+        ['ax'] = '@comment.outer',
+        ['ix'] = '@comment.outer',
+
+        iC = '@conditional.inner',
+        aC = '@conditional.outer',
+
+        il = '@loop.inner',
+        al = '@loop.outer'
+      },
+      selection_modes = {
+        ['@parameter.outer'] = 'v', -- charwise
+        ['@function.outer'] = 'V', -- linewise
+        ['@class.outer'] = '<c-v>', -- blockwise
+      }
+    }
   }
 })

@@ -1,4 +1,4 @@
-local ok, notify = pequire('notify')
+local ok, notify = b4.pequire('notify')
 if not ok then
   vim.notify('Could not load the "notify" plugin')
   return
@@ -24,5 +24,5 @@ notify.setup({
 })
 vim.notify = notify
 
-local ok, telescope = pequire('telescope')
+local ok, telescope = b4.pequire('telescope')
 if ok then telescope.load_extension('notify') end

@@ -1,7 +1,7 @@
-xpnequire('b4mbus.theming.signs')
-xpnequire('b4mbus.theming.highlights')
+b4.xpnequire('b4mbus.theming.signs')
+b4.xpnequire('b4mbus.theming.highlights')
 
-xpnequire('b4mbus.theming.statusline')
-xpnequire('b4mbus.theming.tabline')
+b4.xpnequire('b4mbus.theming.statusline')
+b4.xpnequire('b4mbus.theming.tabline')
 
-xpnequire('b4mbus.theming.highlights')
+b4.xpnequire('b4mbus.theming.highlights')

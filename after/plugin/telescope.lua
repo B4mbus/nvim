@@ -1,4 +1,4 @@
-local ok, telescope = pequire('telescope')
+local ok, telescope = b4.pequire('telescope')
 
 if not ok then
   vim.notify('Could not load the "telescope" plugin')

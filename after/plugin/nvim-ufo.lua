@@ -1,4 +1,4 @@
-local ok, ufo = pequire('ufo')
+local ok, ufo = b4.pequire('ufo')
 
 if not ok then
   vim.notify('Could not load the "ufo" plugin')

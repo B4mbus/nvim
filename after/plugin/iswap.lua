@@ -1,4 +1,4 @@
-local ok, iswap = pequire('iswap')
+local ok, iswap = b4.pequire('iswap')
 
 if not ok then
   vim.notify('Could not load the "iswap" plugin')

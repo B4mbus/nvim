@@ -64,7 +64,7 @@ keymap('n', 'cq', function() require('replacer').run() end, silent_noremap)
 
 keymap('n', '<M-r>', '<Plug>RestNvim', silent_noremap)
 
-local ok, ufo = pequire('ufo')
+local ok, ufo = b4.pequire('ufo')
 
 if ok then
   keymap('n', 'zR', require('ufo').openAllFolds, silent_remap)

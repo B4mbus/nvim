@@ -1,4 +1,4 @@
-local ok, project_nvim = pequire('project_nvim')
+local ok, project_nvim = b4.pequire('project_nvim')
 
 if not ok then
   vim.notify('Could not load the "project.nvim" plugin')

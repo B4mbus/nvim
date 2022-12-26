@@ -1,13 +1,15 @@
-local ok, mini = pequire('mini')
+local ok, mini = b4.pequire('mini')
 
 if not ok then
   vim.notify('Could not load the "mini.nvim" plugin')
   return
 end
 
+local spec_treesitter = require('mini.ai').gen_spec.treesitter
 require('mini.ai').setup({
   custom_textobjects = {
-    F = require('mini.ai').gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' }),
+    F = spec_treesitter({ a = '@function.outer', i = '@function.inner' }),
+    x = spec_treesitter({ a = '@comment.outer', i = '@comment.inner' }),
   }
 })
 

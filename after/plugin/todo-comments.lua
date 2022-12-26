@@ -1,4 +1,4 @@
-local ok, todo_comments = pequire('todo-comments')
+local ok, todo_comments = b4.pequire('todo-comments')
 if not ok then
   vim.notify('Could not load the "todo-comments" plugin')
   return
