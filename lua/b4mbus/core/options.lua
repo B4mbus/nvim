@@ -15,7 +15,6 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = true
 vim.opt.autoread = true
 vim.opt.showtabline = 1
-vim.opt.pumheight = 1
 vim.opt.shiftwidth = 2
 vim.opt.scrolloff = 999
 vim.opt.sidescrolloff = 8

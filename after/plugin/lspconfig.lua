@@ -41,40 +41,65 @@ local custom_on_attach =  function(client, bufnr)
   local keymap = vim.keymap.set
   local common = { buffer = bufnr, noremap = true, silent = true }
 
-  local preview_location_callback = function(_, result, _method, _)
-    if result == nil or vim.tbl_isempty(result) then
-      vim.notify('No location found')
-      return nil
-    end
+  local ok, wk = pequire('which-key')
+  if ok then
+    local lsp_mappings = {
+      name = 'LSP',
+      ['<space>'] = {
+        name = 'Meta',
+        i = { '<cmd>LspInfo<cr>', 'Info' },
+        l = { '<cmd>LspLog<cr>', 'Log' },
+        r = { '<cmd>LspRestart<cr>', 'Restart' },
+        s = { '<cmd>LspStart<cr>', 'Start' },
+        S = { '<cmd>LspStop<cr>', 'Stop' }
+      },
+      c = {
+        name = 'Calls',
+        i = { '<cmd>Telescope lsp_incoming_calls<cr>', 'Incoming'},
+        o = { '<cmd>Telescope lsp_outgoing_calls<cr>', 'Outgoing'},
+      },
+      R = { '<cmd>Telescope lsp_references<cr>', 'References' },
+      a = { '<cmd>lua require "cosmic-ui".code_actions()<cr>', 'Code actions' },
+      d = { '<cmd>Telescope lsp_definitions<cr>', 'Definitions' },
+      D = { '<cmd>lua vim.diagnostic.open_float()<cr>', 'Diagnostics float' },
+      i = { '<cmd>Telescope lsp_implementations<cr>', 'Implementations' },
+      s = { '<cmd>Telescope lsp_document_symbols<cr>', 'Local symbols' },
+      S = { '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', 'Symbols' },
+      l = { '<cmd>lua require "lsp_lines".toggle()<cr>', 'Toggle lsp_lines' },
+      r = { function() vim.lsp.buf.rename() end, 'Toggle lsp_lines' },
+      v = {
+        function()
+          local opts = {
+            prefix = '◉ '
+          }
 
-    if vim.tbl_islist(result) then
-      vim.lsp.util.preview_location(result[1])
-    else
-      vim.lsp.util.preview_location(result)
-    end
-  end
+          local virtual_text_enabled = vim.diagnostic.config().virtual_text
 
-  local peek_definition = function()
-    local params = vim.lsp.util.make_position_params()
-    return vim.lsp.buf_request(0, 'textDocument/definition', params, preview_location_callback)
-  end
-
-  keymap('n', 'gp', peek_definition)
-  keymap('n', 'gD', vim.lsp.buf.declaration, common)
-  keymap('n', 'gd', vim.lsp.buf.definition, common)
-  keymap('n', 'gi', vim.lsp.buf.implementation, common)
-
-  require 'which-key'.register(
-  {
-    l = {
-      r = { [[ <cmd>lua require('cosmic-ui').rename()<cr> ]], 'LSP Rename' }
+          vim.diagnostic.config({
+            virtual_text = (not virtual_text_enabled) and opts or false
+          })
+        end,
+        'Toggle virtual_text',
+      }
     }
-  },
-  { prefix = '<leader>' }
-  )
+
+    wk.register(
+      {
+        l = lsp_mappings,
+        [']d'] =  { vim.diagnostic.goto_prev, 'Goto next diag' },
+        ['[d'] =  { vim.diagnostic.goto_next, 'Goto prev diag' },
+        g = {
+          D = { vim.lsp.buf.declaration, 'Declaration' },
+          d = { vim.lsp.buf.definition, 'Definition' },
+          i = { vim.lsp.buf.implementation, 'Implementation' }
+        }
+      },
+      { prefix = '<leader>' }
+    )
+  end
 end
 
-local caps = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local caps = require('cmp_nvim_lsp').default_capabilities()
 caps.textDocument.foldingRange = {
   dynamicRegistration = false,
   lineFoldingOnly = true
@@ -85,7 +110,7 @@ local default_config = {
   on_attach = custom_on_attach
 }
 
-require 'clangd_extensions'.setup {
+require('clangd_extensions').setup {
   server = vim.tbl_extend('keep', default_config, {
     cmd = {
       'clangd',

@@ -5,6 +5,14 @@ if not ok then
   return
 end
 
+local mapping_sources = {
+  { name = 'nvim_lsp' },
+  { name = 'nvim_lua' },
+  { name = 'luasnip' },
+  { name = 'path' },
+  { name = 'buffer', keyword_length = 2 }
+}
+
 cmp.setup({
   enabled = function()
     if vim.api.nvim_get_mode().mode == 'c' then
@@ -35,40 +43,35 @@ cmp.setup({
     entries = { name = 'custom', selection_order = 'near_cursor' }
   },
 
-  mapping = cmp.mapping.preset.insert{
+  mapping = cmp.mapping.preset.insert({
     ['<C-q>'] = cmp.mapping {
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     },
     ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
     ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-Space>'] = cmp.mapping.complete({ config = { sources = mapping_sources } }),
     ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm { select = false },
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),
     ['<Tab>'] = cmp.mapping.select_next_item(),
     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
-  },
+  }),
 
-  sources = cmp.config.sources {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-    { name = 'path' },
-    { name = 'buffer', keyword_length = 2 }
-  },
+  sources = mapping_sources,
 
   formatting = {
-    format = require('lspkind').cmp_format {
+    format = require('lspkind').cmp_format({
       mode = 'symbol_text',
       maxwidth = 40,
-    }
+    })
   },
 
   sorting = {
     comparators = {
-      cmp.config.compare.offset,
       cmp.config.compare.exact,
-      cmp.config.compare.recently_used,
       require("clangd_extensions.cmp_scores"),
+      cmp.config.compare.offset,
+      cmp.config.compare.recently_used,
       cmp.config.compare.kind,
       cmp.config.compare.sort_text,
       cmp.config.compare.length,

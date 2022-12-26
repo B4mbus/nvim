@@ -14,7 +14,6 @@ _G.xpnequire = function(name)
 end
 _G.P = function(...) vim.pretty_print(...) end
 
-
 xpnequire('b4mbus.core')
 xpnequire('b4mbus.plugins')
 xpnequire('b4mbus.theming')

@@ -72,9 +72,10 @@ require('lazy').setup(
       'hrsh7th/nvim-cmp',
       lazy = false,
       dependencies = {
-        'onsails/lspkind.nvim',
-        'p00f/clangd_extensions.nvim',
-        'L3MON4D3/luasnip'
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-nvim-lua',
+        'hrsh7th/cmp-path',
+        'hrsh7th/cmp-buffer',
       },
     },
     'rareitems/printer.nvim',
@@ -154,27 +155,14 @@ require('lazy').setup(
     'rktjmp/lush.nvim',
     'MunifTanjim/nui.nvim',
 
-    {
-      'hrsh7th/cmp-nvim-lua',
-      event = 'BufRead'
-    },
-    {
-      'hrsh7th/cmp-buffer',
-      event = 'BufRead'
-    },
-    {
-      'hrsh7th/cmp-path',
-      event = 'BufRead'
-    },
-    {
-      'hrsh7th/cmp-nvim-lsp',
-      event = 'BufRead'
-    },
+    { 'hrsh7th/cmp-nvim-lsp', },
+    { 'hrsh7th/cmp-nvim-lua', },
+    { 'hrsh7th/cmp-path', },
+    { 'hrsh7th/cmp-buffer', },
     'bhurlow/vim-parinfer',
     {
       'vim-utils/vim-man',
-      cmd = 'Man',
-      keys = 'g/'
+      cmd = { 'Man', 'Mangrep' }
     },
     {
       'AndrewRadev/switch.vim',

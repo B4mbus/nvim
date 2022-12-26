@@ -47,45 +47,6 @@ local terminal_mappings = {
   c = { '<cmd>term<cr>', 'Open terminal in current buffer' },
 }
 
-local lsp_mappings = {
-  name = 'LSP',
-  ['<space>'] = {
-    name = 'Meta',
-    i = { '<cmd>LspInfo<cr>', 'Info' },
-    l = { '<cmd>LspLog<cr>', 'Log' },
-    r = { '<cmd>LspRestart<cr>', 'Restart' },
-    s = { '<cmd>LspStart<cr>', 'Start' },
-    S = { '<cmd>LspStop<cr>', 'Stop' }
-  },
-  c = {
-    name = 'Calls',
-    i = { '<cmd>Telescope lsp_incoming_calls<cr>', 'Incoming'},
-    o = { '<cmd>Telescope lsp_outgoing_calls<cr>', 'Outgoing'},
-  },
-  R = { '<cmd>Telescope lsp_references<cr>', 'References' },
-  a = { '<cmd>lua require "cosmic-ui".code_actions()<cr>', 'Code actions' },
-  d = { '<cmd>Telescope lsp_definitions<cr>', 'Definitions' },
-  D = { '<cmd>lua vim.diagnostic.open_float()<cr>', 'Diagnostics float' },
-  i = { '<cmd>Telescope lsp_implementations<cr>', 'Implementations' },
-  s = { '<cmd>Telescope lsp_document_symbols<cr>', 'Local symbols' },
-  S = { '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>', 'Symbols' },
-  l = { '<cmd>lua require "lsp_lines".toggle()<cr>', 'Toggle lsp_lines' },
-  v = {
-    function()
-      local opts = {
-        prefix = '◉ '
-      }
-
-      local virtual_text_enabled = vim.diagnostic.config().virtual_text
-
-      vim.diagnostic.config({
-        virtual_text = (not virtual_text_enabled) and opts or false
-      })
-    end,
-    'Toggle virtual_text',
-  }
-}
-
 local neogen_mappings = {
   name = 'Neogen',
   a = { function() require 'neogen'.generate() end, 'Generate' },
@@ -145,7 +106,6 @@ wk.register(
     q = { '<cmd>silent :q<cr>', 'Save and quit' },
     Q = { '<cmd>silent :q!<cr>', 'Force save and quit' },
     b = buffer_mappings,
-    l = lsp_mappings,
     s = telescope_mappings,
     t = terminal_mappings,
     g = git_mappings,

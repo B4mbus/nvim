@@ -13,6 +13,6 @@ neorg.setup({
     ['core.norg.completion'] = { config = { engine = 'nvim-cmp' } },
     ['core.norg.concealer'] = {
       config = { dim_code_blocks = { conceal = false } },
-    },
+    }
   }
 })
