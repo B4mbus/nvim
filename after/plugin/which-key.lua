@@ -19,6 +19,8 @@ wk.setup({
     separator = '⸬',
     group = symbols.horizontal_ellipsis .. ' '
   },
+  key_labels = { ["<leader>"] = "SPC" },
+  triggers = 'auto',
   show_help = false,
   show_keys = false
 })

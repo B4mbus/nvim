@@ -7,7 +7,43 @@ local with_desc = function(opts, description)
   return vim.tbl_extend('force', opts, { desc = description })
 end
 
+local extend = function(right, left)
+  return vim.tbl_extend('force', left, right)
+end
+
 -- NOTE: LEADER IS SET TO SPACE
+
+-- yoinked from folke's dots
+keymap('n', '<A-j>', [[:m .+1<CR>==]], silent_noremap)
+keymap('v', '<A-j>', [[:m '>+1<CR>gv=gv]], silent_noremap)
+keymap('i', '<A-j>', [[<Esc>:m .+1<CR>==gi]], silent_noremap)
+keymap('n', '<A-k>', [[:m .-2<CR>==]], silent_noremap)
+keymap('v', '<A-k>', [[:m '<-2<CR>gv=gv]], silent_noremap)
+keymap('i', '<A-k>', [[<Esc>:m .-2<CR>==gi]], silent_noremap)
+
+-- makes * nad # work in visual mode
+vim.cmd([[
+  function! g:VSetSearch(cmdtype)
+    let temp = @s
+    norm! gv"sy
+    let @/ = '\V' . substitute(escape(@s, a:cmdtype.'\'), '\n', '\\n', 'g')
+    let @s = temp
+  endfunction
+
+  xnoremap * :<C-u>call g:VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
+  xnoremap # :<C-u>call g:VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
+]])
+
+-- yoinked from folke's dots
+keymap('n', 'gw', '*N')
+keymap('x', 'gw', '*N')
+
+keymap("n", "n", "'Nn'[v:searchforward]", extend({ expr = true }, silent_noremap))
+keymap("x", "n", "'Nn'[v:searchforward]", extend({ expr = true }, silent_noremap))
+keymap("o", "n", "'Nn'[v:searchforward]", extend({ expr = true }, silent_noremap))
+keymap("n", "N", "'nN'[v:searchforward]", extend({ expr = true }, silent_noremap))
+keymap("x", "N", "'nN'[v:searchforward]", extend({ expr = true }, silent_noremap))
+keymap("o", "N", "'nN'[v:searchforward]", extend({ expr = true }, silent_noremap))
 
 -- Ctrl + C as Esc
 keymap('i', '<C-c>', '<Esc>', silent_noremap)

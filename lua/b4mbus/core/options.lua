@@ -14,8 +14,10 @@ vim.opt.list = true
 vim.opt.incsearch = true
 vim.opt.termguicolors = true
 vim.opt.autoread = true
+vim.opt.confirm = true
 vim.opt.showtabline = 1
 vim.opt.shiftwidth = 2
+vim.opt.pumheight = 10
 vim.opt.scrolloff = 999
 vim.opt.sidescrolloff = 8
 vim.opt.tabstop = 2
@@ -64,5 +66,6 @@ vim.opt.diffopt = {
 }
 vim.opt.showbreak = "⤷ "
 vim.opt.selection = 'old'
-vim.opt.completeopt = { 'menu' ,'menuone' ,'noselect' }
-vim.opt.formatoptions:remove({'c', 'r', 'o'})
+vim.opt.completeopt = { 'menu', 'menuone' ,'noselect' }
+
+vim.o.formatoptions = "jcroqlnt"

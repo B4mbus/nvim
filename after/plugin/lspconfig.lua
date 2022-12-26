@@ -1,6 +1,21 @@
-local ok, lsp = pequire('lspconfig')
+local neodev_ok, neodev = pequire("neodev")
+neodev.setup({
+  experimental = {
+    pathStrict = true,
+  },
+  library = {
+    runtime = '~/Executable/storage/nvim-linux64/share/nvim/runtime',
+  },
+})
 
-if not ok then
+if not neodev_ok then
+  vim.notify('Could not load the "neodev" plugin')
+  return
+end
+
+local lsp_ok, lsp = pequire('lspconfig')
+
+if not lsp_ok then
   vim.notify('Could not load the "lsp" plugin')
   return
 end
@@ -38,11 +53,8 @@ local custom_on_attach =  function(client, bufnr)
     bufnr
   )
 
-  local keymap = vim.keymap.set
-  local common = { buffer = bufnr, noremap = true, silent = true }
-
-  local ok, wk = pequire('which-key')
-  if ok then
+  local wk_ok, wk = pequire('which-key')
+  if wk_ok then
     local lsp_mappings = {
       name = 'LSP',
       ['<space>'] = {
@@ -99,7 +111,8 @@ local custom_on_attach =  function(client, bufnr)
   end
 end
 
-local caps = require('cmp_nvim_lsp').default_capabilities()
+local server_caps = vim.lsp.protocol.make_client_capabilities()
+local caps = require('cmp_nvim_lsp').default_capabilities(server_caps)
 caps.textDocument.foldingRange = {
   dynamicRegistration = false,
   lineFoldingOnly = true
@@ -110,8 +123,8 @@ local default_config = {
   on_attach = custom_on_attach
 }
 
-require('clangd_extensions').setup {
-  server = vim.tbl_extend('keep', default_config, {
+lsp.clangd.setup(
+  vim.tbl_extend('keep', default_config, {
     cmd = {
       'clangd',
       '--background-index',
@@ -127,17 +140,8 @@ require('clangd_extensions').setup {
 
       '--log=info',
     }
-  }) ,
-  inlay_hints = {
-    show_parameter_hints = false
-  },
-  extensions = {
-    other_hints_prefix = '⫸',
-    memory_usage = {
-      border = 'rounded'
-    }
-  }
-}
+  })
+)
 
 local sumneko_lua_settings = {
   settings = {
@@ -167,7 +171,7 @@ lsp.sumneko_lua.setup(
 lsp.hls.setup(default_config)
 lsp.tsserver.setup(default_config)
 lsp.fennel_language_server.setup(default_config)
-
+lsp.teal_ls.setup(default_config)
 
 vim.diagnostic.config {
   update_in_insert = false,

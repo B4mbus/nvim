@@ -17,6 +17,9 @@ require('lazy').setup(
               fg = '#ffffff',
               bold = true
             }
+            hls.YankPost = {
+              bg = '#15343c',
+            }
           end
         })
 
@@ -55,7 +58,7 @@ require('lazy').setup(
       event = 'BufRead'
     },
     {
-      'b4mbus/telescope-lazy.nvim',
+      'tsakirist/telescope-lazy.nvim',
       dependencies = { 'nvim-telescope/telescope.nvim' }
     },
     {
@@ -67,19 +70,28 @@ require('lazy').setup(
       keys = { 'gc', 'gcc', 'gbc' },
       dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
     },
-    'ray-x/lsp_signature.nvim',
+    {
+      'ray-x/lsp_signature.nvim',
+      lazy = false
+    },
     {
       'hrsh7th/nvim-cmp',
-      lazy = false,
+      lazy = false, --event = 'InsertEnter',
       dependencies = {
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-nvim-lua',
         'hrsh7th/cmp-path',
         'hrsh7th/cmp-buffer',
+        'saadparwaiz1/cmp_luasnip'
       },
     },
+    'saadparwaiz1/cmp_luasnip',
     'rareitems/printer.nvim',
-    'neovim/nvim-lspconfig',
+    'folke/neodev.nvim',
+    {
+      'neovim/nvim-lspconfig',
+      event = 'BufReadPre'
+    },
     {
       'SmiteshP/nvim-navic',
       event = 'BufRead'
@@ -204,10 +216,10 @@ require('lazy').setup(
     },
     'p00f/clangd_extensions.nvim',
     'onsails/lspkind.nvim',
-    {
-      'matze/vim-move',
-      event = 'BufRead'
-    },
+    -- {
+    --   'matze/vim-move',
+    --   event = 'BufRead'
+    -- },
     {
       'andymass/vim-matchup',
       event = 'BufRead'
@@ -259,4 +271,4 @@ require('lazy').setup(
       skip_if_doc_exists = true,
     },
   }
-  )
+)

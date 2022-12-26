@@ -14,6 +14,10 @@ local mapping_sources = {
 }
 
 cmp.setup({
+  -- completion = {
+  --   completeopt = "menu,menuone,noinsert",
+  -- },
+
   enabled = function()
     if vim.api.nvim_get_mode().mode == 'c' then
       return true
@@ -44,10 +48,10 @@ cmp.setup({
   },
 
   mapping = cmp.mapping.preset.insert({
-    ['<C-q>'] = cmp.mapping {
+    ['<C-q>'] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
-    },
+    }),
     ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
     ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
     ['<C-Space>'] = cmp.mapping.complete({ config = { sources = mapping_sources } }),
