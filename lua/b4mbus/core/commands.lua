@@ -138,7 +138,7 @@ command(
   function(args)
     b4.Sx(args.line1, args.line2, args.args)
   end,
-  { range='%' }
+  { range = '%' }
 )
 
 command(
@@ -150,7 +150,7 @@ command(
       [[awk '{ print length(), $0 | "sort -nr" }' | cut -f2- -d" "]]
     )
   end,
-  { range='%' }
+  { range = '%' }
 )
 
 command(
@@ -162,5 +162,5 @@ command(
       [[awk '!visited[$0]++']]
     )
   end,
-  { range='%' }
+  { range = '%' }
 )

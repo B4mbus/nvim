@@ -1,4 +1,8 @@
-local tsj = require('treesj')
+local ok, tsj = b4.pequire('treesj')
+if not ok then
+  vim.notify('Could not load the "treesj" plugin')
+  return
+end
 
 local langs = {--[[ configuration for languages ]]}
 

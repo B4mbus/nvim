@@ -71,4 +71,4 @@ vim.opt.showbreak = "⤷ "
 vim.opt.selection = 'old'
 vim.opt.completeopt = { 'menu', 'menuone' ,'noselect' }
 
-vim.o.formatoptions = "jcroqlnt"
+vim.o.formatoptions = "jqlnt"

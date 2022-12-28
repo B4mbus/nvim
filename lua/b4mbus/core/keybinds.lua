@@ -180,4 +180,5 @@ keymap({ 'n' }, 'J', 'mzJ`z', silent_noremap)
 keymap('n', ';', '=`]', silent_noremap)
 
 keymap({ 'n','x' }, '+', '<C-a>', silent_noremap)
-keymap({ 'n','x' }, '_', '<C-x>', silent_noremap)
+
+keymap({ 'x' }, 'g+', 'g<C-a>', silent_noremap)

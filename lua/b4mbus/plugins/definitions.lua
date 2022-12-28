@@ -159,7 +159,11 @@ require('lazy').setup(
       'kevinhwang91/nvim-ufo',
       dependencies = 'kevinhwang91/promise-async',
     },
-    -- {
+    {
+      'folke/twilight.nvim',
+      event = 'BufRead'
+    },
+      -- {
     --   'akinsho/bufferline.nvim',
     --   tag = '2.*',
     --   event = 'BufEnter'

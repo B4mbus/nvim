@@ -55,11 +55,11 @@ _G.b4.P = function(...) vim.pretty_print(...) end
 ---@param line2 number second line of range
 ---@param cmd string command
 _G.b4.Sx = function(line1, line2, cmd)
-  local shellescape = function(cmd)
-    return vim.fn.shellescape(cmd, true)
-  end
-
   vim.cmd(
-    ('%s,%s!%s'):format(line1, line2, shellescape(cmd))
+    ('%s,%s!%s'):format(
+      line1,
+      line2,
+      cmd:gsub('!', '\\!')
+    )
   )
 end

@@ -253,7 +253,7 @@ StatuslineMod.statusline = function()
       ''
     },
     ' '
-  )
+  ):gsub(' +', ' ') -- we change duplicate spaces into one space
 end
 
 vim.opt.statusline = '%{%v:lua.StatuslineMod.statusline()%}'
