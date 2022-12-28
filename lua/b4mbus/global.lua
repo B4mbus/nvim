@@ -49,3 +49,17 @@ _G.b4.I = function(...) return vim.inspect(...) end
 --- Does vim.pretty_print on arguments
 ---@vararg any args
 _G.b4.P = function(...) vim.pretty_print(...) end
+
+--- Execute a properly formatted filter
+---@param line1 number first line of range
+---@param line2 number second line of range
+---@param cmd string command
+_G.b4.Sx = function(line1, line2, cmd)
+  local shellescape = function(cmd)
+    return vim.fn.shellescape(cmd, true)
+  end
+
+  vim.cmd(
+    ('%s,%s!%s'):format(line1, line2, shellescape(cmd))
+  )
+end

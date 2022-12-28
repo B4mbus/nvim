@@ -1,7 +1,8 @@
+local api = vim.api
 local augroup = function(name)
-	vim.api.nvim_create_augroup(name, { clear = true })
+	api.nvim_create_augroup(name, { clear = true })
 end
-local autocmd = vim.api.nvim_create_autocmd
+local autocmd = api.nvim_create_autocmd
 
 autocmd(
 	{ 'VimEnter' },
@@ -15,7 +16,7 @@ autocmd(
       --     return
 			-- 	end
 
-			-- 	vim.api.nvim_set_current_dir(vim.g.starting_directory)
+			-- 	api.nvim_set_current_dir(vim.g.starting_directory)
 			-- end
 		end
 	}
@@ -63,7 +64,7 @@ autocmd(
   {
     pattern = "*",
     callback = function()
-      vim.api.nvim_create_autocmd(
+      api.nvim_create_autocmd(
         "FileType",
         {
           pattern = "<buffer>",
@@ -89,7 +90,7 @@ autocmd(
 )
 
 -- yoinked and modified from folke's dots
-vim.api.nvim_create_autocmd({ "FileType" }, {
+autocmd('FileType', {
   pattern = {
     "qf",
     "help",
@@ -102,7 +103,44 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     "PlenaryTestPopup",
   },
   callback = function()
-    vim.api.nvim_buf_set_keymap(0, 'n', 'q', '<cmd>close<cr>', { silent = true })
-    vim.api.nvim_buf_set_option(0, 'buflisted', false)
+    api.nvim_buf_set_keymap(0, 'n', 'q', '<cmd>close<cr>', { silent = true })
+    api.nvim_buf_set_option(0, 'buflisted', false)
   end,
 })
+
+--[[ autocmd(
+  'BufWinEnter',
+  {
+    pattern = '*',
+    callback = function()
+      local bt = api.nvim_buf_get_option(0, 'bt')
+      if bt ~= '' then return end
+
+      local lines = api.nvim_buf_get_lines(0, 0, -1, true)
+
+      local current = 1
+      local markers = {}
+
+      for line_nr, line in ipairs(lines) do
+        if line:find('{{{') then
+          markers[current] = { mbeg = line_nr }
+        elseif line:find('}}}') then
+          if not markers[current] then
+            b4.nerror('Unbalanced opening brackets.')
+            return
+          end
+          markers[current].mend = line_nr
+          current = current + 1
+        end
+      end
+
+      -- Here we are sure the markers are set correctly
+      for _, marker in ipairs(markers) do
+        local foldcmd = (':%s,%sfold'):format(marker.mbeg, marker.mend)
+
+        vim.cmd(foldcmd)
+        vim.cmd(foldcmd .. 'open')
+      end
+    end
+  }
+) ]]

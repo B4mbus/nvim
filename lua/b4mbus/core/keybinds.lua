@@ -157,7 +157,7 @@ keymap(
   'n',
   ',',
   function()
-    local line = vim.api.nvim_get_current_line();
+    local line = vim.api.nvim_get_current_line()
     vim.pretty_print(vim.api.nvim_exec(line, true))
   end,
   with_desc(silent_remap, 'Execute vim code')
@@ -177,5 +177,7 @@ keymap(
 
 keymap({ 'n' }, 'J', 'mzJ`z', silent_noremap)
 
-keymap({ 'n', 'x' }, 'p', 'p=`]', silent_noremap)
-keymap({ 'n', 'x' }, 'P', 'P=`]', silent_noremap)
+keymap('n', ';', '=`]', silent_noremap)
+
+keymap({ 'n','x' }, '+', '<C-a>', silent_noremap)
+keymap({ 'n','x' }, '_', '<C-x>', silent_noremap)

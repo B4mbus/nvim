@@ -25,14 +25,17 @@ vim.opt.timeoutlen = 350
 vim.opt.laststatus = 3
 vim.opt.history = 10000
 vim.opt.cmdheight = 0
+
 vim.opt.signcolumn = 'yes'
 vim.opt.grepprg = 'rg -n $* /dev/null'
+
 vim.opt.foldcolumn = '1'
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
+
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.mouse = 'a'
 vim.opt.inccommand = 'nosplit'

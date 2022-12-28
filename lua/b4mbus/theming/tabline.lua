@@ -13,14 +13,16 @@ TablineMod.tabline = function()
   local tabstring = table.concat(tabs, '%#TabSeparator# ' .. symbols.small_dot .. ' ');
 
   return
-    '%#none#%= '
-    .. tabstring:gsub(
-      tostring(tabpage),
-      '%%#ActiveTab#' .. tabpage
+    vim.trim(
+      '%#none#%= '
+      .. tabstring:gsub(
+        tostring(tabpage),
+        '%%#ActiveTab#' .. tabpage
+      )
+      ..
+      ' '
+      .. '%#none#%='
     )
-    ..
-    ' '
-    .. '%#none#%='
 end
 
 vim.opt.tabline = '%{%v:lua.TablineMod.tabline()%}'

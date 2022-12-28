@@ -56,8 +56,6 @@ keymap('n', 'gef', function() require('textcase').operator('to_path_case') end, 
 keymap("n", "gK", '<cmd>TSJSplit<cr>', silent_noremap)
 keymap("n", "gJ", '<cmd>TSJJoin<cr>', silent_noremap)
 
-keymap('n', ';', 'xph', silent_noremap)
-
 keymap('n', '<C-c>', '<cmd>Switch<cr>', silent_noremap)
 
 keymap('n', 'cq', function() require('replacer').run() end, silent_noremap)

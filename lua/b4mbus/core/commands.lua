@@ -1,4 +1,5 @@
 local command = vim.api.nvim_create_user_command
+
 command(
   'CP',
   function()
@@ -18,27 +19,6 @@ end
 
 command('Mb', msgbuf, { nargs = '*' })
 command('MB', msgbuf, { nargs = '*' })
-
-
---[[
-• name: (string) Command name
-• args: (string) The args passed to the command, if any
-|<args>|
-• fargs: (table) The args split by unescaped whitespace
-(when more than one argument is allowed), if any
-|<f-args>|
-• bang: (boolean) "true" if the command was executed with a
-! modifier |<bang>|
-• line1: (number) The starting line of the command range
-|<line1>|
-• line2: (number) The final line of the command range
-|<line2>|
-• range: (number) The number of items in the command range:
-0, 1, or 2 |<range>|
-• count: (number) Any count supplied |<count>|
-• reg: (string) The optional register, if specified |<reg>|
-• mods: (string) Command modifiers, if any |<mods>|
-• smods: (table) Command modifiers in a structured format. ]]
 
 command(
   'Clone',
@@ -68,4 +48,119 @@ command(
     }):start()
   end,
   { nargs = 1 }
+)
+
+command(
+  'Fuck',
+  function()
+    local windows = vim.api.nvim_list_wins()
+    vim.api.nvim_win_close(windows[#windows], true)
+  end,
+  {}
+)
+
+command(
+  'Test',
+  function(args)
+    b4.P(args)
+  end,
+  {
+    nargs = 1,
+    complete = function(_, line)
+      local cmd = vim.split(vim.trim(line), '%s+')
+      table.remove(cmd, 1)
+
+      local completions = { 'debug', 'suck' }
+
+      local already_completed = #cmd
+      if already_completed == 0 then
+        return completions
+      elseif already_completed == 1 then
+        local idx = table.find(completions, cmd[1])
+        return { 'debug', 'suck' }
+      end
+      return already_completed == 0 and { 'debug' } or {}
+    end,
+  }
+)
+
+command(
+  'InsertMIT',
+  function()
+    local mit_license_template = [[
+MIT License
+
+Copyright (c) %s %s
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+  ]]
+
+    local mit_license = mit_license_template:format(
+      os.date('*t').year,
+      'Daniel Zaradny <danielzaradny@gmail.com>'
+    )
+    local i = 0
+
+    for line in mit_license:gmatch("([^\n]*)\n?") do
+      vim.api.nvim_buf_set_lines(
+        0,
+        i,
+        -1,
+        false,
+        { line }
+      )
+      i = i + 1
+    end
+  end,
+  {}
+)
+
+command('Path', [[echo expand('%') expand('%:p') bufname()]], {})
+
+command(
+  'Sx',
+  function(args)
+    b4.Sx(args.line1, args.line2, args.args)
+  end,
+  { range='%' }
+)
+
+command(
+  'SBLL',
+  function(args)
+    b4.Sx(
+      args.line1,
+      args.line2,
+      [[awk '{ print length(), $0 | "sort -nr" }' | cut -f2- -d" "]]
+    )
+  end,
+  { range='%' }
+)
+
+command(
+  'Uniq',
+  function(args)
+    b4.Sx(
+      args.line1,
+      args.line2,
+      [[awk '!visited[$0]++']]
+    )
+  end,
+  { range='%' }
 )

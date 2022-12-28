@@ -217,7 +217,18 @@ require('lazy').setup(
     },
     {
       'tpope/vim-fugitive',
-      cmd = { 'G', 'Git' }
+      cmd = {
+        'G',
+        'Git',
+        'GBrowse',
+        'Gedit',
+        'Gread',
+        'Gwrite',
+        'Ggrep',
+        'Gdiffsplit',
+        'GMove',
+        'GDelete',
+      }
     },
     {
       'tpope/vim-rhubarb',
@@ -225,10 +236,6 @@ require('lazy').setup(
     },
     'p00f/clangd_extensions.nvim',
     'onsails/lspkind.nvim',
-    -- {
-    --   'matze/vim-move',
-    --   event = 'BufRead'
-    -- },
     {
       'andymass/vim-matchup',
       event = 'BufRead'
