@@ -176,3 +176,7 @@ keymap({ 'n','x' }, '+', '<C-a>')
 keymap('x', 'g+', 'g<C-a>')
 
 keymap('x', '/', '<Esc>/\\%V')
+
+keymap({ 'x', 'n' }, 'dD', 'd%')
+keymap({ 'x', 'n' }, 'yY', 'y%')
+keymap({ 'n' }, 'vv', 'v%o')
