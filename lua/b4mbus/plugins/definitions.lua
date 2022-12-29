@@ -236,7 +236,15 @@ require('lazy').setup(
     },
     {
       'tpope/vim-rhubarb',
-      cmd = 'GBrowse'
+      lazy = false
+    },
+    {
+      'folke/paint.nvim',
+      event = 'BufRead'
+    },
+    {
+      'tpope/vim-obsession',
+      lazy = false
     },
     'p00f/clangd_extensions.nvim',
     'onsails/lspkind.nvim',

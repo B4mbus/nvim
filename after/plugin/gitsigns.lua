@@ -39,6 +39,7 @@ gitsigns.setup({
     map('n', '<leader>hu', gs.undo_stage_hunk, { desc = 'Undo stage hunk' })
     map('n', '<leader>hR', gs.reset_buffer, { desc = 'Reset buffer' })
     map('n', '<leader>hp', gs.preview_hunk_inline, { desc = 'Preview hunk inline' })
+    map('n', '<leader>hb', gs.blame_line, { desc = 'Blame line' })
 
     -- Text object
     map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')

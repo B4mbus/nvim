@@ -67,6 +67,19 @@ vim.opt.diffopt = {
   iwhite = true,
   vertical = true
 }
+vim.opt.sessionoptions = {
+  "blank",
+  "buffers",
+  "curdir",
+  "folds",
+  "help",
+  "localoptions",
+  "options",
+  "resize",
+  "terminal",
+  "tabpages",
+  "winsize",
+}
 vim.opt.showbreak = "⤷ "
 vim.opt.selection = 'old'
 vim.opt.completeopt = { 'menu', 'menuone' ,'noselect' }

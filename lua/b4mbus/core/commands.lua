@@ -1,4 +1,15 @@
-local command = vim.api.nvim_create_user_command
+local command = function(name, thing, table)
+  if not name then
+    b4.nerror('Name is nil, cannot register command')
+    return
+  end
+  if not thing then
+    b4.nerror(('[%s] Thing is nil, cannot register command'):format(name))
+    return
+  end
+
+  vim.api.nvim_create_user_command(name, thing, table or {})
+end
 
 command(
   'CP',
@@ -9,8 +20,7 @@ command(
 
     local path = vim.fn.expand('%:p:h') .. '/configs/' .. filename .. '.lua'
     vim.fn.execute(':e ' .. path)
-  end,
-  {}
+  end
 )
 
 local msgbuf = function(args)
@@ -164,3 +174,21 @@ command(
   end,
   { range = '%' }
 )
+
+command('Aloof', 'source Session.vim')
+
+command(
+  'Dealoof',
+  function()
+    vim.cmd([[
+      let s:choice = confirm("Are u sure you want to delete the session?", "&Yes\n&No", "Question")
+
+      if s:choice == 1
+        call delete("./Session.vim")
+        lua b4.ninfo("Session deleted.")
+      endif
+    ]])
+  end
+)
+
+command('Btop', 'tabedit term://btop')

@@ -22,24 +22,6 @@ autocmd(
 	}
 )
 
-autocmd(
-	{ 'BufEnter', 'BufWinEnter', 'BufNew' },
-	{
-		group = augroup('haskell_thingies'),
-		pattern = '*.hs',
-		command = 'setlocal expandtab'
-	}
-)
-
-autocmd(
-	{ 'BufEnter', 'BufWinEnter', 'BufNew' },
-	{
-		group = augroup('react_markdown_shit'),
-		pattern = '*.mdx',
-		command = 'setlocal ft=jsx'
-	}
-)
-
 -- yoinked and modified from folke's dots
 autocmd(
   'BufWritePre',

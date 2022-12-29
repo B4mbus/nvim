@@ -1,8 +1,11 @@
-local keymap = vim.keymap.set
-
 local silent_noremap = { silent = true, noremap = true }
 
 local silent_remap = { silent = true, remap = true }
+
+local keymap = function(modes, left, right, opts)
+  vim.keymap.set(modes, left, right, opts or silent_noremap)
+end
+
 local with_desc = function(opts, description)
   return vim.tbl_extend('force', opts, { desc = description })
 end
@@ -14,12 +17,12 @@ end
 -- NOTE: LEADER IS SET TO SPACE
 
 -- yoinked from folke's dots
-keymap('n', '<A-j>', [[:m .+1<CR>==]], silent_noremap)
-keymap('v', '<A-j>', [[:m '>+1<CR>gv=gv]], silent_noremap)
-keymap('i', '<A-j>', [[<Esc>:m .+1<CR>==gi]], silent_noremap)
-keymap('n', '<A-k>', [[:m .-2<CR>==]], silent_noremap)
-keymap('v', '<A-k>', [[:m '<-2<CR>gv=gv]], silent_noremap)
-keymap('i', '<A-k>', [[<Esc>:m .-2<CR>==gi]], silent_noremap)
+keymap('n', '<A-j>', [[:m .+1<CR>==]])
+keymap('v', '<A-j>', [[:m '>+1<CR>gv=gv]])
+keymap('i', '<A-j>', [[<Esc>:m .+1<CR>==gi]])
+keymap('n', '<A-k>', [[:m .-2<CR>==]])
+keymap('v', '<A-k>', [[:m '<-2<CR>gv=gv]])
+keymap('i', '<A-k>', [[<Esc>:m .-2<CR>==gi]])
 
 -- makes * nad # work in visual mode
 vim.cmd([[
@@ -38,40 +41,40 @@ vim.cmd([[
 keymap('n', 'gw', '*N')
 keymap('x', 'gw', '*N')
 
-keymap("n", "n", "'Nn'[v:searchforward]", extend({ expr = true }, silent_noremap))
-keymap("x", "n", "'Nn'[v:searchforward]", extend({ expr = true }, silent_noremap))
-keymap("o", "n", "'Nn'[v:searchforward]", extend({ expr = true }, silent_noremap))
-keymap("n", "N", "'nN'[v:searchforward]", extend({ expr = true }, silent_noremap))
-keymap("x", "N", "'nN'[v:searchforward]", extend({ expr = true }, silent_noremap))
-keymap("o", "N", "'nN'[v:searchforward]", extend({ expr = true }, silent_noremap))
+keymap("n", "n", "'Nn'[v:searchforward]", extend(silent_noremap, { expr = true }))
+keymap("x", "n", "'Nn'[v:searchforward]", extend(silent_noremap, { expr = true }))
+keymap("o", "n", "'Nn'[v:searchforward]", extend(silent_noremap, { expr = true }))
+keymap("n", "N", "'nN'[v:searchforward]", extend(silent_noremap, { expr = true }))
+keymap("x", "N", "'nN'[v:searchforward]", extend(silent_noremap, { expr = true }))
+keymap("o", "N", "'nN'[v:searchforward]", extend(silent_noremap, { expr = true }))
 
 -- Ctrl + C as Esc
-keymap('i', '<C-c>', '<Esc>', silent_noremap)
+keymap('i', '<C-c>', '<Esc>')
 
 -- Ctrl + q goes into normal mode in terminal
-keymap('t', '<C-q>', '<C-\\><C-n>', silent_noremap)
+keymap('t', '<C-q>', '<C-\\><C-n>')
 
 -- Tab specific keymaps
-keymap('n', '<C-n>', '<cmd>tabnew<cr>', silent_noremap)
-keymap('n', '<C-h>', '<cmd>tabprev<cr>', silent_noremap)
-keymap('n', '<C-l>', '<cmd>tabnext<cr>', silent_noremap)
+keymap('n', '<C-n>', '<cmd>tabnew<cr>')
+keymap('n', '<C-h>', '<cmd>tabprev<cr>')
+keymap('n', '<C-l>', '<cmd>tabnext<cr>')
 
 -- j and k use gj and gk
-keymap({'n', 'v'}, 'k', 'gk', silent_noremap)
-keymap({'n', 'v'}, 'j', 'gj', silent_noremap)
+keymap({'n', 'v'}, 'k', 'gk')
+keymap({'n', 'v'}, 'j', 'gj')
 
 -- <C-w>n opens a new split, let <C-w>N open a new vsplit
-keymap('n', '<C-w>N', '<cmd>vnew<cr>', silent_noremap)
+keymap('n', '<C-w>N', '<cmd>vnew<cr>')
 
 -- <C-w>T moves current window to a new tab, let <C-w>t replicate current window in a new tab
-keymap('n', '<C-w>t', '<cmd>tabnew%<cr>', silent_noremap)
+keymap('n', '<C-w>t', '<cmd>tabnew%<cr>')
 
 -- <C-e> invokes emmet
 keymap('i', '<C-s>', '<C-y>,', silent_remap)
 
 -- Shit dont work lmao
--- keymap('v', 'I', '<c-v>$o0<s-i>', silent_noremap)
--- keymap('v', 'A', '<c-v>$o0<s-a>', silent_noremap)
+-- keymap('v', 'I', '<c-v>$o0<s-i>')
+-- keymap('v', 'A', '<c-v>$o0<s-a>')
 
 local replication_fun = function(direction, magic)
   return function()
@@ -86,12 +89,12 @@ local replication_fun = function(direction, magic)
 end
 
 -- Ctrl-d and Ctrl-f replicate lines in insert mode
-keymap('i', '<C-k>', replication_fun('up'), silent_noremap)
-keymap('i', '<C-j>', replication_fun('down'), silent_noremap)
+keymap('i', '<C-k>', replication_fun('up'))
+keymap('i', '<C-j>', replication_fun('down'))
 
 -- C-k and C-j replicate lines in normal mode
-keymap('n', '<C-k>', replication_fun('up'), silent_noremap)
-keymap('n', '<C-j>', replication_fun('down'), silent_noremap)
+keymap('n', '<C-k>', replication_fun('up'))
+keymap('n', '<C-j>', replication_fun('down'))
 
 -- <CR> in normal mode adds spaces around a line
 keymap(
@@ -104,22 +107,11 @@ keymap(
   silent_noremap
 )
 
--- <CR> in insert mode adds spaces around a line
-keymap(
-  'i',
-  '<C-CR>',
-  function()
-    replication_fun('up', '')()
-    replication_fun('down', '')()
-  end,
-  silent_noremap
-)
-
 -- quickfix shit, useful for Ggrep, GEdit and shi
-keymap({ 'n', 'v' }, ']q', '<cmd>cnext<cr>', silent_noremap)
-keymap({ 'n', 'v' }, '[q', '<cmd>cprev<cr>', silent_noremap)
-keymap('n', ']Q', '<cmd>cnfile<cr>', silent_noremap)
-keymap('n', '[Q', '<cmd>cpfile<cr>', silent_noremap)
+keymap({ 'n', 'v' }, ']q', '<cmd>cnext<cr>')
+keymap({ 'n', 'v' }, '[q', '<cmd>cprev<cr>')
+keymap('n', ']Q', '<cmd>cnfile<cr>')
+keymap('n', '[Q', '<cmd>cpfile<cr>')
 
 
 local copy_to_plus_reg = function(data)
@@ -175,10 +167,12 @@ keymap(
   { remap = true, silent = true, expr = true }
 )
 
-keymap({ 'n' }, 'J', 'mzJ`z', silent_noremap)
+keymap({ 'n' }, 'J', 'mzJ`z')
 
-keymap('n', ';', '=`]', silent_noremap)
+keymap('n', ';', '=`]')
 
-keymap({ 'n','x' }, '+', '<C-a>', silent_noremap)
+keymap({ 'n','x' }, '+', '<C-a>')
 
-keymap({ 'x' }, 'g+', 'g<C-a>', silent_noremap)
+keymap('x', 'g+', 'g<C-a>')
+
+keymap('x', '/', '<Esc>/\\%V')

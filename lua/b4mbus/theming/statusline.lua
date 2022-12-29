@@ -241,9 +241,16 @@ end
 StatuslineMod = {}
 
 StatuslineMod.statusline = function()
+  local obsession_status =
+    vim.fn['ObsessionStatus'](
+      '%#SessionActive#[{}]', -- using {} because obsession uses %s
+      '%#SessionInactive#[{}]' -- using {} because obsession uses %s
+    )
+
   return table.concat(
     {
       '',
+      obsession_status and obsession_status:gsub('{}', symbols.null) or '',
       get_file(),
       get_macro_status(),
       get_git_status(),

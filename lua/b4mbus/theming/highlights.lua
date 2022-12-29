@@ -1,67 +1,73 @@
-local hl = vim.api.nvim_set_hl
+local hl = function(...)
+  vim.api.nvim_set_hl(0, ...)
+end
 
-hl(0, 'IdkForFucksSake', { bg = '#111111'})
+hl('IdkForFucksSake', { bg = '#111111'})
 
 -- LSP Semantic Tokens
 
-hl(0, '@class', { fg = '#33ee00' })
-hl(0, '@struct', { fg = '#fff000' })
-hl(0, '@enum', { fg = '#fffff0' })
-hl(0, '@enumMember', { fg = '#cc0091' })
-hl(0, '@event', { fg = '#111111' })
-hl(0, '@interface', { fg = '#000000' })
-hl(0, '@modifier', { fg = '#00ff00' })
-hl(0, '@regexp', { fg = '#00ffff' })
-hl(0, '@typeParameter', { fg = '#0000ff' })
-hl(0, '@decorator', { fg = '#0f0f01' })
+hl('@class', { fg = '#33ee00' })
+hl('@struct', { fg = '#fff000' })
+hl('@enum', { fg = '#fffff0' })
+hl('@enumMember', { fg = '#cc0091' })
+hl('@event', { fg = '#111111' })
+hl('@interface', { fg = '#000000' })
+hl('@modifier', { fg = '#00ff00' })
+hl('@regexp', { fg = '#00ffff' })
+hl('@typeParameter', { fg = '#0000ff' })
+hl('@decorator', { fg = '#0f0f01' })
 
-hl(0, 'GitCommitStatusline', { fg = '#06cc71' })
-hl(0, 'GitCommitStatuslineShort', { fg = '#005335', bold = true })
+hl('GitCommitStatusline', { fg = '#06cc71' })
+hl('GitCommitStatuslineShort', { fg = '#005335', bold = true })
 
-hl(0, 'ActiveTab', { fg = '#3388ff', bold = true })
-hl(0, 'InactiveTab', { fg = '#ffffff' })
-hl(0, 'TabSeparator', { fg = '#666666' })
+hl('ActiveTab', { fg = '#3388ff', bold = true })
+hl('InactiveTab', { fg = '#ffffff' })
+hl('TabSeparator', { fg = '#666666' })
 
-hl(0, 'NiceGrey', { fg = '#667789' })
+-- Obsession session status
+hl('SessionActive', { fg = '#06cc81', bold = true })
+hl('SessionInactive', { fg = '#737373', bold = true })
 
-hl(0, 'White', { fg = '#ffffff' })
-hl(0, 'Red', { fg = '#ff0000' })
+hl('NiceGrey', { fg = '#667789' })
 
-hl(0, 'BoldWhite', { fg = '#ffffff', bold = true })
-hl(0, 'BoldRed', { fg = '#ff0000', bold = true })
-hl(0, 'BoldBlue', { fg = '#3388ff', bold = true })
+hl('White', { fg = '#ffffff' })
+hl('Red', { fg = '#ff0000' })
 
-hl(0, 'GitAddedSign', { fg = '#006B3D', bold = true })
-hl(0, 'GitChangedSign', { fg = '#FF681E', bold = true })
-hl(0, 'GitRemovedSign', { fg = '#94171F', bold = true })
+hl('BoldWhite', { fg = '#ffffff', bold = true })
+hl('BoldRed', { fg = '#ff0000', bold = true })
+hl('BoldBlue', { fg = '#3388ff', bold = true })
 
-hl(0, 'MacroStatusAt', { fg = '#94171F', bold = true })
-hl(0, 'MacroStatusReg', { fg = '#ff1111' })
+hl('GitAddedSign', { fg = '#006B3D', bold = true })
+hl('GitChangedSign', { fg = '#FF681E', bold = true })
+hl('GitRemovedSign', { fg = '#94171F', bold = true })
 
-hl(0, 'GitAdded', { fg = '#069C56', bold = true })
-hl(0, 'GitChanged', { fg = '#FF980E', bold = true })
-hl(0, 'GitRemoved', { fg = '#D3212C', bold = true })
+hl('MacroStatusAt', { fg = '#94171F', bold = true })
+hl('MacroStatusReg', { fg = '#ff1111' })
 
-hl(0, 'GitBranchSign', { fg = '#525252', bold = true })
-hl(0, 'GitBranch', { fg = '#A2A9B0', bold = true })
+hl('GitAdded', { fg = '#069C56', bold = true })
+hl('GitChanged', { fg = '#FF980E', bold = true })
+hl('GitRemoved', { fg = '#D3212C', bold = true })
 
-hl(0, 'StatusLineClock', { fg = '#ffffff', bold = true })
-hl(0, 'StatusLineMode', { fg = '#ffffff', bold = true })
+hl('GitBranchSign', { fg = '#525252', bold = true })
+hl('GitBranch', { fg = '#A2A9B0', bold = true })
+
+hl('StatusLineClock', { fg = '#ffffff', bold = true })
+hl('StatusLineMode', { fg = '#ffffff', bold = true })
 
 local szary_xd = '#6d8086'
-hl(0, 'StatusLineBranchColor', { fg = szary_xd, bg = 'NONE' })
-hl(0, 'StatusLineBold', { fg = szary_xd, bg = 'NONE', bold = true })
+hl('StatusLineBranchColor', { fg = szary_xd, bg = 'NONE' })
+hl('StatusLineBold', { fg = szary_xd, bg = 'NONE', bold = true })
 
-hl(0, 'Conceal', {})
+hl('Conceal', {})
 
-hl(0, 'WildMenu', { fg = '#00bbff' })
-hl(0, 'StatusLine', {})
+hl('WildMenu', { fg = '#00bbff' })
+hl('StatusLine', {})
 
-hl(0, 'CmpItemAbbrDeprecated', { strikethrough = true, fg = '#808080', bg = 'NONE' })
-hl(0, 'CmpItemAbbrMatch', { fg = '#569CD6', bg = 'NONE', bold = true })
-hl(0, 'CmpItemAbbrMatchFuzzy', { fg = '#569CD6', bg = 'NONE', bold = true })
+hl('CmpItemAbbrDeprecated', { strikethrough = true, fg = '#808080', bg = 'NONE' })
+hl('CmpItemAbbrMatch', { fg = '#569CD6', bg = 'NONE', bold = true })
+hl('CmpItemAbbrMatchFuzzy', { fg = '#569CD6', bg = 'NONE', bold = true })
 
-hl(0, 'CmpItemMenu', { fg = '#C792EA', bg = 'NONE', italic =  true })
+hl('CmpItemMenu', { fg = '#C792EA', bg = 'NONE', italic =  true })
 
 -- Generic navic and cmp highlights
 local lsp_types = {
@@ -101,6 +107,6 @@ for _, prefix in ipairs(prefixes) do
 	for group, fg_hl in pairs(lsp_types) do
 		local highlight = vim.tbl_extend('force', { bg = 'NONE'}, fg_hl)
 
-		hl(0, prefix .. group, highlight)
+		hl(prefix .. group, highlight)
 	end
 end
