@@ -190,4 +190,4 @@ command(
   { nargs = 1 }
 )
 
-command('ReloadConfig', function() b4.reload_config() end)
+command('ReloadConfig', function() package.loaded['b4mbus'] = nil;  end)

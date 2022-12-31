@@ -42,7 +42,6 @@ vim.opt.inccommand = 'nosplit'
 vim.opt.listchars = {
   tab = '> ',
   lead = '·',
-  trail = '•',
   nbsp = '␣',
   precedes = '«',
   extends = '»'

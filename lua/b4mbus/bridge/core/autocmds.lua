@@ -71,6 +71,14 @@ autocmd(
   }
 )
 
+autocmd(
+  'BufRead',
+  {
+    pattern = '*.mdx',
+    command = 'setlocal ft=jsx'
+  }
+)
+
 -- yoinked and modified from folke's dots
 autocmd('FileType', {
   pattern = {

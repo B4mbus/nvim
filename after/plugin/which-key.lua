@@ -69,6 +69,8 @@ local git_mappings = {
   d = { '<cmd>DiffviewOpen<cr>', 'Diffview' },
   l = { ('<cmd>%s -50<cr>'):format(git_log_cmd), 'Small log (50)' },
   L = { ('<cmd>%s<cr>'):format(git_log_cmd), 'Log' },
+  w = { [[<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<cr>]], 'Worktrees' }
+
 }
 
 local buffer_mappings = {
@@ -89,8 +91,8 @@ local iswap_mappings = {
   i = { '<cmd>ISwap<cr>', 'General' },
   w = { '<cmd>ISwapWith<cr>', 'With' },
   n = { '<cmd>ISwapNode<cr>', 'Node' },
-  h = { '<cmd>ISwapNodeWithLeft<cr>', 'With left' },
-  l = { '<cmd>ISwapNodeWithRight<cr>', 'With right' },
+  l = { '<cmd>ISwapNodeWithLeft<cr>', 'With left' },
+  h = { '<cmd>ISwapNodeWithRight<cr>', 'With right' },
 }
 
 -- All the default keymapings
@@ -135,9 +137,9 @@ local visual_refactoring_mappings = {
 }
 
 wk.register(
-{
-  r = visual_refactoring_mappings,
-  n = '<cmd>norm! @a<cr>'
-},
-{ prefix = '<leader>', mode = 'v' }
+  {
+    r = visual_refactoring_mappings,
+    n = ('<cmd>norm! @%s<cr>'):format(vim.fn.reg_recorded())
+  },
+  { prefix = '<leader>', mode = 'x' }
 )

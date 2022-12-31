@@ -1,8 +1,8 @@
+package.loaded['b4mbus.global'] = nil
 require('b4mbus.global')
 
-b4.xpnequire('b4mbus.core')
-b4.xpnequire('b4mbus.plugins')
-b4.xpnequire('b4mbus.theming')
+b4.reload_config()
+-- b4.xpnequire('b4mbus.bridge')
 
 -- Implement cursor going back in the terminal if cursor in normal mode is not at the end of line
 

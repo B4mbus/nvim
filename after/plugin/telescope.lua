@@ -42,3 +42,4 @@ telescope.setup({
 })
 
 telescope.load_extension('lazy')
+telescope.load_extension('git_worktree')

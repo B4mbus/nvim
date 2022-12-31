@@ -1,4 +1,4 @@
-local ok, _ = b4.pequire('b4mbus.plugins.lazy_bootstrap')
+local ok, _ = b4.pequire('b4mbus.bridge.plugins.lazy_bootstrap')
 
 if not ok then
   vim.notify([[Could not find and bootstrap lazy. Plugins can't be loaded]])
@@ -242,6 +242,11 @@ require('lazy').setup(
       'folke/paint.nvim',
       event = 'BufRead'
     },
+    {
+      'ThePrimeagen/harpoon',
+      lazy = false
+    },
+    'ThePrimeagen/git-worktree.nvim',
     {
       'tpope/vim-obsession',
       lazy = false

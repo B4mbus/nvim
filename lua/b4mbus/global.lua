@@ -63,3 +63,24 @@ _G.b4.Sx = function(line1, line2, cmd)
     )
   )
 end
+
+--- Runs a callback after timeout milliseconds
+---@param timeout number milliseconds to run the callback after
+---@param callback function() to run
+---@return uv.timer timer lol
+_G.b4.set_timeout = function(timeout, callback)
+  local timer = vim.loop.new_timer()
+  timer:start(timeout, 0, function ()
+    timer:stop()
+    timer:close()
+    callback()
+  end)
+
+  return timer
+end
+
+--- Reloads config
+_G.b4.reload_config = function()
+  package.loaded['b4mbus'] = nil;
+  b4.xpnequire('b4mbus.bridge')
+end

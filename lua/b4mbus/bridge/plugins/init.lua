@@ -1,0 +1,5 @@
+b4.xpnequire('b4mbus.bridge.plugins.variables')
+b4.xpnequire('b4mbus.bridge.plugins.definitions')
+b4.xpnequire('b4mbus.bridge.plugins.keybinds')
+b4.xpnequire('b4mbus.bridge.plugins.autocmds')
+b4.xpnequire('b4mbus.bridge.plugins.commands')

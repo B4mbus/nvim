@@ -4,32 +4,47 @@ if not ok then
   return
 end
 
+local tmux = function(pat, hl)
+  return { filter = { filetype = 'tmux'  }, pattern = pat, hl = hl }
+end
+
+local jsx = function(pat, hl)
+  return { filter = { filetype = 'jsx'  }, pattern = pat, hl = hl }
+end
+
 paint.setup({
   highlights = {
-    {
-      filter = { filetype = 'tmux'  },
-      pattern = "%s*#%s*(%[.-]:)",
-      hl = "@method",
-    },
-    {
-      filter = { filetype = 'tmux'  },
-      pattern = "%s*#%s*@(.*)",
-      hl = "Constant",
-    },
-    {
-      filter = { filetype = 'tmux'  },
-      pattern = "<prefix>",
-      hl = "@attribute",
-    },
-    {
-      filter = { filetype = 'tmux'  },
-      pattern = "<prefix> (%+)",
-      hl = "@constructor",
-    },
-    {
-      filter = { filetype = 'tmux'  },
-      pattern = "<prefix> %+ (.+)",
-      hl = "@character",
-    },
+    tmux('%s*#%s*(%[.-]:)', '@method'),
+    tmux('%s*#%s*@(.*)', 'Constant'),
+    tmux('<prefix>', '@attribute'),
+    tmux('<prefix> (%+)', '@constructor'),
+    tmux('<prefix> %+ (.+)', '@character'),
+    tmux('<prefix> %+ (.+)', '@character'),
+
+    -- headings
+    jsx('^(#) .-$', '@punctuation.special'),
+    jsx('^# (.-)$', 'markdownH1'),
+
+    jsx('^(##) .-$', '@punctuation.special'),
+    jsx('^## (.-)$', 'markdownH2'),
+
+    jsx('^(###) .-$', '@punctuation.special'),
+    jsx('^### (.-)$', '@function.builtin'),
+
+    jsx('^(####) .-$', '@punctuation.special'),
+    jsx('^#### (.-)$', '@constant.macro'),
+
+    -- links
+    jsx('%[(.-)]%(.-%)', '@exception'),
+    jsx('%[.-]%((.-)%)', '@keyword'),
+
+    -- imports
+    jsx([[^(import) .- from ['"].-['"];]], '@conditional'),
+    jsx([[^import (.-) from ['"].-['"];]], 'Keyword'),
+    jsx([[^import .- (from) ['"].-['"];]], '@conditional'),
+    jsx([[^import .- from (['"].-['"]);]], 'String'),
+
+    -- tags
+    jsx('</?(%a-)>', 'htmlH2'),
   },
 })
