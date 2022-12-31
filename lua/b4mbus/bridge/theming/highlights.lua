@@ -22,7 +22,7 @@ hl('GitCommitStatuslineShort', { fg = '#005335', bold = true })
 
 hl('ActiveTab', { fg = '#3388ff', bold = true })
 hl('InactiveTab', { fg = '#ffffff' })
-hl('TabSeparator', { fg = '#666666' })
+hl('WinSeparator', { fg = '#3d59a1' })
 
 -- Obsession session status
 hl('SessionActive', { fg = '#06cc81', bold = true })

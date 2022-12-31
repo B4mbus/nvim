@@ -78,3 +78,15 @@ keymap('n', 'K', function()
       vim.lsp.buf.hover()
     end
 end)
+
+keymap(
+  "x",
+  "g?",
+  function()
+    local ok, pantran = b4.pequire('pantran')
+    if ok then
+      return pantran.motion_translate()
+    end
+  end,
+  { remap = true, silent = true, expr = true }
+)

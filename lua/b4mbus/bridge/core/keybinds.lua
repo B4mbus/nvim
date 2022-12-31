@@ -119,8 +119,11 @@ local copy_to_plus_reg = function(data)
 end
 local expand = vim.fn.expand
 
+-- <C-f><C-f> copies the filename
 keymap({ 'n', 'v', 'i' }, '<C-f><C-f>', function() copy_to_plus_reg(expand('%:t')) end, with_desc(silent_noremap, 'Copy filename'))
+-- <C-f><C-f> copies the full path
 keymap({ 'n', 'v', 'i' }, '<C-f>p', function() copy_to_plus_reg(expand('%:p')) end, with_desc(silent_noremap, 'Copy full path'))
+-- <C-f><C-f> copies the relative path
 keymap({ 'n', 'v', 'i' }, '<C-f>r', function() copy_to_plus_reg(expand('%:.')) end, with_desc(silent_noremap, 'Copy relative path'))
 
 local booga = function(a)
@@ -140,43 +143,48 @@ local booga = function(a)
   copy_to_plus_reg(path)
 end
 
+-- <C-f>2 copies 2 paths elements, so like core/keybinds.lua
 keymap({ 'n', 'v', 'i' }, '<C-f>2', function() booga(2) end, with_desc(silent_noremap, 'Copy 2 path elems'))
+-- <C-f>3 copies 3 paths elements, so like bridge/core/keybinds.lua
 keymap({ 'n', 'v', 'i' }, '<C-f>3', function() booga(3) end, with_desc(silent_noremap, 'Copy 3 path elems'))
+-- <C-f>4 copies 4 paths elements, so like b4mbus/bridge/core/keybinds.lua
 keymap({ 'n', 'v', 'i' }, '<C-f>4', function() booga(4) end, with_desc(silent_noremap, 'Copy 4 path elems'))
+-- <C-f>+ copies + paths elements, so like home/b4mbus/bridge/core/keybinds.lua
 keymap({ 'n', 'v', 'i' }, '<C-f>5', function() booga(5) end, with_desc(silent_noremap, 'Copy 5 path elems'))
 
+-- a simple mapping that executes lua code in current line
 keymap(
   'n',
   ',',
   function()
     local line = vim.api.nvim_get_current_line()
     vim.pretty_print(vim.api.nvim_exec(line, true))
-  end,
-  with_desc(silent_remap, 'Execute vim code')
+  end
 )
 
-keymap(
-  "x",
-  "g?",
-  function()
-    local ok, pantran = b4.pequire('pantran')
-    if ok then
-      return pantran.motion_translate()
-    end
-  end,
-  { remap = true, silent = true, expr = true }
-)
+-- hitting J doesnt change the cursor pos
+keymap({ 'n' }, 'J', 'mxJ`x')
 
-keymap({ 'n' }, 'J', 'mzJ`z')
-
+-- ; reindents last changed text (so e.g. pasted)
 keymap('n', ';', '=`]')
 
+-- + acts as <C-a> since I use <C-a> in tmux
 keymap({ 'n','x' }, '+', '<C-a>')
 
+-- g+ acts the same as g<C-a>
 keymap('x', 'g+', 'g<C-a>')
 
+-- searches inside a visual selection
 keymap('x', '/', '<Esc>/\\%V')
 
+-- dD deletes matching region
 keymap({ 'x', 'n' }, 'dD', 'd%')
+-- yY yanks matching region
 keymap({ 'x', 'n' }, 'yY', 'y%')
+-- vv selects matching region
 keymap({ 'n' }, 'vv', 'v%o')
+
+-- selecting something in insert mode and going back doesnt change the cursor poz
+keymap('n', 'v', 'mzv', silent_noremap)
+keymap('n', 'V', 'mzV', silent_noremap)
+keymap('x', '<C-c>', '<Esc>`z', silent_noremap)

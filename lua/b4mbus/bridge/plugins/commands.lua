@@ -39,7 +39,7 @@ command(
 -- :Trim trims spaces
 command('Trim', function() MiniTrailspace.trim() end)
 
-command('Aloof', 'source Session.vim')
+command('Aloof', 'source .session.vim')
 
 command('MS', 'Obsession .session.vim')
 

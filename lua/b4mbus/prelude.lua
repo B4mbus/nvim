@@ -79,8 +79,13 @@ _G.b4.set_timeout = function(timeout, callback)
   return timer
 end
 
+--- Loads config
+_G.b4.load_config = function()
+  b4.xpnequire('b4mbus.bridge')
+end
+
 --- Reloads config
 _G.b4.reload_config = function()
   package.loaded['b4mbus'] = nil;
-  b4.xpnequire('b4mbus.bridge')
+  b4.load_config()
 end

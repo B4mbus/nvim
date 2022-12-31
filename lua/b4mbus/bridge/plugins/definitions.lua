@@ -17,6 +17,10 @@ require('lazy').setup(
               fg = '#ffffff',
               bold = true
             }
+            hls.WinSeparator = {
+              fg = '#3d59a1',
+              bold = true
+            }
             hls.YankPost = {
               bg = '#15343c',
             }

@@ -134,3 +134,10 @@ autocmd('FileType', {
     end
   }
 ) ]]
+
+autocmd(
+  'TermOpen',
+  {
+    command = 'setlocal nonu nornu'
+  }
+)

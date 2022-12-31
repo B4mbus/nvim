@@ -1,8 +1,8 @@
-package.loaded['b4mbus.global'] = nil
-require('b4mbus.global')
+local prelude_mod = 'b4mbus.prelude'
+package.loaded[prelude_mod] = nil
+require(prelude_mod)
 
-b4.reload_config()
--- b4.xpnequire('b4mbus.bridge')
+b4.load_config()
 
 -- Implement cursor going back in the terminal if cursor in normal mode is not at the end of line
 

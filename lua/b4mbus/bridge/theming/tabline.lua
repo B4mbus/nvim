@@ -14,7 +14,7 @@ TablineMod.tabline = function()
 
   return
     vim.trim(
-      '%#none#%= '
+      '%#Normal#%= '
       .. tabstring:gsub(
         tostring(tabpage),
         '%%#ActiveTab#' .. tabpage
